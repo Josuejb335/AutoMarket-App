@@ -1,6 +1,6 @@
-﻿namespace AppServidor
+﻿namespace AppCliente
 {
-    partial class Form1
+    partial class MenuCliente
     {
         /// <summary>
         /// Variable del diseñador necesaria.

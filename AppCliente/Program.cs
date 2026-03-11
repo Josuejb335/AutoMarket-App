@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AppServidor
+namespace AppCliente
 {
     internal static class Program
     {
@@ -13,7 +16,7 @@ namespace AppServidor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DashboardServ());
+            Application.Run(new MenuCliente());
         }
     }
 }
