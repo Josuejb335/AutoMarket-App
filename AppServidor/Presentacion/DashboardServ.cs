@@ -16,5 +16,20 @@ namespace AppServidor
         {
             InitializeComponent();
         }
+
+        private void btnBitacora_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegistro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConsulta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
