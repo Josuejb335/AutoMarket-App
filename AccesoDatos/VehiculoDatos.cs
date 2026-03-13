@@ -13,9 +13,9 @@ namespace AccesoDatos
             List<Vehiculo> lista = new List<Vehiculo>();
 
             string sql = @"SELECT v.IdVehiculo, v.Marca, v.Modelo, v.Precio, v.Ano,
-                            v.Estado,c.IdCategoria, c.NombreCategoria, c.Descripcion 
-                            FROM Vehiculo v 
-                            INNER JOIN CategoriaVehiculo c ON v.IdCategoria = c.IdCategoria";
+                           v.Estado,c.IdCategoria, c.NombreCategoria, c.Descripcion 
+                           FROM Vehiculo v 
+                           INNER JOIN CategoriaVehiculo c ON v.IdCategoria = c.IdCategoria";
 
             //bloque using para asegurar que la conexión se cierre 
             using (var cnx = ObtenerConexion())
@@ -73,8 +73,9 @@ namespace AccesoDatos
                 cmd.Parameters.AddWithValue("@estado", v.Estado);
                 cmd.Parameters.AddWithValue("@idCat", v.Cat.IdCat);
 
-                cnx.Open();
-                return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
+               cnx.Open();
+               
+               return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
             }
         }
     }
