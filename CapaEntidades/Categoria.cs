@@ -11,12 +11,12 @@ namespace CapaEntidades
     public class Categoria
     {
         //atributos
-        public string IdCat { get; set; }
+        public int IdCat { get; set; }
         public string NombreCat { get; set; }
         public string DescCat { get; set; }
         
         //constructores
-        public Categoria(string id, string nombre, string descripcion)
+        public Categoria(int id, string nombre, string descripcion)
         {
             this.IdCat = id;
             this.NombreCat = nombre;

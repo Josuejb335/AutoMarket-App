@@ -91,6 +91,10 @@
       <Project>{95026c1c-b55a-408b-b696-74de1a5658f2}</Project>
       <Name>AccesoDatos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
+      <Project>{0d1993d9-fe4a-4742-aa31-5c34ebcfc5a6}</Project>
+      <Name>CapaEntidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

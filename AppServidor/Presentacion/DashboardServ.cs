@@ -1,16 +1,12 @@
 ﻿using AccesoDatos;
+using CapaEntidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace AppServidor
 {
+    
     public partial class DashboardServ : Form
     {
         public DashboardServ()
@@ -29,7 +25,7 @@ namespace AppServidor
                 chartGeneral.Series[0].Points.AddXY("Sucursales", nSucursales);
                 chartGeneral.Series[0].Points.AddXY("Categorías", nCategorias);
             }
-            catch (Exception ex)
+            catch
             {
                 throw new Exception("Error al actualizar el gráfico general");
             }
@@ -45,7 +41,7 @@ namespace AppServidor
                 chartGeneral2.Series[0].Points.AddXY("Vehículos", nVendedores);
                 chartGeneral2.Series[0].Points.AddXY("Sucursales", nClientes);
             }
-            catch (Exception ex)
+            catch
             {
                 throw new Exception("Error al actualizar el gráfico de personas");
             }
@@ -88,7 +84,7 @@ namespace AppServidor
 
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void cuiPanel1_Paint(object sender, PaintEventArgs e)
