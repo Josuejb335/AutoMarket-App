@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using CapaEntidades;
 
 namespace AccesoDatos

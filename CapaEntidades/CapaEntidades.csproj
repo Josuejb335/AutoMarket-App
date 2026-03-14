@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asocie.cs" />
+    <Compile Include="VehiculoxSucursal.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Persona.cs" />
@@ -49,6 +49,7 @@
     <Compile Include="Sucursal.cs" />
     <Compile Include="Vehiculo.cs" />
     <Compile Include="Vendedor.cs" />
+    <Compile Include="Venta.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

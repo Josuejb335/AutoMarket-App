@@ -1,4 +1,4 @@
-﻿using AccesoDatos;
+﻿using AccesoDatos.ConsultasDashBoard;
 using CapaEntidades;
 using System;
 using System.Windows.Forms;
@@ -13,6 +13,9 @@ namespace AppServidor
         {
             InitializeComponent();
         }
+
+        //test
+        ConsultasDashBoard consultas = new ConsultasDashBoard();
 
         //metodo para actualizar chartGeneral
         private void ActChartGeneral(int nVehiculos, int nSucursales, int nCategorias)
@@ -47,6 +50,29 @@ namespace AppServidor
             }
         }
 
+        //metodo para actualizar chartGeneral
+        private void ActChartVentas(decimal montoVentas)
+        {
+            try
+            {
+                // 1. Limpiar datos anteriores (importante para que no se encimen las barras)
+                chartVentas.Series["Ventas"].Points.Clear();
+
+                // 2. Configuración visual (lo que ya tenías)
+                chartVentas.ChartAreas[0].AxisY.LabelStyle.Format = "C0";
+                chartVentas.Series["Ventas"].IsValueShownAsLabel = true;
+                chartVentas.Series["Ventas"].LabelFormat = "C2";
+
+                // 3. AQUÍ es donde se usa el valor para mostrarlo
+                // "Total" es la etiqueta del eje X, y montoVentas es la altura de la barra
+                chartVentas.Series["Ventas"].Points.AddXY("Total Ventas", montoVentas);
+            }
+            catch
+            {
+                throw new Exception("Error al actualizar el gráfico de Ventas");
+            }
+        }
+
 
         // Al cargar form
         private void DashboardServ_Load(object sender, EventArgs e)
@@ -63,8 +89,9 @@ namespace AppServidor
         {
             try
             {
-                ActChartGeneral(2, 4, 4);
-                ActChartPersonas(3, 6);
+                ActChartGeneral(6, 4, 4);
+                ActChartPersonas(6, 6);
+                ActChartVentas(consultas.ObtenerMontoVentas());
             }
             catch (Exception ex)
             {
@@ -79,12 +106,11 @@ namespace AppServidor
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-
+        
         }
 
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-
         }
 
         private void cuiPanel1_Paint(object sender, PaintEventArgs e)
