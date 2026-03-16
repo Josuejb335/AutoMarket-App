@@ -1,8 +1,10 @@
 ﻿using AccesoDatos.ConsultasDashBoard;
 using CapaEntidades;
 using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AppServidor
 {
@@ -17,16 +19,19 @@ namespace AppServidor
         //test
         ConsultasDashBoard consultas = new ConsultasDashBoard();
 
-        //metodo para actualizar chartGeneral
-        private void ActChartGeneral(int nVehiculos, int nSucursales, int nCategorias)
+        //metodo para actualizar chart de Datos registrado
+        private void ActChartGeneral()
         {
             try
             {
-                chartGeneral.Series[0].Points.Clear();
-                //agregar datos al gráfico general
-                chartGeneral.Series[0].Points.AddXY("Vehículos", nVehiculos);
-                chartGeneral.Series[0].Points.AddXY("Sucursales", nSucursales);
-                chartGeneral.Series[0].Points.AddXY("Categorías", nCategorias);
+                var datos = consultas.ObtenerConteosGenerales();
+                chartGeneral.Series["Datos Registrados"].Points.Clear();
+
+                foreach (var item in datos)
+                {
+                    int i = chartGeneral.Series["Datos Registrados"].Points.AddXY(item.Key, item.Value);
+                }
+
             }
             catch
             {
@@ -34,15 +39,40 @@ namespace AppServidor
             }
         }
 
-        //metodo para actualizar chartGeneral
-        private void ActChartPersonas(int nClientes, int nVendedores)
+        //metodo para actualizar chart Sucursales
+        private void ActChartSucursales(Dictionary<string, int> datos)
         {
             try
             {
-                chartGeneral2.Series[0].Points.Clear();
-                //agregar datos al gráfico general
-                chartGeneral2.Series[0].Points.AddXY("Vehículos", nVendedores);
-                chartGeneral2.Series[0].Points.AddXY("Sucursales", nClientes);
+                // Supongamos que tu serie se llama "SeriesPie"
+                var serie = chartSucursales.Series["Series"];
+                serie.Points.Clear();
+                serie.ChartType = SeriesChartType.Pie;
+
+                // Opcional: Hacer que parezca una "Dona" (se ve más moderno)
+                serie["PieDrawingStyle"] = "Concave"; 
+                serie.CustomProperties = "DoughnutRadius=40"; 
+
+                foreach (var item in datos)
+                {
+                    int i = serie.Points.AddXY(item.Key, item.Value);
+
+                    // Configuramos para que el texto salga DENTRO o FUERA del pastel
+                    serie.Points[i].Label = "#VALX: #VALY (#PERCENT)"; // Muestra: Activos: 10 (60%)
+                    serie.Points[i].LegendText = "#VALX"; // Para que la leyenda diga "Activos" o "Inactivos"
+                }
+
+                // Colores específicos para que "Activos" sea verde y "Inactivos" rojo
+                if (serie.Points.Count > 0)
+                {
+                    // Esto depende del orden en que lleguen de la BD, 
+                    // pero puedes buscar por la etiqueta:
+                    foreach (var p in serie.Points)
+                    {
+                        if (p.AxisLabel == "Activos") p.Color = Color.SeaGreen;
+                        if (p.AxisLabel == "Inactivos") p.Color = Color.IndianRed;
+                    }
+                }
             }
             catch
             {
@@ -51,35 +81,35 @@ namespace AppServidor
         }
 
         //metodo para actualizar chartGeneral
-        private void ActChartVentas(decimal montoVentas)
+        private void ActChartVentas(Dictionary<string, decimal> ventasPorMes)
         {
             try
             {
-                // 1. Limpiar datos anteriores (importante para que no se encimen las barras)
-                chartVentas.Series["Ventas"].Points.Clear();
+                var serie = chartVentas.Series["Ventas"];
+                serie.Points.Clear();
 
-                // 2. Configuración visual (lo que ya tenías)
+                // Configurar formato de moneda
                 chartVentas.ChartAreas[0].AxisY.LabelStyle.Format = "C0";
-                chartVentas.Series["Ventas"].IsValueShownAsLabel = true;
-                chartVentas.Series["Ventas"].LabelFormat = "C2";
 
-                // 3. AQUÍ es donde se usa el valor para mostrarlo
-                // "Total" es la etiqueta del eje X, y montoVentas es la altura de la barra
-                chartVentas.Series["Ventas"].Points.AddXY("Total Ventas", montoVentas);
+                // 3. Cargar los datos al gráfico
+                foreach (var entrega in ventasPorMes)
+                {
+                    // entrega.Key es el nombre del Mes, entrega.Value es el monto
+                    serie.Points.AddXY(entrega.Key, (double)entrega.Value);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Error al actualizar el gráfico de Ventas");
+                throw new Exception("Error al actualizar la línea de tiempo de ventas: " + ex.Message);
             }
         }
-
 
         // Al cargar form
         private void DashboardServ_Load(object sender, EventArgs e)
         {
             // Timer para actualizar el dashboard cada x segundos
             Timer timer = new Timer();
-            timer.Interval = 1000;
+            timer.Interval = 100;
             timer.Tick +=  actualizarDashboard;
             timer.Start();
         }
@@ -89,9 +119,9 @@ namespace AppServidor
         {
             try
             {
-                ActChartGeneral(6, 4, 4);
-                ActChartPersonas(6, 6);
-                ActChartVentas(consultas.ObtenerMontoVentas());
+                ActChartGeneral();
+                ActChartSucursales(consultas.ObtenerEstadoSucursales());
+                ActChartVentas(consultas.ObtenerVentasMensuales());
             }
             catch (Exception ex)
             {

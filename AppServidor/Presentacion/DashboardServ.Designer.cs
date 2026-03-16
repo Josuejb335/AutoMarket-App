@@ -51,7 +51,7 @@
             this.lblContWid3 = new CuoreUI.Controls.cuiPanel();
             this.chartClientes = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlContWid2 = new CuoreUI.Controls.cuiPanel();
-            this.chartGeneral2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartSucursales = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlContWid1 = new CuoreUI.Controls.cuiPanel();
             this.chartGeneral = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblTitulo = new System.Windows.Forms.Label();
@@ -64,7 +64,7 @@
             this.lblContWid3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartClientes)).BeginInit();
             this.pnlContWid2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartGeneral2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSucursales)).BeginInit();
             this.pnlContWid1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartGeneral)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +84,7 @@
             this.pnlFondo.Controls.Add(this.btnRegistro);
             this.pnlFondo.Location = new System.Drawing.Point(-4, -1);
             this.pnlFondo.Name = "pnlFondo";
-            this.pnlFondo.Size = new System.Drawing.Size(1119, 626);
+            this.pnlFondo.Size = new System.Drawing.Size(1900, 900);
             this.pnlFondo.TabIndex = 1;
             // 
             // pnlContLog
@@ -115,21 +115,44 @@
             // pnlContWid3
             // 
             this.pnlContWid3.Controls.Add(this.chartVentas);
-            this.pnlContWid3.Location = new System.Drawing.Point(365, 70);
+            this.pnlContWid3.Location = new System.Drawing.Point(389, 56);
             this.pnlContWid3.Name = "pnlContWid3";
             this.pnlContWid3.OutlineThickness = 1F;
             this.pnlContWid3.PanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.pnlContWid3.PanelOutlineColor = System.Drawing.Color.Transparent;
             this.pnlContWid3.Rounding = new System.Windows.Forms.Padding(13);
-            this.pnlContWid3.Size = new System.Drawing.Size(329, 289);
+            this.pnlContWid3.Size = new System.Drawing.Size(606, 289);
             this.pnlContWid3.TabIndex = 6;
             // 
             // chartVentas
             // 
             this.chartVentas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158)))));
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX2.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX2.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX2.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisX2.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158)))));
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY2.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea1.AxisY2.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
             chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.BorderColor = System.Drawing.Color.White;
-            chartArea1.Name = "ChartArea1";
+            chartArea1.Name = "ChartAreas";
             this.chartVentas.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.Color.Transparent;
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
@@ -142,25 +165,30 @@
             legend1.TitleForeColor = System.Drawing.Color.White;
             legend1.TitleSeparatorColor = System.Drawing.Color.White;
             this.chartVentas.Legends.Add(legend1);
-            this.chartVentas.Location = new System.Drawing.Point(3, 14);
+            this.chartVentas.Location = new System.Drawing.Point(3, 3);
             this.chartVentas.Name = "chartVentas";
             this.chartVentas.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
             series1.BackImageTransparentColor = System.Drawing.Color.Transparent;
             series1.BackSecondaryColor = System.Drawing.Color.White;
             series1.BorderColor = System.Drawing.Color.Transparent;
-            series1.ChartArea = "ChartArea1";
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartAreas";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(80)))), ((int)(((byte)(5)))));
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(102)))), ((int)(((byte)(252)))));
             series1.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.IsValueShownAsLabel = true;
             series1.LabelBackColor = System.Drawing.Color.Transparent;
             series1.LabelBorderColor = System.Drawing.Color.Transparent;
             series1.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
             series1.LabelForeColor = System.Drawing.Color.White;
+            series1.LabelFormat = "C0";
             series1.Legend = "Legend1";
-            series1.Name = "Costo Vehiculos en Sucursales";
+            series1.MarkerSize = 8;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Ventas";
             series1.YValuesPerPoint = 4;
             this.chartVentas.Series.Add(series1);
-            this.chartVentas.Size = new System.Drawing.Size(323, 269);
+            this.chartVentas.Size = new System.Drawing.Size(601, 283);
             this.chartVentas.TabIndex = 1;
             this.chartVentas.Text = "chart4";
             // 
@@ -183,7 +211,7 @@
             this.btnConsulta.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnConsulta.Image = null;
             this.btnConsulta.ImageExpand = new System.Drawing.Point(0, 0);
-            this.btnConsulta.Location = new System.Drawing.Point(980, 13);
+            this.btnConsulta.Location = new System.Drawing.Point(1350, 13);
             this.btnConsulta.Name = "btnConsulta";
             this.btnConsulta.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.btnConsulta.NormalForeColor = System.Drawing.Color.White;
@@ -269,32 +297,32 @@
             // 
             // pnlContWid2
             // 
-            this.pnlContWid2.Controls.Add(this.chartGeneral2);
-            this.pnlContWid2.Location = new System.Drawing.Point(712, 70);
+            this.pnlContWid2.Controls.Add(this.chartSucursales);
+            this.pnlContWid2.Location = new System.Drawing.Point(1001, 56);
             this.pnlContWid2.Name = "pnlContWid2";
             this.pnlContWid2.OutlineThickness = 1F;
             this.pnlContWid2.PanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.pnlContWid2.PanelOutlineColor = System.Drawing.Color.Transparent;
             this.pnlContWid2.Rounding = new System.Windows.Forms.Padding(13);
-            this.pnlContWid2.Size = new System.Drawing.Size(394, 286);
+            this.pnlContWid2.Size = new System.Drawing.Size(475, 289);
             this.pnlContWid2.TabIndex = 6;
             // 
-            // chartGeneral2
+            // chartSucursales
             // 
-            this.chartGeneral2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.chartSucursales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             chartArea3.BackColor = System.Drawing.Color.Transparent;
             chartArea3.Name = "ChartArea1";
-            this.chartGeneral2.ChartAreas.Add(chartArea3);
+            this.chartSucursales.ChartAreas.Add(chartArea3);
             legend3.BackColor = System.Drawing.Color.Transparent;
             legend3.Font = new System.Drawing.Font("Segoe UI Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             legend3.ForeColor = System.Drawing.Color.White;
             legend3.IsTextAutoFit = false;
             legend3.Name = "Legend1";
-            this.chartGeneral2.Legends.Add(legend3);
-            this.chartGeneral2.Location = new System.Drawing.Point(12, 3);
-            this.chartGeneral2.Name = "chartGeneral2";
-            this.chartGeneral2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chartGeneral2.PaletteCustomColors = new System.Drawing.Color[] {
+            this.chartSucursales.Legends.Add(legend3);
+            this.chartSucursales.Location = new System.Drawing.Point(3, 3);
+            this.chartSucursales.Name = "chartSucursales";
+            this.chartSucursales.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chartSucursales.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158))))),
         System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255))))),
         System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(102)))), ((int)(((byte)(252))))),
@@ -312,28 +340,50 @@
             series3.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
             series3.LabelForeColor = System.Drawing.Color.White;
             series3.Legend = "Legend1";
-            series3.Name = "Series1";
+            series3.Name = "Series";
             series3.YValuesPerPoint = 4;
-            this.chartGeneral2.Series.Add(series3);
-            this.chartGeneral2.Size = new System.Drawing.Size(365, 280);
-            this.chartGeneral2.TabIndex = 1;
-            this.chartGeneral2.Text = "chart1";
+            this.chartSucursales.Series.Add(series3);
+            this.chartSucursales.Size = new System.Drawing.Size(435, 283);
+            this.chartSucursales.TabIndex = 1;
+            this.chartSucursales.Text = "chart1";
             // 
             // pnlContWid1
             // 
             this.pnlContWid1.Controls.Add(this.chartGeneral);
-            this.pnlContWid1.Location = new System.Drawing.Point(11, 70);
+            this.pnlContWid1.Location = new System.Drawing.Point(16, 56);
             this.pnlContWid1.Name = "pnlContWid1";
             this.pnlContWid1.OutlineThickness = 1F;
             this.pnlContWid1.PanelColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.pnlContWid1.PanelOutlineColor = System.Drawing.Color.Transparent;
             this.pnlContWid1.Rounding = new System.Windows.Forms.Padding(13);
-            this.pnlContWid1.Size = new System.Drawing.Size(334, 286);
+            this.pnlContWid1.Size = new System.Drawing.Size(367, 286);
             this.pnlContWid1.TabIndex = 5;
             // 
             // chartGeneral
             // 
             this.chartGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            chartArea4.AxisX.IsLabelAutoFit = false;
+            chartArea4.AxisX.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.AxisX.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158)))));
+            chartArea4.AxisX.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX2.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX2.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX2.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisX2.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY.IsLabelAutoFit = false;
+            chartArea4.AxisY.LabelStyle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.AxisY.LabelStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158)))));
+            chartArea4.AxisY.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY2.MajorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY2.MajorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY2.MinorGrid.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
+            chartArea4.AxisY2.MinorTickMark.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(148)))), ((int)(((byte)(197)))));
             chartArea4.BackColor = System.Drawing.Color.Transparent;
             chartArea4.BorderColor = System.Drawing.Color.White;
             chartArea4.Name = "ChartArea1";
@@ -349,18 +399,18 @@
             legend4.TitleForeColor = System.Drawing.Color.White;
             legend4.TitleSeparatorColor = System.Drawing.Color.White;
             this.chartGeneral.Legends.Add(legend4);
-            this.chartGeneral.Location = new System.Drawing.Point(3, 14);
+            this.chartGeneral.Location = new System.Drawing.Point(8, 3);
             this.chartGeneral.Name = "chartGeneral";
-            this.chartGeneral.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Chocolate;
+            this.chartGeneral.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chartGeneral.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158))))),
-        System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(102)))), ((int)(((byte)(252))))),
-        System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))))};
+        System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(156)))), ((int)(((byte)(65))))),
+        System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158)))))};
             series4.BackImageTransparentColor = System.Drawing.Color.Transparent;
             series4.BackSecondaryColor = System.Drawing.Color.White;
             series4.BorderColor = System.Drawing.Color.Transparent;
             series4.ChartArea = "ChartArea1";
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(240)))), ((int)(((byte)(158)))));
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))));
             series4.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             series4.LabelBackColor = System.Drawing.Color.Transparent;
             series4.LabelBorderColor = System.Drawing.Color.Transparent;
@@ -370,7 +420,7 @@
             series4.Name = "Datos Registrados";
             series4.YValuesPerPoint = 4;
             this.chartGeneral.Series.Add(series4);
-            this.chartGeneral.Size = new System.Drawing.Size(323, 269);
+            this.chartGeneral.Size = new System.Drawing.Size(356, 283);
             this.chartGeneral.TabIndex = 0;
             this.chartGeneral.Text = "chart1";
             // 
@@ -404,7 +454,7 @@
             this.btnBitacora.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnBitacora.Image = null;
             this.btnBitacora.ImageExpand = new System.Drawing.Point(0, 0);
-            this.btnBitacora.Location = new System.Drawing.Point(712, 13);
+            this.btnBitacora.Location = new System.Drawing.Point(1082, 13);
             this.btnBitacora.Name = "btnBitacora";
             this.btnBitacora.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.btnBitacora.NormalForeColor = System.Drawing.Color.White;
@@ -443,7 +493,7 @@
             this.btnRegistro.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnRegistro.Image = null;
             this.btnRegistro.ImageExpand = new System.Drawing.Point(0, 0);
-            this.btnRegistro.Location = new System.Drawing.Point(836, 13);
+            this.btnRegistro.Location = new System.Drawing.Point(1206, 13);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.btnRegistro.NormalForeColor = System.Drawing.Color.White;
@@ -468,7 +518,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1114, 621);
+            this.ClientSize = new System.Drawing.Size(1484, 861);
             this.Controls.Add(this.pnlFondo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -483,7 +533,7 @@
             this.lblContWid3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartClientes)).EndInit();
             this.pnlContWid2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartGeneral2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartSucursales)).EndInit();
             this.pnlContWid1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartGeneral)).EndInit();
             this.ResumeLayout(false);
@@ -500,7 +550,7 @@
         private CuoreUI.Controls.cuiPanel pnlContWid1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartGeneral;
         private CuoreUI.Controls.cuiPanel pnlContWid2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartGeneral2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartSucursales;
         private CuoreUI.Controls.cuiPanel lblContWid3;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartClientes;
         private System.Windows.Forms.Label lblEventos;
