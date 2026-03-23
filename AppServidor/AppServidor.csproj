@@ -36,6 +36,7 @@
     <Reference Include="CuoreUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CuoreUI.Winforms.2026.1.16\lib\net472\CuoreUI.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -51,6 +52,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComunicacionTCP.cs" />
+    <Compile Include="Presentacion\ContRecursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ContRecursos.Designer.cs">
+      <DependentUpon>ContRecursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\ContHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\ContHome.Designer.cs">
+      <DependentUpon>ContHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentacion\DashboardServ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +72,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentacion\ContRecursos.resx">
+      <DependentUpon>ContRecursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\ContHome.resx">
+      <DependentUpon>ContHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\DashboardServ.resx">
       <DependentUpon>DashboardServ.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +113,10 @@
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
       <Project>{0d1993d9-fe4a-4742-aa31-5c34ebcfc5a6}</Project>
       <Name>CapaEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{18f2601e-658c-498e-b9f3-a572aaaf41bf}</Project>
+      <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
