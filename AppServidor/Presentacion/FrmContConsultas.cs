@@ -7,20 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AccesoDatos;
+using Logica;
 using CapaEntidades;
 
 namespace AppServidor.Presentacion
 {
     public partial class FrmContConsultas : Form
     {
-        // Instanciar clases de datos
-        private VehiculoDatos vd = new VehiculoDatos();
-        private SucursalDatos sd = new SucursalDatos();
-        private CategoriaDatos cd = new CategoriaDatos();
-        private ClienteDatos cld = new ClienteDatos();
-        private VendedorDatos vend = new VendedorDatos();
-        private VentaDatos vta = new VentaDatos();
+        // Instanciar el gestor de logica
+        private GestorConsultas gestor = new GestorConsultas();
 
         // Variables de paginación
         private int paginaActual = 1;
@@ -79,28 +74,28 @@ namespace AppServidor.Presentacion
                 switch (entidad)
                 {
                     case "Categoria":
-                        totalRegistros = cd.ObtenerTotalCategorias();
-                        tabla.DataSource = cd.ListarCategoriasPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        totalRegistros = gestor.ObtenerTotalCategorias();
+                        tabla.DataSource = gestor.ListarCategoriasPaginado(paginaActual, tamanoPagina, ordenSQL);
                         break;
                     case "Cliente":
-                        totalRegistros = cld.ObtenerTotalClientes();
-                        tabla.DataSource = cld.ListarClientesPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        totalRegistros = gestor.ObtenerTotalClientes();
+                        tabla.DataSource = gestor.ListarClientesPaginado(paginaActual, tamanoPagina, ordenSQL);
                         break;
                     case "Sucursal":
-                        totalRegistros = sd.ObtenerTotalSucursales();
-                        tabla.DataSource = sd.ListarSucursalesPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        totalRegistros = gestor.ObtenerTotalSucursales();
+                        tabla.DataSource = gestor.ListarSucursalesPaginado(paginaActual, tamanoPagina, ordenSQL);
                         break;
                     case "Vehiculo":
-                        totalRegistros = vd.ObtenerTotalVehiculos();
-                        tabla.DataSource = vd.ListarVehiculosPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        totalRegistros = gestor.ObtenerTotalVehiculos();
+                        tabla.DataSource = gestor.ListarVehiculosPaginado(paginaActual, tamanoPagina, ordenSQL);
                         break;
                     case "Vendedor":
-                        totalRegistros = vend.ObtenerTotalVendedores();
-                        tabla.DataSource = vend.ListarVendedoresPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        totalRegistros = gestor.ObtenerTotalVendedores();
+                        tabla.DataSource = gestor.ListarVendedoresPaginado(paginaActual, tamanoPagina, ordenSQL);
                         break;
                     case "Venta":
-                        totalRegistros = vta.ObtenerTotalVentas();
-                        tabla.DataSource = vta.ListarVentasPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        totalRegistros = gestor.ObtenerTotalVentas();
+                        tabla.DataSource = gestor.ListarVentasPaginado(paginaActual, tamanoPagina, ordenSQL);
                         break;
                     default:
                         MessageBox.Show("Esta entidad aún no está configurada para vista paginada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);

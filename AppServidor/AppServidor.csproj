@@ -114,13 +114,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{95026c1c-b55a-408b-b696-74de1a5658f2}</Project>
-      <Name>AccesoDatos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
       <Project>{0d1993d9-fe4a-4742-aa31-5c34ebcfc5a6}</Project>
       <Name>CapaEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj">
+      <Project>{b24357c0-c932-4ff8-83d1-669129c1dc3a}</Project>
+      <Name>Logica</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{18f2601e-658c-498e-b9f3-a572aaaf41bf}</Project>

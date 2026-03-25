@@ -2,20 +2,15 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Utilidades;
-using AccesoDatos;
+using Logica;
 using System.Collections.Generic;
 
 namespace AppServidor.Presentacion
 {
     public partial class FrmContHome : Form
     {
-        // instanciar las clases de datos
-        private VehiculoDatos vd = new VehiculoDatos();
-        private SucursalDatos sd = new SucursalDatos();
-        private CategoriaDatos cd = new CategoriaDatos();
-        private ClienteDatos cld = new ClienteDatos();
-        private VendedorDatos vend = new VendedorDatos();
-        private VentaDatos vta = new VentaDatos();
+        // instanciar el gestor de logica
+        private GestorConsultas gestor = new GestorConsultas();
 
         public FrmContHome()
         {
@@ -100,11 +95,11 @@ namespace AppServidor.Presentacion
             {
                 //obtener datos individualmente y armar el diccionario 
                 var datos = new Dictionary<string, int>();
-                datos.Add("Vehículos", vd.ObtenerTotalVehiculos());
-                datos.Add("Sucursales", sd.ObtenerTotalSucursales());
-                datos.Add("Categorías", cd.ObtenerTotalCategorias());
-                datos.Add("Clientes", cld.ObtenerTotalClientes());
-                datos.Add("Vendedores", vend.ObtenerTotalVendedores());
+                datos.Add("Vehículos", gestor.ObtenerTotalVehiculos());
+                datos.Add("Sucursales", gestor.ObtenerTotalSucursales());
+                datos.Add("Categorías", gestor.ObtenerTotalCategorias());
+                datos.Add("Clientes", gestor.ObtenerTotalClientes());
+                datos.Add("Vendedores", gestor.ObtenerTotalVendedores());
 
                 //limpiar datos anteriores del chart
                 chartGeneral.Series["Datos Registrados"].Points.Clear();
@@ -127,8 +122,8 @@ namespace AppServidor.Presentacion
         {
             try
             {
-                //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var datos = sd.ObtenerEstadoSucursales();
+                //obtener datos (diccionario) desde la logica
+                var datos = gestor.ObtenerEstadoSucursales();
                 //limpiar datos anteriores del chart
                 var serie = chartSucursales.Series["Series"];
                 serie.Points.Clear();
@@ -150,8 +145,8 @@ namespace AppServidor.Presentacion
         {
             try
             {
-                //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var ventasPorMes = vta.ObtenerVentasMensuales();
+                //obtener datos (diccionario) desde la logica
+                var ventasPorMes = gestor.ObtenerVentasMensuales();
                 var serie = chartVentas.Series["Ventas"];
                 //limpiar datos anteriores del chart
                 serie.Points.Clear();
@@ -172,8 +167,8 @@ namespace AppServidor.Presentacion
         {
             try
             {
-                //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var datos = cld.ObtenerRegistrosClientesPorMes();
+                //obtener datos (diccionario) desde la logica
+                var datos = gestor.ObtenerRegistrosClientesPorMes();
                 var serie = chartClientes.Series["Clientes Registrados en el Ultimo Año"];
                 serie.Points.Clear();
 
