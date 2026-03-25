@@ -39,7 +39,7 @@ namespace AccesoDatos
                             Modelo = dr["Modelo"].ToString()
                         };
 
-                        // Armamos el objeto principal
+                        // Armar el objeto principal
                         VehiculoxSucursal inventario = new VehiculoxSucursal
                         {
                             SucursalAsociada = suc,
