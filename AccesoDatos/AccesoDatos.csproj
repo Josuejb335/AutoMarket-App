@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsultasEspecificas\ConsultasDashBoard.cs" />
     <Compile Include="DatosEntidades\CategoriaDatos.cs" />
     <Compile Include="DatosEntidades\ClienteDatos.cs" />
     <Compile Include="ConexionBD.cs" />
@@ -59,5 +58,6 @@
       <Name>CapaEntidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

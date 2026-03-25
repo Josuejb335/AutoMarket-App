@@ -1,19 +1,25 @@
-﻿using AccesoDatos.ConsultasDashBoard;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Utilidades;
+using AccesoDatos;
+using System.Collections.Generic;
 
 namespace AppServidor.Presentacion
 {
     public partial class FrmContHome : Form
     {
-        //gestor de consultas para el dashboard, se instancia en el form padre y se pasa por parametro a este form hijo
-        private ConsultasDashBoard consultas;
-        public FrmContHome(ConsultasDashBoard consulta)
+        // instanciar las clases de datos
+        private VehiculoDatos vd = new VehiculoDatos();
+        private SucursalDatos sd = new SucursalDatos();
+        private CategoriaDatos cd = new CategoriaDatos();
+        private ClienteDatos cld = new ClienteDatos();
+        private VendedorDatos vend = new VendedorDatos();
+        private VentaDatos vta = new VentaDatos();
+
+        public FrmContHome()
         {
             InitializeComponent();
-            consultas = consulta;
         }
 
         private void ContHome_Load(object sender, EventArgs e)
@@ -92,15 +98,21 @@ namespace AppServidor.Presentacion
         {
             try
             {
-                //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var datos = consultas.ObtenerConteosGenerales();
+                //obtener datos individualmente y armar el diccionario 
+                var datos = new Dictionary<string, int>();
+                datos.Add("Vehículos", vd.ObtenerTotalVehiculos());
+                datos.Add("Sucursales", sd.ObtenerTotalSucursales());
+                datos.Add("Categorías", cd.ObtenerTotalCategorias());
+                datos.Add("Clientes", cld.ObtenerTotalClientes());
+                datos.Add("Vendedores", vend.ObtenerTotalVendedores());
+
                 //limpiar datos anteriores del chart
                 chartGeneral.Series["Datos Registrados"].Points.Clear();
 
                 //cargar datos al chart, item.Key es el nombre (Clientes, Sucursales, etc) y item.Value es el conteo
                 foreach (var item in datos)
                 {
-                    int i = chartGeneral.Series["Datos Registrados"].Points.AddXY(item.Key, item.Value);
+                    chartGeneral.Series["Datos Registrados"].Points.AddXY(item.Key, item.Value);
                 }
 
             }
@@ -116,7 +128,7 @@ namespace AppServidor.Presentacion
             try
             {
                 //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var datos = consultas.ObtenerEstadoSucursales();
+                var datos = sd.ObtenerEstadoSucursales();
                 //limpiar datos anteriores del chart
                 var serie = chartSucursales.Series["Series"];
                 serie.Points.Clear();
@@ -124,8 +136,7 @@ namespace AppServidor.Presentacion
                 // cargar datos al chart, item.Key es el nombre (Activas/Inactivas) y item.Value es el conteo
                 foreach (var item in datos)
                 {
-                    int i = serie.Points.AddXY(item.Key, item.Value);
-
+                    serie.Points.AddXY(item.Key, item.Value);
                 }
             }
             catch (Exception ex)
@@ -140,7 +151,7 @@ namespace AppServidor.Presentacion
             try
             {
                 //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var ventasPorMes = consultas.ObtenerVentasMensuales();
+                var ventasPorMes = vta.ObtenerVentasMensuales();
                 var serie = chartVentas.Series["Ventas"];
                 //limpiar datos anteriores del chart
                 serie.Points.Clear();
@@ -162,7 +173,7 @@ namespace AppServidor.Presentacion
             try
             {
                 //obtener datos (diccionario) desde el proyecto de acceso a datos 
-                var datos = consultas.ObtenerRegistrosClientesPorMes();
+                var datos = cld.ObtenerRegistrosClientesPorMes();
                 var serie = chartClientes.Series["Clientes Registrados en el Ultimo Año"];
                 serie.Points.Clear();
 

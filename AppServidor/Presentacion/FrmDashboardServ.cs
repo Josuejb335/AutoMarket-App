@@ -1,5 +1,4 @@
-﻿using AccesoDatos.ConsultasDashBoard;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using Utilidades;
 using AppServidor.Presentacion;
@@ -19,16 +18,13 @@ namespace AppServidor
         private FrmContConsultas frmConsCache = null;
 
 
-        //instancias para logica o bd
-        ConsultasDashBoard consultas = new ConsultasDashBoard();
-
         //al cargar form por primera vez
         private void DashboardServ_Load(object sender, EventArgs e)
         {
             // Verificar si el formulario ya está en caché y no ha sido cerrado 
             if (frmHomeCache == null || frmHomeCache.IsDisposed)
             {
-                frmHomeCache = new FrmContHome(consultas);
+                frmHomeCache = new FrmContHome();
             }
             // Abrir el formulario en el panel contenedor
             UtilForms.AbrirFormularioEnPanel(this.pnlContenedor, frmHomeCache);
@@ -63,7 +59,7 @@ namespace AppServidor
             // Verificar si el formulario ya está en caché y no ha sido cerrado 
             if (frmHomeCache == null || frmHomeCache.IsDisposed)
             {
-                frmHomeCache = new FrmContHome(consultas);
+                frmHomeCache = new FrmContHome();
             }
             // Abrir el formulario en el panel contenedor
             UtilForms.AbrirFormularioEnPanel(this.pnlContenedor, frmHomeCache);

@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace AccesoDatos
 {
-    internal class VendedorDatos : ConexionBD
+    public class VendedorDatos : ConexionBD
     {
         public List<Vendedor> ListarVendedores()
         {
@@ -60,6 +60,49 @@ namespace AccesoDatos
                 cnx.Open();
 
                 return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
+            }
+        }
+
+        public List<Vendedor> ListarVendedoresPaginado(int pagina, int tamaño, string criterioOrden)
+        {
+            List<Vendedor> lista = new List<Vendedor>();
+            int skip = (pagina - 1) * tamaño;
+            string sql = $"SELECT * FROM Vendedor ORDER BY {criterioOrden} OFFSET @skip ROWS FETCH NEXT @pSize ROWS ONLY";
+
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@skip", skip);
+                cmd.Parameters.AddWithValue("@pSize", tamaño);
+                cnx.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(new Vendedor
+                        {
+                            IdVend = (int)dr["IdVendedor"],
+                            Ident = dr["Identificacion"].ToString(),
+                            Nombre = dr["NombreCompleto"].ToString(),
+                            FechaNacimiento = (DateTime)dr["FechaNacimiento"],
+                            FechaIngreso = (DateTime)dr["FechaIngreso"],
+                            Telefono = dr["Telefono"].ToString()
+                        });
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public int ObtenerTotalVendedores()
+        {
+            string sql = "SELECT COUNT(*) FROM Vendedor";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar();
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using CapaEntidades;
 
@@ -56,6 +55,46 @@ namespace AccesoDatos
 
                 cnx.Open();
                 return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
+            }
+        }
+
+        public List<Categoria> ListarCategoriasPaginado(int pagina, int tamaño, string criterioOrden)
+        {
+            List<Categoria> lista = new List<Categoria>();
+            int skip = (pagina - 1) * tamaño;
+            string sql = $"SELECT * FROM CategoriaVehiculo ORDER BY {criterioOrden} OFFSET @skip ROWS FETCH NEXT @pSize ROWS ONLY";
+
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@skip", skip);
+                cmd.Parameters.AddWithValue("@pSize", tamaño);
+                cnx.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(new Categoria
+                        {
+                            IdCat = (int)dr["IdCategoria"],
+                            NombreCat = dr["NombreCategoria"].ToString(),
+                            DescCat = dr["Descripcion"].ToString()
+                        });
+                    }
+                }
+            }
+            return lista;
+        }
+
+        public int ObtenerTotalCategorias()
+        {
+            string sql = "SELECT COUNT(*) FROM CategoriaVehiculo";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar();
             }
         }
     }
