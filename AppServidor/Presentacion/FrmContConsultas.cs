@@ -113,7 +113,7 @@ namespace AppServidor.Presentacion
             ActualizarEstadoBotones();
         }
 
-        // Metodo seguro para traducir la opción del ComboBox a una columna real de base de datos
+        // Metodo para traducir la opción del ComboBox a una columna real de base de datos
         // Y evitar vulnerabilidad de inyección SQL
         private string ObtenerColumnaOrden(string entidad, string criterio)
         {
@@ -150,7 +150,7 @@ namespace AppServidor.Presentacion
                     case "Cliente": return "FechaRegistro";
                     case "Vendedor": return "FechaIngreso";
                     case "Venta": return "FechaVenta";
-                    case "Vehiculo": return "Ano"; // Vehiculo no tiene fecha, usamos Año
+                    case "Vehiculo": return "Ano"; // Vehiculo no tiene fecha, se usa Año
                     // Entidades sin fechas caen en su ID por defecto para que no se caiga SQL
                     case "Categoria": return "IdCategoria";
                     case "Sucursal": return "IdSucursal";
