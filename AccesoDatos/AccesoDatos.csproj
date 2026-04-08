@@ -49,7 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatosEntidades\SucursalDatos.cs" />
     <Compile Include="DatosEntidades\VehiculoDatos.cs" />
-    <Compile Include="DatosEntidades\VehxSucDatos.cs" />
     <Compile Include="DatosEntidades\VendedorDatos.cs" />
     <Compile Include="DatosEntidades\VentaDatos.cs" />
   </ItemGroup>

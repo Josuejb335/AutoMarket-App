@@ -24,17 +24,17 @@ namespace Utilidades
         {
             try
             {
-                // 1. Inicializar CPU y RAM
+                // Inicializar CPU y RAM
                 Cpu = new PerformanceCounter("Processor", "% Processor Time", "_Total");
                 Ram = new PerformanceCounter("Memory", "Available MBytes");
 
-                // Detectar RAM Total
+                // detectar RAM Total
                 ComputerInfo info = new ComputerInfo();
                 RamTotalMB = info.TotalPhysicalMemory / 1024 / 1024;
 
-                // 2. Inicializar RED dinámicamente
+                // inicializar RED dinámicamente
                 var categoria = new PerformanceCounterCategory("Network Interface");
-                // Buscamos la primera interfaz que tenga algo de nombre (evitando túneles o loopbacks si es posible)
+                // Buscar la primera interfaz que tenga algo de nombre (evitando túneles o loopbacks si es posible)
                 string interfazValida = categoria.GetInstanceNames()
                     .FirstOrDefault(n => !n.Contains("Loopback") && !n.Contains("Pseudo"));
 
@@ -44,10 +44,10 @@ namespace Utilidades
                     RedRecibido = new PerformanceCounter("Network Interface", "Bytes Received/sec", interfazValida);
                 }
 
-                // "Despertar" los contadores (la primera lectura siempre es 0)
+                // Despertar los contadores (la primera lectura siempre es 0)
                 Cpu.NextValue();
                 //log monitor
-                Logger.Escribir("Monitor de Recursos Iniciado", Color.LimeGreen);
+                Logger.Escribir("Monitor de Recursos Iniciado", Color.White);
             }
             catch (Exception ex)
             {

@@ -41,10 +41,10 @@ namespace AccesoDatos
         }
 
         //metodo para insertar Categoria a la db
-        public bool InsertarVehiculo(Categoria c)
+        public bool InsertarCategoria(Categoria c)
         {
-            string sql = @"INSERT INTO Categoria (IdCategoria, NombreCategoria, Descripcion)
-                           VALUES (@id, @nombre, @descripcion";
+            string sql = @"INSERT INTO CategoriaVehiculo (IdCategoria, NombreCategoria, Descripcion)
+                           VALUES (@id, @nombre, @descripcion)";
 
             using (var cnx = ObtenerConexion())
             {

@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GestorConsultas.cs" />
-    <Compile Include="LogicaGeneral.cs" />
+    <Compile Include="GestorRegistros.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

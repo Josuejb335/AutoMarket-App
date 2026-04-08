@@ -24,27 +24,56 @@ namespace Logica
         public int ObtenerTotalVentas() => vta.ObtenerTotalVentas();
         public int ObtenerTotalVehiculosxSucursal() => vxsd.ObtenerTotalVehiculoxSucursal();
 
-        // Listar paginado
+        // Listar paginado con lógica de validación
         public List<Categoria> ListarCategoriasPaginado(int pagina, int tamaño, string ordenSQL)
-            => cd.ListarCategoriasPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return cd.ListarCategoriasPaginado(pagina, tamaño, ordenSQL);
+        }
 
         public List<Cliente> ListarClientesPaginado(int pagina, int tamaño, string ordenSQL)
-            => cld.ListarClientesPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return cld.ListarClientesPaginado(pagina, tamaño, ordenSQL);
+        }
 
         public List<Sucursal> ListarSucursalesPaginado(int pagina, int tamaño, string ordenSQL)
-            => sd.ListarSucursalesPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return sd.ListarSucursalesPaginado(pagina, tamaño, ordenSQL);
+        }
 
         public List<Vehiculo> ListarVehiculosPaginado(int pagina, int tamaño, string ordenSQL)
-            => vd.ListarVehiculosPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return vd.ListarVehiculosPaginado(pagina, tamaño, ordenSQL);
+        }
 
         public List<Vendedor> ListarVendedoresPaginado(int pagina, int tamaño, string ordenSQL)
-            => vend.ListarVendedoresPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return vend.ListarVendedoresPaginado(pagina, tamaño, ordenSQL);
+        }
 
         public List<Venta> ListarVentasPaginado(int pagina, int tamaño, string ordenSQL)
-            => vta.ListarVentasPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return vta.ListarVentasPaginado(pagina, tamaño, ordenSQL);
+        }
 
         public List<VehiculoxSucursal> ListarVehiculosxSucursalPaginado(int pagina, int tamaño, string ordenSQL)
-            => vxsd.ListarVehiculoxSucursalPaginado(pagina, tamaño, ordenSQL);
+        {
+            ValidarPaginacion(ref pagina, ref tamaño, ref ordenSQL);
+            return vxsd.ListarVehiculoxSucursalPaginado(pagina, tamaño, ordenSQL);
+        }
+
+        // Método privado de validación de negocio y reglas de paginación
+        private void ValidarPaginacion(ref int pagina, ref int tamaño, ref string ordenSQL)
+        {
+            if (pagina < 1) pagina = 1;
+            if (tamaño <= 0) tamaño = 10; // Tamaño por defecto si se envía mal
+            if (string.IsNullOrWhiteSpace(ordenSQL)) ordenSQL = "1"; // Ordenar por la primera columna de forma predeterminada
+        }
 
         // Métodos de los charts
         public Dictionary<string, int> ObtenerEstadoSucursales() => sd.ObtenerEstadoSucursales();
