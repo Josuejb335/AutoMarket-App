@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using Logica;
+using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Logica;
-using CapaEntidades;
+using Utilidades;
 
 namespace AppServidor.Presentacion
 {
@@ -25,17 +20,15 @@ namespace AppServidor.Presentacion
         public FrmContConsultas()
         {
             InitializeComponent();
-            
-            // Suscribir eventos de los controles de la UI
-            btnAnterior.Click += BtnAnterior_Click;
-            btnSiguiente.Click += BtnSiguiente_Click;
-            btnBuscar.Click += BtnBuscar_Click;
-            
-            // Cargar datos por defecto al abrir el form
-            this.Load += (s, e) => CargarDatos();
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
+        private void FrmContConsultas_Load(object sender, EventArgs e)
+        {
+            // Cargar datos por defecto al abrir el form
+            CargarDatos();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
         {
             paginaActual = 1; // Al buscar o cambiar de tab, se regresa a la p1
             CargarDatos();
@@ -75,27 +68,89 @@ namespace AppServidor.Presentacion
                 {
                     case "Categoria":
                         totalRegistros = gestor.ObtenerTotalCategorias();
-                        tabla.DataSource = gestor.ListarCategoriasPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        tabla.DataSource = gestor.ListarCategoriasPaginado(paginaActual, tamanoPagina, ordenSQL).Select(c => new
+                        {
+                            ID = c.IdCat,
+                            Categoria = c.NombreCat,
+                            Descripción = c.DescCat
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Categoria Finalizada Con Exito", Color.LimeGreen);
                         break;
                     case "Cliente":
                         totalRegistros = gestor.ObtenerTotalClientes();
-                        tabla.DataSource = gestor.ListarClientesPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        tabla.DataSource = gestor.ListarClientesPaginado(paginaActual, tamanoPagina, ordenSQL).Select(c => new
+                        {
+                            ID = c.IdCliente,
+                            Identificación = c.Ident,
+                            Nombre = c.Nombre,
+                            Nacimiento = c.FechaNacimiento.ToString("dd/MM/yyyy"),
+                            Registro = c.FechaRegistro.ToString("dd/MM/yyyy"),
+                            Activo = c.Activo ? "Sí" : "No"
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Cliente Finalizada Con Exito", Color.LimeGreen);
                         break;
                     case "Sucursal":
                         totalRegistros = gestor.ObtenerTotalSucursales();
-                        tabla.DataSource = gestor.ListarSucursalesPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        tabla.DataSource = gestor.ListarSucursalesPaginado(paginaActual, tamanoPagina, ordenSQL).Select(s => new
+                        {
+                            ID = s.IdSuc,
+                            Nombre = s.NombreSuc,
+                            Dirección = s.Direccion,
+                            Teléfono = s.Telefono,
+                            Activo = s.Activo ? "Sí" : "No",
+                            Encargado = s.Encargado != null && s.Encargado.IdVend > 0 ? s.Encargado.Nombre : "Sin asignar"
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Sucursal Finalizada Con Exito", Color.LimeGreen);
                         break;
                     case "Vehiculo":
                         totalRegistros = gestor.ObtenerTotalVehiculos();
-                        tabla.DataSource = gestor.ListarVehiculosPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        tabla.DataSource = gestor.ListarVehiculosPaginado(paginaActual, tamanoPagina, ordenSQL).Select(v => new
+                        {
+                            ID = v.IdVehi,
+                            Marca = v.Marca,
+                            Modelo = v.Modelo,
+                            Año = v.Anio,
+                            Precio = v.Precio.ToString("C"),
+                            Estado = v.Estado.ToString(),
+                            Categoría = v.Cat != null ? v.Cat.NombreCat : "Sin categorizar"
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Vehiculo Finalizada Con Exito", Color.LimeGreen);
                         break;
                     case "Vendedor":
                         totalRegistros = gestor.ObtenerTotalVendedores();
-                        tabla.DataSource = gestor.ListarVendedoresPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        tabla.DataSource = gestor.ListarVendedoresPaginado(paginaActual, tamanoPagina, ordenSQL).Select(v => new
+                        {
+                            ID = v.IdVend,
+                            Identificación = v.Ident,
+                            Nombre = v.Nombre,
+                            Nacimiento = v.FechaNacimiento.ToString("dd/MM/yyyy"),
+                            Ingreso = v.FechaIngreso.ToString("dd/MM/yyyy"),
+                            Teléfono = v.Telefono
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Vendedor Finalizada Con Exito", Color.LimeGreen);
                         break;
                     case "Venta":
                         totalRegistros = gestor.ObtenerTotalVentas();
-                        tabla.DataSource = gestor.ListarVentasPaginado(paginaActual, tamanoPagina, ordenSQL);
+                        tabla.DataSource = gestor.ListarVentasPaginado(paginaActual, tamanoPagina, ordenSQL).Select(v => new
+                        {
+                            ID = v.IdVenta,
+                            Fecha = v.FechaVenta.ToString("dd/MM/yyyy"),
+                            Monto = v.Monto.ToString("C"),
+                            Cliente = v.Clie != null ? v.Clie.Nombre : "N/A",
+                            Sucursal = v.Suc != null ? v.Suc.NombreSuc : "N/A",
+                            Vehículo = v.Veh != null ? $"{v.Veh.Marca} {v.Veh.Modelo}" : "N/A"
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Venta Finalizada Con Exito", Color.LimeGreen);
+                        break;
+                    case "VehiculoxSucursal":
+                        totalRegistros = gestor.ObtenerTotalVehiculosxSucursal();
+                        tabla.DataSource = gestor.ListarVehiculosxSucursalPaginado(paginaActual, tamanoPagina, ordenSQL).Select(vs => new
+                        {
+                            Sucursal = vs.SucursalAsociada != null ? vs.SucursalAsociada.NombreSuc : "N/A",
+                            Vehículo = vs.VehiculoAsociado != null ? $"{vs.VehiculoAsociado.Marca} {vs.VehiculoAsociado.Modelo}" : "N/A",
+                            Cantidad = vs.Cantidad
+                        }).ToList();
+                        Logger.Escribir("Consulta a Tabla Vehiculo X Sucursal Finalizada Con Exito", Color.LimeGreen);
                         break;
                     default:
                         MessageBox.Show("Esta entidad aún no está configurada para vista paginada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -108,6 +163,7 @@ namespace AppServidor.Presentacion
             catch(Exception ex)
             {
                 MessageBox.Show("Error al consultar la base de datos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error al consultar la base de datos", Color.Red);
             }
 
             ActualizarEstadoBotones();
@@ -127,6 +183,7 @@ namespace AppServidor.Presentacion
                     case "Vehiculo": return "IdVehiculo";
                     case "Vendedor": return "IdVendedor";
                     case "Venta": return "IdVenta";
+                    case "VehiculoxSucursal": return "vs.IdSucursal, vs.IdVehiculo";
                     default: return "1"; // Fallback seguro
                 }
             }
@@ -140,6 +197,7 @@ namespace AppServidor.Presentacion
                     case "Vehiculo": return "Marca"; // Vehiculo no tiene "Nombre", se usa Marca
                     case "Vendedor": return "NombreCompleto";
                     case "Venta": return "IdVenta"; // Venta no tiene nombre
+                    case "VehiculoxSucursal": return "s.Nombre, v.Marca"; // Ordenar por nombres
                     default: return "1"; 
                 }
             }
@@ -154,6 +212,7 @@ namespace AppServidor.Presentacion
                     // Entidades sin fechas caen en su ID por defecto para que no se caiga SQL
                     case "Categoria": return "IdCategoria";
                     case "Sucursal": return "IdSucursal";
+                    case "VehiculoxSucursal": return "vs.IdSucursal, vs.IdVehiculo";
                     default: return "1";
                 }
             }
@@ -170,18 +229,7 @@ namespace AppServidor.Presentacion
 
         private void formatearTabla()
         {
-            // Ocultar nombres de propiedades que son objetos de otras clases para que no salgan raras (CapaEntidades.Xxxx) en las columnas de la DataGridView
-            string[] columnasAEvitar = { "Cat", "Suc", "Veh", "Encargado", "Clie" };
-
-            foreach (DataGridViewColumn col in tabla.Columns)
-            {
-                if (columnasAEvitar.Contains(col.Name))
-                {
-                    col.Visible = false;
-                }
-            }
-            
-            // Opcional: autoajustar tablas
+            //  no es necesario ocultar columnas manualmente porque se filtra que se quiere ver en cargarDatos
             tabla.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }

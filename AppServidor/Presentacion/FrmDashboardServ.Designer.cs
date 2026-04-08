@@ -31,14 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDashboardServ));
             this.pnlFondo = new System.Windows.Forms.Panel();
-            this.pnlContenedor = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnHome = new CuoreUI.Controls.cuiButton();
             this.btnRecursos = new CuoreUI.Controls.cuiButton();
+            this.pnlContenedor = new System.Windows.Forms.Panel();
             this.btnRegistro = new CuoreUI.Controls.cuiButton();
+            this.contextMenuRegistro = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.categoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sucursalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehiculoxSucToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendedorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnConsulta = new CuoreUI.Controls.cuiButton();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.mensajesInfo = new System.Windows.Forms.ToolTip(this.components);
             this.pnlFondo.SuspendLayout();
+            this.contextMenuRegistro.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlFondo
@@ -54,24 +62,6 @@
             this.pnlFondo.Name = "pnlFondo";
             this.pnlFondo.Size = new System.Drawing.Size(1900, 900);
             this.pnlFondo.TabIndex = 1;
-            // 
-            // pnlContenedor
-            // 
-            this.pnlContenedor.Location = new System.Drawing.Point(16, 42);
-            this.pnlContenedor.Name = "pnlContenedor";
-            this.pnlContenedor.Size = new System.Drawing.Size(1460, 808);
-            this.pnlContenedor.TabIndex = 4;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.lblTitulo.Location = new System.Drawing.Point(11, 9);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(151, 30);
-            this.lblTitulo.TabIndex = 3;
-            this.lblTitulo.Text = "DASHBOARD";
             // 
             // btnHome
             // 
@@ -92,7 +82,7 @@
             this.btnHome.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnHome.Image = global::AppServidor.Properties.Resources.home;
             this.btnHome.ImageExpand = new System.Drawing.Point(-3, -3);
-            this.btnHome.Location = new System.Drawing.Point(173, 10);
+            this.btnHome.Location = new System.Drawing.Point(189, 10);
             this.btnHome.Name = "btnHome";
             this.btnHome.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
             this.btnHome.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
@@ -153,6 +143,13 @@
             this.mensajesInfo.SetToolTip(this.btnRecursos, "Lleva Al Monitor De Recursos Del Sistema");
             this.btnRecursos.Click += new System.EventHandler(this.btnRecursos_Click);
             // 
+            // pnlContenedor
+            // 
+            this.pnlContenedor.Location = new System.Drawing.Point(16, 42);
+            this.pnlContenedor.Name = "pnlContenedor";
+            this.pnlContenedor.Size = new System.Drawing.Size(1460, 808);
+            this.pnlContenedor.TabIndex = 4;
+            // 
             // btnRegistro
             // 
             this.btnRegistro.CheckButton = false;
@@ -162,6 +159,7 @@
             this.btnRegistro.CheckedImageTint = System.Drawing.Color.White;
             this.btnRegistro.CheckedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
             this.btnRegistro.Content = "Registro";
+            this.btnRegistro.ContextMenuStrip = this.contextMenuRegistro;
             this.btnRegistro.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegistro.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnRegistro.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -191,6 +189,71 @@
             this.btnRegistro.TextPadding = 12;
             this.btnRegistro.TextSpacing = 2;
             this.mensajesInfo.SetToolTip(this.btnRegistro, "LLeva a Registrar Cualquier Dato");
+            this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
+            // 
+            // contextMenuRegistro
+            // 
+            this.contextMenuRegistro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
+            this.contextMenuRegistro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.contextMenuRegistro.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuRegistro.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.categoriaToolStripMenuItem,
+            this.clienteToolStripMenuItem,
+            this.sucursalToolStripMenuItem,
+            this.vehiculoToolStripMenuItem,
+            this.vehiculoxSucToolStripMenuItem,
+            this.vendedorToolStripMenuItem});
+            this.contextMenuRegistro.Name = "contextMenuRegistro";
+            this.contextMenuRegistro.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.contextMenuRegistro.Size = new System.Drawing.Size(165, 148);
+            // 
+            // categoriaToolStripMenuItem
+            // 
+            this.categoriaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.categoriaToolStripMenuItem.Name = "categoriaToolStripMenuItem";
+            this.categoriaToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.categoriaToolStripMenuItem.Text = "Categoria";
+            this.categoriaToolStripMenuItem.Click += new System.EventHandler(this.categoriaToolStripMenuItem_Click);
+            // 
+            // clienteToolStripMenuItem
+            // 
+            this.clienteToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.clienteToolStripMenuItem.Name = "clienteToolStripMenuItem";
+            this.clienteToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.clienteToolStripMenuItem.Text = "Cliente";
+            this.clienteToolStripMenuItem.Click += new System.EventHandler(this.clienteToolStripMenuItem_Click);
+            // 
+            // sucursalToolStripMenuItem
+            // 
+            this.sucursalToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.sucursalToolStripMenuItem.Name = "sucursalToolStripMenuItem";
+            this.sucursalToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.sucursalToolStripMenuItem.Text = "Sucursal";
+            this.sucursalToolStripMenuItem.Click += new System.EventHandler(this.sucursalToolStripMenuItem_Click);
+            // 
+            // vehiculoToolStripMenuItem
+            // 
+            this.vehiculoToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.vehiculoToolStripMenuItem.Name = "vehiculoToolStripMenuItem";
+            this.vehiculoToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.vehiculoToolStripMenuItem.Text = "Vehiculo";
+            this.vehiculoToolStripMenuItem.Click += new System.EventHandler(this.vehiculoToolStripMenuItem_Click);
+            // 
+            // vehiculoxSucToolStripMenuItem
+            // 
+            this.vehiculoxSucToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.vehiculoxSucToolStripMenuItem.Name = "vehiculoxSucToolStripMenuItem";
+            this.vehiculoxSucToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.vehiculoxSucToolStripMenuItem.Text = "VehiculoxSuc";
+            this.vehiculoxSucToolStripMenuItem.Click += new System.EventHandler(this.vehiculoxSucToolStripMenuItem_Click);
+            // 
+            // vendedorToolStripMenuItem
+            // 
+            this.vendedorToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.vendedorToolStripMenuItem.Name = "vendedorToolStripMenuItem";
+            this.vendedorToolStripMenuItem.Size = new System.Drawing.Size(164, 24);
+            this.vendedorToolStripMenuItem.Text = "Vendedor";
+            this.vendedorToolStripMenuItem.Click += new System.EventHandler(this.vendedorToolStripMenuItem_Click);
             // 
             // btnConsulta
             // 
@@ -232,6 +295,17 @@
             this.mensajesInfo.SetToolTip(this.btnConsulta, "Lleva a Consultar Datos");
             this.btnConsulta.Click += new System.EventHandler(this.btnConsulta_Click);
             // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))));
+            this.lblTitulo.Location = new System.Drawing.Point(27, 9);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(151, 30);
+            this.lblTitulo.TabIndex = 3;
+            this.lblTitulo.Text = "DASHBOARD";
+            // 
             // mensajesInfo
             // 
             this.mensajesInfo.BackColor = System.Drawing.SystemColors.InfoText;
@@ -250,6 +324,7 @@
             this.Load += new System.EventHandler(this.DashboardServ_Load);
             this.pnlFondo.ResumeLayout(false);
             this.pnlFondo.PerformLayout();
+            this.contextMenuRegistro.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -264,6 +339,13 @@
         private CuoreUI.Controls.cuiButton btnRecursos;
         private CuoreUI.Controls.cuiButton btnHome;
         private System.Windows.Forms.ToolTip mensajesInfo;
+        private System.Windows.Forms.ContextMenuStrip contextMenuRegistro;
+        private System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehiculoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sucursalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem categoriaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehiculoxSucToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendedorToolStripMenuItem;
     }
 }
 

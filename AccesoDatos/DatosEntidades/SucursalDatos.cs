@@ -153,5 +153,16 @@ namespace AccesoDatos
                 return (int)cmd.ExecuteScalar();
             }
         }
+
+        public int ObtenerProximoId()
+        {
+            string sql = "SELECT ISNULL(MAX(IdSucursal), 0) + 1 FROM Sucursal";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cnx.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
     }
 }

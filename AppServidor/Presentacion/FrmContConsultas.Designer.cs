@@ -193,6 +193,7 @@
             this.btnSiguiente.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnSiguiente.TextPadding = 12;
             this.btnSiguiente.TextSpacing = 2;
+            this.btnSiguiente.Click += new System.EventHandler(this.BtnSiguiente_Click);
             // 
             // btnAnterior
             // 
@@ -231,6 +232,7 @@
             this.btnAnterior.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnAnterior.TextPadding = 12;
             this.btnAnterior.TextSpacing = 2;
+            this.btnAnterior.Click += new System.EventHandler(this.BtnAnterior_Click);
             // 
             // btnBuscar
             // 
@@ -270,6 +272,7 @@
             this.btnBuscar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnBuscar.TextPadding = 12;
             this.btnBuscar.TextSpacing = 2;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // cuiPictureBox2
             // 
@@ -316,6 +319,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmContConsultas";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FrmContConsultas_Load);
             this.pnlCont3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabla)).EndInit();
             this.ResumeLayout(false);

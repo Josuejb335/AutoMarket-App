@@ -105,5 +105,16 @@ namespace AccesoDatos
                 return (int)cmd.ExecuteScalar();
             }
         }
+
+        public int ObtenerProximoId()
+        {
+            string sql = "SELECT ISNULL(MAX(IdVendedor), 0) + 1 FROM Vendedor";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cnx.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
     }
 }

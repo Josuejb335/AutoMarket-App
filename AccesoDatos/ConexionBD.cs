@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Data.SqlClient;
+using System;
 
 namespace AccesoDatos
 {
@@ -11,7 +12,14 @@ namespace AccesoDatos
         //metodo que las clases hijas tendran para conectarse a la base de datos
         protected SqlConnection ObtenerConexion()
         {
-            return new SqlConnection(cadenaConexion);
+            try
+            {
+                return new SqlConnection(cadenaConexion);
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
     }
 }

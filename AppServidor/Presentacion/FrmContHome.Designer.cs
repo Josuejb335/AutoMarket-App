@@ -55,17 +55,18 @@
             this.cuiPictureBox1 = new CuoreUI.Controls.cuiPictureBox();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.pnlCont3 = new CuoreUI.Controls.cuiPanel();
+            this.cuiPictureBox4 = new CuoreUI.Controls.cuiPictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cuiPictureBox3 = new CuoreUI.Controls.cuiPictureBox();
+            this.lblIp = new System.Windows.Forms.Label();
+            this.lblCon = new System.Windows.Forms.Label();
+            this.cuiPictureBox2 = new CuoreUI.Controls.cuiPictureBox();
             this.lblEstado = new System.Windows.Forms.Label();
             this.lblEstadoS = new System.Windows.Forms.Label();
             this.mensajesHover = new System.Windows.Forms.ToolTip(this.components);
-            this.cuiPictureBox2 = new CuoreUI.Controls.cuiPictureBox();
-            this.lblIp = new System.Windows.Forms.Label();
-            this.lblCon = new System.Windows.Forms.Label();
-            this.cuiPictureBox3 = new CuoreUI.Controls.cuiPictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cuiPictureBox4 = new CuoreUI.Controls.cuiPictureBox();
+            this.pnlScroll = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.chartClientes)).BeginInit();
             this.pnlCont2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).BeginInit();
@@ -406,6 +407,7 @@
             // 
             // pnlContLog
             // 
+            this.pnlContLog.Controls.Add(this.pnlScroll);
             this.pnlContLog.Controls.Add(this.cuiPictureBox1);
             this.pnlContLog.Controls.Add(this.rtbLog);
             this.pnlContLog.Controls.Add(this.lblEventos);
@@ -442,7 +444,7 @@
             this.rtbLog.Location = new System.Drawing.Point(7, 35);
             this.rtbLog.Name = "rtbLog";
             this.rtbLog.ReadOnly = true;
-            this.rtbLog.Size = new System.Drawing.Size(1402, 174);
+            this.rtbLog.Size = new System.Drawing.Size(1426, 190);
             this.rtbLog.TabIndex = 23;
             this.rtbLog.Text = "";
             // 
@@ -466,6 +468,111 @@
             this.pnlCont3.Rounding = new System.Windows.Forms.Padding(13);
             this.pnlCont3.Size = new System.Drawing.Size(293, 540);
             this.pnlCont3.TabIndex = 21;
+            // 
+            // cuiPictureBox4
+            // 
+            this.cuiPictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.cuiPictureBox4.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox4.ImageTint = System.Drawing.Color.White;
+            this.cuiPictureBox4.Location = new System.Drawing.Point(140, 112);
+            this.cuiPictureBox4.Name = "cuiPictureBox4";
+            this.cuiPictureBox4.OutlineThickness = 1F;
+            this.cuiPictureBox4.PanelOutlineColor = System.Drawing.Color.Empty;
+            this.cuiPictureBox4.Rotation = 0;
+            this.cuiPictureBox4.Rounding = new System.Windows.Forms.Padding(8);
+            this.cuiPictureBox4.Size = new System.Drawing.Size(16, 16);
+            this.cuiPictureBox4.TabIndex = 32;
+            this.mensajesHover.SetToolTip(this.cuiPictureBox4, "Puerto Donde Opera el Servidor Actualmente");
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.label3.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
+            this.label3.Location = new System.Drawing.Point(3, 107);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 21);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Puerto :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
+            this.label2.Location = new System.Drawing.Point(3, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 21);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "IP :";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.label1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
+            this.label1.Location = new System.Drawing.Point(75, 107);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 21);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "15500";
+            // 
+            // cuiPictureBox3
+            // 
+            this.cuiPictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.cuiPictureBox3.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox3.ImageTint = System.Drawing.Color.White;
+            this.cuiPictureBox3.Location = new System.Drawing.Point(162, 89);
+            this.cuiPictureBox3.Name = "cuiPictureBox3";
+            this.cuiPictureBox3.OutlineThickness = 1F;
+            this.cuiPictureBox3.PanelOutlineColor = System.Drawing.Color.Empty;
+            this.cuiPictureBox3.Rotation = 0;
+            this.cuiPictureBox3.Rounding = new System.Windows.Forms.Padding(8);
+            this.cuiPictureBox3.Size = new System.Drawing.Size(16, 16);
+            this.cuiPictureBox3.TabIndex = 28;
+            this.mensajesHover.SetToolTip(this.cuiPictureBox3, "IP Donde Opera el Servidor Actualmente");
+            // 
+            // lblIp
+            // 
+            this.lblIp.AutoSize = true;
+            this.lblIp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.lblIp.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
+            this.lblIp.Location = new System.Drawing.Point(75, 86);
+            this.lblIp.Name = "lblIp";
+            this.lblIp.Size = new System.Drawing.Size(81, 21);
+            this.lblIp.TabIndex = 27;
+            this.lblIp.Text = "127.0.0.1";
+            // 
+            // lblCon
+            // 
+            this.lblCon.AutoSize = true;
+            this.lblCon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.lblCon.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.lblCon.Location = new System.Drawing.Point(3, 65);
+            this.lblCon.Name = "lblCon";
+            this.lblCon.Size = new System.Drawing.Size(246, 21);
+            this.lblCon.TabIndex = 26;
+            this.lblCon.Text = "Operando En Esta IP y Puerto :";
+            // 
+            // cuiPictureBox2
+            // 
+            this.cuiPictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.cuiPictureBox2.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox2.ImageTint = System.Drawing.Color.White;
+            this.cuiPictureBox2.Location = new System.Drawing.Point(81, 29);
+            this.cuiPictureBox2.Name = "cuiPictureBox2";
+            this.cuiPictureBox2.OutlineThickness = 1F;
+            this.cuiPictureBox2.PanelOutlineColor = System.Drawing.Color.Empty;
+            this.cuiPictureBox2.Rotation = 0;
+            this.cuiPictureBox2.Rounding = new System.Windows.Forms.Padding(8);
+            this.cuiPictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.cuiPictureBox2.TabIndex = 25;
+            this.mensajesHover.SetToolTip(this.cuiPictureBox2, "Estado Del Servidor Actualmente");
             // 
             // lblEstado
             // 
@@ -498,110 +605,13 @@
             this.mensajesHover.IsBalloon = true;
             this.mensajesHover.ReshowDelay = 100;
             // 
-            // cuiPictureBox2
+            // pnlScroll
             // 
-            this.cuiPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox2.Content = global::AppServidor.Properties.Resources.circle_question_mark;
-            this.cuiPictureBox2.ImageTint = System.Drawing.Color.White;
-            this.cuiPictureBox2.Location = new System.Drawing.Point(81, 29);
-            this.cuiPictureBox2.Name = "cuiPictureBox2";
-            this.cuiPictureBox2.OutlineThickness = 1F;
-            this.cuiPictureBox2.PanelOutlineColor = System.Drawing.Color.Empty;
-            this.cuiPictureBox2.Rotation = 0;
-            this.cuiPictureBox2.Rounding = new System.Windows.Forms.Padding(8);
-            this.cuiPictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.cuiPictureBox2.TabIndex = 25;
-            this.mensajesHover.SetToolTip(this.cuiPictureBox2, "Estado Del Servidor Actualmente");
-            // 
-            // lblIp
-            // 
-            this.lblIp.AutoSize = true;
-            this.lblIp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.lblIp.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
-            this.lblIp.Location = new System.Drawing.Point(75, 86);
-            this.lblIp.Name = "lblIp";
-            this.lblIp.Size = new System.Drawing.Size(81, 21);
-            this.lblIp.TabIndex = 27;
-            this.lblIp.Text = "127.0.0.1";
-            // 
-            // lblCon
-            // 
-            this.lblCon.AutoSize = true;
-            this.lblCon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.lblCon.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.lblCon.Location = new System.Drawing.Point(3, 65);
-            this.lblCon.Name = "lblCon";
-            this.lblCon.Size = new System.Drawing.Size(246, 21);
-            this.lblCon.TabIndex = 26;
-            this.lblCon.Text = "Operando En Esta IP y Puerto :";
-            // 
-            // cuiPictureBox3
-            // 
-            this.cuiPictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox3.Content = global::AppServidor.Properties.Resources.circle_question_mark;
-            this.cuiPictureBox3.ImageTint = System.Drawing.Color.White;
-            this.cuiPictureBox3.Location = new System.Drawing.Point(162, 89);
-            this.cuiPictureBox3.Name = "cuiPictureBox3";
-            this.cuiPictureBox3.OutlineThickness = 1F;
-            this.cuiPictureBox3.PanelOutlineColor = System.Drawing.Color.Empty;
-            this.cuiPictureBox3.Rotation = 0;
-            this.cuiPictureBox3.Rounding = new System.Windows.Forms.Padding(8);
-            this.cuiPictureBox3.Size = new System.Drawing.Size(16, 16);
-            this.cuiPictureBox3.TabIndex = 28;
-            this.mensajesHover.SetToolTip(this.cuiPictureBox3, "IP Donde Opera el Servidor Actualmente");
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.label1.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
-            this.label1.Location = new System.Drawing.Point(75, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 21);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "15500";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.label2.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
-            this.label2.Location = new System.Drawing.Point(3, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 21);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "IP :";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.label3.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(223)))), ((int)(((byte)(233)))));
-            this.label3.Location = new System.Drawing.Point(3, 107);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 21);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "Puerto :";
-            // 
-            // cuiPictureBox4
-            // 
-            this.cuiPictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox4.Content = global::AppServidor.Properties.Resources.circle_question_mark;
-            this.cuiPictureBox4.ImageTint = System.Drawing.Color.White;
-            this.cuiPictureBox4.Location = new System.Drawing.Point(140, 112);
-            this.cuiPictureBox4.Name = "cuiPictureBox4";
-            this.cuiPictureBox4.OutlineThickness = 1F;
-            this.cuiPictureBox4.PanelOutlineColor = System.Drawing.Color.Empty;
-            this.cuiPictureBox4.Rotation = 0;
-            this.cuiPictureBox4.Rounding = new System.Windows.Forms.Padding(8);
-            this.cuiPictureBox4.Size = new System.Drawing.Size(16, 16);
-            this.cuiPictureBox4.TabIndex = 32;
-            this.mensajesHover.SetToolTip(this.cuiPictureBox4, "Puerto Donde Opera el Servidor Actualmente");
+            this.pnlScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.pnlScroll.Location = new System.Drawing.Point(1395, 35);
+            this.pnlScroll.Name = "pnlScroll";
+            this.pnlScroll.Size = new System.Drawing.Size(38, 190);
+            this.pnlScroll.TabIndex = 25;
             // 
             // FrmContHome
             // 
@@ -664,5 +674,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlScroll;
     }
 }

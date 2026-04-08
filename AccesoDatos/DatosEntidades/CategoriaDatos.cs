@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CapaEntidades;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using CapaEntidades;
 
 namespace AccesoDatos
 {
@@ -58,6 +59,7 @@ namespace AccesoDatos
             }
         }
 
+        //metodo para listar categorias con paginacion y ordenamiento
         public List<Categoria> ListarCategoriasPaginado(int pagina, int tamaño, string criterioOrden)
         {
             List<Categoria> lista = new List<Categoria>();
@@ -87,6 +89,7 @@ namespace AccesoDatos
             return lista;
         }
 
+        //metodo para obtener el total de categorias en la db
         public int ObtenerTotalCategorias()
         {
             string sql = "SELECT COUNT(*) FROM CategoriaVehiculo";
@@ -95,6 +98,21 @@ namespace AccesoDatos
                 var cmd = new SqlCommand(sql, cnx);
                 cnx.Open();
                 return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        //metodo para obtener el proximo id disponible en la tabla CategoriaVehiculo
+        public int ObtenerProximoId()
+        {
+            // Si la tabla está vacía, MAX es NULL, entonces ISNULL lo convierte en 0 y le suma 1.
+            string sql = "SELECT ISNULL(MAX(IdCategoria), 0) + 1 FROM CategoriaVehiculo";
+
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cnx.Open();
+                // ExecuteScalar se usa porque solo esperamos un único valor (un número)
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
     }

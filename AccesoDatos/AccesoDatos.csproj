@@ -45,6 +45,7 @@
     <Compile Include="DatosEntidades\CategoriaDatos.cs" />
     <Compile Include="DatosEntidades\ClienteDatos.cs" />
     <Compile Include="ConexionBD.cs" />
+    <Compile Include="DatosEntidades\VehiculoxSucursalDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatosEntidades\SucursalDatos.cs" />
     <Compile Include="DatosEntidades\VehiculoDatos.cs" />

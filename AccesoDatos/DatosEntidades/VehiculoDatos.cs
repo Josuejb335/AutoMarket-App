@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using CapaEntidades;
+using System;
 
 namespace AccesoDatos
 {
@@ -128,6 +129,17 @@ namespace AccesoDatos
                 var cmd = new SqlCommand(sql, cnx);
                 cnx.Open();
                 return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        public int ObtenerProximoId()
+        {
+            string sql = "SELECT ISNULL(MAX(IdVehiculo), 0) + 1 FROM Vehiculo";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cnx.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
     }

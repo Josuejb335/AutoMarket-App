@@ -29,5 +29,13 @@ namespace Utilidades
             pnlContenedor.Tag = fh;
             fh.Show();
         }
+        //metodo para abrir un UserControl dentro de un panel, se usa en la app de server y cliente
+        public static void AbrirUserControlEnPanel(Panel pnl, UserControl uc)
+        {
+            pnl.Controls.Clear();
+
+            uc.Dock = DockStyle.Fill;
+            pnl.Controls.Add(uc);
+        }
     }
 }

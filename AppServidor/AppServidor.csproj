@@ -75,6 +75,42 @@
     <Compile Include="Presentacion\FrmDashboardServ.Designer.cs">
       <DependentUpon>FrmDashboardServ.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroCat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroCat.Designer.cs">
+      <DependentUpon>ucRegistroCat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroClie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroClie.Designer.cs">
+      <DependentUpon>ucRegistroClie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroSuc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroSuc.Designer.cs">
+      <DependentUpon>ucRegistroSuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroVeh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroVeh.Designer.cs">
+      <DependentUpon>ucRegistroVeh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroVehxSuc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroVehxSuc.Designer.cs">
+      <DependentUpon>ucRegistroVehxSuc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroVen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\Presentacion_Registro\ucRegistroVen.Designer.cs">
+      <DependentUpon>ucRegistroVen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentacion\FrmContConsultas.resx">
@@ -88,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmDashboardServ.resx">
       <DependentUpon>FrmDashboardServ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroCat.resx">
+      <DependentUpon>ucRegistroCat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,5 +166,6 @@
       <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
