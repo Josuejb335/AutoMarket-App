@@ -59,7 +59,7 @@ namespace AccesoDatos
         public bool InsertarVehiculo(Vehiculo v)
         {
             string sql = @"INSERT INTO Vehiculo (IdVehiculo, Marca, Modelo, Ano, Precio, Estado, IdCategoria)
-                            VALUES (@id, @marca, @modelo, @ano, @precio, @estado, @idCat";
+                            VALUES (@id, @marca, @modelo, @ano, @precio, @estado, @idCat)";
 
             using (var cnx = ObtenerConexion())
             {

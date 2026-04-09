@@ -54,8 +54,8 @@ namespace AccesoDatos
                 cmd.Parameters.AddWithValue("@ident", v.Ident);
                 cmd.Parameters.AddWithValue("@nombre", v.Nombre);
                 cmd.Parameters.AddWithValue("@nacimiento", v.FechaNacimiento);
-                cmd.Parameters.AddWithValue("@registro", v.FechaIngreso);
-                cmd.Parameters.AddWithValue("@activo", v.Telefono);
+                cmd.Parameters.AddWithValue("@ingreso", v.FechaIngreso);
+                cmd.Parameters.AddWithValue("@telefono", v.Telefono);
 
                 cnx.Open();
 

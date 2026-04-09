@@ -115,5 +115,18 @@ namespace AccesoDatos
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        //metodo para verificar si un ID de categoria existe en la base de datos
+        public bool ExisteCategoria(int idCategoria)
+        {
+            string sql = "SELECT COUNT(1) FROM CategoriaVehiculo WHERE IdCategoria = @id";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@id", idCategoria);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
     }
 }

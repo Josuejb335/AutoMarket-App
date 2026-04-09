@@ -128,6 +128,12 @@
     <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroCat.resx">
       <DependentUpon>ucRegistroCat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroVeh.resx">
+      <DependentUpon>ucRegistroVeh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroVen.resx">
+      <DependentUpon>ucRegistroVen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

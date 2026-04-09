@@ -17,8 +17,6 @@ namespace AppServidor
         private FrmContRecursos frmRecursosCache = null;
         private FrmContHome frmHomeCache = null;
         private FrmContConsultas frmConsCache = null;
-        //instancias UserControls para Registro de datos
-        private ucRegistroCat ucRegistroCat;
 
         //al cargar form por primera vez
         private void DashboardServ_Load(object sender, EventArgs e)
@@ -81,27 +79,27 @@ namespace AppServidor
 
         private void clienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UtilForms.AbrirUserControlEnPanel(this.pnlContenedor, new ucRegistroClie());
         }
 
         private void sucursalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UtilForms.AbrirUserControlEnPanel(this.pnlContenedor, new ucRegistroSuc());
         }
 
         private void vehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UtilForms.AbrirUserControlEnPanel(this.pnlContenedor, new ucRegistroVeh());
         }
 
         private void vehiculoxSucToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UtilForms.AbrirUserControlEnPanel(this.pnlContenedor, new ucRegistroVehxSuc());
         }
 
         private void vendedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            UtilForms.AbrirUserControlEnPanel(this.pnlContenedor, new ucRegistroVen());
         }
     }
 }
