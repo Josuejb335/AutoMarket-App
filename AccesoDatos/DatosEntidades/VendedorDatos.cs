@@ -116,5 +116,29 @@ namespace AccesoDatos
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public bool ExisteVendedor(int idVendedor)
+        {
+            string sql = "SELECT COUNT(1) FROM Vendedor WHERE IdVendedor = @id";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@id", idVendedor);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
+
+        public bool ExisteIdentificacion(string identificacion)
+        {
+            string sql = "SELECT COUNT(1) FROM Vendedor WHERE Identificacion = @ident";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@ident", identificacion);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
     }
 }

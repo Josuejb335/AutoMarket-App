@@ -142,5 +142,17 @@ namespace AccesoDatos
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public bool ExisteVehiculo(int idVehiculo)
+        {
+            string sql = "SELECT COUNT(1) FROM Vehiculo WHERE IdVehiculo = @id";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@id", idVehiculo);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
     }
 }

@@ -136,5 +136,17 @@ namespace AccesoDatos
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public bool ExisteIdentificacion(string identificacion)
+        {
+            string sql = "SELECT COUNT(1) FROM Cliente WHERE Identificacion = @ident";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@ident", identificacion);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
     }
 }

@@ -30,13 +30,13 @@
         {
             this.pnl1 = new CuoreUI.Controls.cuiPanel();
             this.btnGuardar = new CuoreUI.Controls.cuiButton();
-            this.txtDescripcion = new CuoreUI.Controls.cuiTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new CuoreUI.Controls.cuiTextBox();
-            this.txtId = new CuoreUI.Controls.cuiTextBox();
             this.lblTitulo = new System.Windows.Forms.Label();
+            this.txtDescripcion = new CuoreUI.Controls.cuiTextBox();
+            this.txtId = new CuoreUI.Controls.cuiTextBox();
             this.pnl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,36 +97,6 @@
             this.btnGuardar.TextPadding = 12;
             this.btnGuardar.TextSpacing = 2;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.txtDescripcion.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
-            this.txtDescripcion.Content = "";
-            this.txtDescripcion.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtDescripcion.FocusBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
-            this.txtDescripcion.FocusImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
-            this.txtDescripcion.FocusOutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))));
-            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDescripcion.Image = null;
-            this.txtDescripcion.ImageExpand = new System.Drawing.Point(0, 0);
-            this.txtDescripcion.ImageOffset = new System.Drawing.Point(0, 0);
-            this.txtDescripcion.Location = new System.Drawing.Point(7, 193);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.NormalImageTint = System.Drawing.Color.White;
-            this.txtDescripcion.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.txtDescripcion.Padding = new System.Windows.Forms.Padding(20, 9, 20, 9);
-            this.txtDescripcion.PasswordChar = false;
-            this.txtDescripcion.PlaceholderColor = System.Drawing.Color.LightGray;
-            this.txtDescripcion.PlaceholderText = ". . .";
-            this.txtDescripcion.Rounding = new System.Windows.Forms.Padding(15);
-            this.txtDescripcion.Size = new System.Drawing.Size(512, 147);
-            this.txtDescripcion.TabIndex = 8;
-            this.txtDescripcion.TextOffset = new System.Drawing.Size(0, 0);
-            this.txtDescripcion.UnderlinedStyle = true;
             // 
             // label3
             // 
@@ -194,6 +164,47 @@
             this.txtNombre.TextOffset = new System.Drawing.Size(0, 0);
             this.txtNombre.UnderlinedStyle = true;
             // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))));
+            this.lblTitulo.Location = new System.Drawing.Point(33, 0);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(238, 30);
+            this.lblTitulo.TabIndex = 4;
+            this.lblTitulo.Text = "Registro De Categoria";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.txtDescripcion.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
+            this.txtDescripcion.Content = "";
+            this.txtDescripcion.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtDescripcion.FocusBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
+            this.txtDescripcion.FocusImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
+            this.txtDescripcion.FocusOutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))));
+            this.txtDescripcion.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcion.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDescripcion.Image = null;
+            this.txtDescripcion.ImageExpand = new System.Drawing.Point(0, 0);
+            this.txtDescripcion.ImageOffset = new System.Drawing.Point(0, 0);
+            this.txtDescripcion.Location = new System.Drawing.Point(7, 193);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.NormalImageTint = System.Drawing.Color.White;
+            this.txtDescripcion.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.txtDescripcion.Padding = new System.Windows.Forms.Padding(20, 9, 20, 9);
+            this.txtDescripcion.PasswordChar = false;
+            this.txtDescripcion.PlaceholderColor = System.Drawing.Color.LightGray;
+            this.txtDescripcion.PlaceholderText = ". . .";
+            this.txtDescripcion.Rounding = new System.Windows.Forms.Padding(15);
+            this.txtDescripcion.Size = new System.Drawing.Size(512, 147);
+            this.txtDescripcion.TabIndex = 8;
+            this.txtDescripcion.TextOffset = new System.Drawing.Size(0, 0);
+            this.txtDescripcion.UnderlinedStyle = true;
+            // 
             // txtId
             // 
             this.txtId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
@@ -225,17 +236,6 @@
             this.txtId.TextOffset = new System.Drawing.Size(0, 0);
             this.txtId.UnderlinedStyle = true;
             // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(146)))), ((int)(((byte)(176)))), ((int)(((byte)(255)))));
-            this.lblTitulo.Location = new System.Drawing.Point(33, 0);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(238, 30);
-            this.lblTitulo.TabIndex = 4;
-            this.lblTitulo.Text = "Registro De Categoria";
-            // 
             // ucRegistroCat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,12 +257,12 @@
 
         private CuoreUI.Controls.cuiPanel pnl1;
         private System.Windows.Forms.Label lblTitulo;
-        private CuoreUI.Controls.cuiTextBox txtId;
         private CuoreUI.Controls.cuiTextBox txtNombre;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private CuoreUI.Controls.cuiTextBox txtDescripcion;
         private System.Windows.Forms.Label label3;
         private CuoreUI.Controls.cuiButton btnGuardar;
+        private CuoreUI.Controls.cuiTextBox txtDescripcion;
+        private CuoreUI.Controls.cuiTextBox txtId;
     }
 }

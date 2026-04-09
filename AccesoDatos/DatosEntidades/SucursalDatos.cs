@@ -164,5 +164,17 @@ namespace AccesoDatos
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+        public bool ExisteSucursal(int idSucursal)
+        {
+            string sql = "SELECT COUNT(1) FROM Sucursal WHERE IdSucursal = @id";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@id", idSucursal);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
     }
 }

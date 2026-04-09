@@ -41,6 +41,9 @@ namespace Logica
             
             // Validaciones de datos
             ValidarIdentificacion(c.Ident);
+
+            if (cld.ExisteIdentificacion(c.Ident))
+                throw new ArgumentException($"La identificación {c.Ident} ya se encuentra registrada en un cliente.");
             
             if (string.IsNullOrWhiteSpace(c.Nombre)) 
                 throw new ArgumentException("El nombre del cliente es obligatorio.");
@@ -66,6 +69,10 @@ namespace Logica
 
             if (s.Encargado == null || s.Encargado.IdVend <= 0)
                 throw new ArgumentException("Debe asignar un vendedor encargado válido a la sucursal.");
+                
+            // Validar que el vendedor existe en la base de datos
+            if (!vend.ExisteVendedor(s.Encargado.IdVend))
+                throw new ArgumentException($"El vendedor encargado con el ID {s.Encargado.IdVend} no existe en la base de datos.");
             
             return sd.InsertarSucursal(s); 
 
@@ -108,6 +115,9 @@ namespace Logica
             
             // Validaciones de datos
             ValidarIdentificacion(v.Ident);
+
+            if (vend.ExisteIdentificacion(v.Ident))
+                throw new ArgumentException($"La identificación {v.Ident} ya se encuentra registrada en un vendedor.");
 
             if (string.IsNullOrWhiteSpace(v.Nombre))
                 throw new ArgumentException("El nombre del vendedor es obligatorio.");
@@ -158,6 +168,12 @@ namespace Logica
 
             if (vxs.Cantidad < 0)
                 throw new ArgumentException("La cantidad no puede ser un número negativo.");
+
+            if (!sd.ExisteSucursal(vxs.SucursalAsociada.IdSuc))
+                throw new ArgumentException($"La Sucursal con el ID {vxs.SucursalAsociada.IdSuc} no existe en la base de datos.");
+
+            if (!vd.ExisteVehiculo(vxs.VehiculoAsociado.IdVehi))
+                throw new ArgumentException($"El Vehículo con el ID {vxs.VehiculoAsociado.IdVehi} no existe en la base de datos.");
             
             return vxsd.InsertarVehiculoxSucursal(vxs);
 

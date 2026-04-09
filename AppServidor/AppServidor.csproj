@@ -128,8 +128,17 @@
     <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroCat.resx">
       <DependentUpon>ucRegistroCat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroClie.resx">
+      <DependentUpon>ucRegistroClie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroSuc.resx">
+      <DependentUpon>ucRegistroSuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroVeh.resx">
       <DependentUpon>ucRegistroVeh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroVehxSuc.resx">
+      <DependentUpon>ucRegistroVehxSuc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroVen.resx">
       <DependentUpon>ucRegistroVen.cs</DependentUpon>
