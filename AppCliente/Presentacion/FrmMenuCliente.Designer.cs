@@ -31,9 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuCliente));
             this.lblTitulo = new System.Windows.Forms.Label();
             this.cuiPanelGradient1 = new CuoreUI.Controls.cuiPanelGradient();
+            this.pnlContenedor = new System.Windows.Forms.Panel();
+            this.btnCerrarSesion = new CuoreUI.Controls.cuiButton();
             this.btnComprar = new CuoreUI.Controls.cuiButton();
             this.btnConsultas = new CuoreUI.Controls.cuiButton();
-            this.pnlContenedor = new System.Windows.Forms.Panel();
             this.cuiPanelGradient1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // 
             // cuiPanelGradient1
             // 
+            this.cuiPanelGradient1.Controls.Add(this.btnCerrarSesion);
             this.cuiPanelGradient1.Controls.Add(this.btnComprar);
             this.cuiPanelGradient1.Controls.Add(this.btnConsultas);
             this.cuiPanelGradient1.Controls.Add(this.lblTitulo);
@@ -59,12 +61,60 @@
             this.cuiPanelGradient1.Name = "cuiPanelGradient1";
             this.cuiPanelGradient1.OutlineThickness = 1F;
             this.cuiPanelGradient1.PanelColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(42)))), ((int)(((byte)(116)))));
-            this.cuiPanelGradient1.PanelColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(234)))), ((int)(((byte)(255)))));
+            this.cuiPanelGradient1.PanelColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(161)))), ((int)(((byte)(214)))), ((int)(((byte)(252)))));
             this.cuiPanelGradient1.PanelOutlineColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(234)))), ((int)(((byte)(255)))));
             this.cuiPanelGradient1.PanelOutlineColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(234)))), ((int)(((byte)(255)))));
             this.cuiPanelGradient1.Rounding = new System.Windows.Forms.Padding(0);
             this.cuiPanelGradient1.Size = new System.Drawing.Size(1016, 60);
             this.cuiPanelGradient1.TabIndex = 5;
+            // 
+            // pnlContenedor
+            // 
+            this.pnlContenedor.BackColor = System.Drawing.Color.Transparent;
+            this.pnlContenedor.Location = new System.Drawing.Point(12, 71);
+            this.pnlContenedor.Name = "pnlContenedor";
+            this.pnlContenedor.Size = new System.Drawing.Size(988, 470);
+            this.pnlContenedor.TabIndex = 6;
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.Transparent;
+            this.btnCerrarSesion.CheckButton = false;
+            this.btnCerrarSesion.Checked = false;
+            this.btnCerrarSesion.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
+            this.btnCerrarSesion.CheckedForeColor = System.Drawing.Color.White;
+            this.btnCerrarSesion.CheckedImageTint = System.Drawing.Color.White;
+            this.btnCerrarSesion.CheckedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
+            this.btnCerrarSesion.Content = "Cerrar Sesion";
+            this.btnCerrarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCerrarSesion.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(134)))), ((int)(((byte)(233)))));
+            this.btnCerrarSesion.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(98)))), ((int)(((byte)(220)))));
+            this.btnCerrarSesion.HoverForeColor = System.Drawing.Color.Black;
+            this.btnCerrarSesion.HoverImageTint = System.Drawing.Color.Black;
+            this.btnCerrarSesion.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarSesion.Image = global::AppCliente.Properties.Resources.circle_x__1_;
+            this.btnCerrarSesion.ImageExpand = new System.Drawing.Point(-3, -3);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(857, 17);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(42)))), ((int)(((byte)(116)))));
+            this.btnCerrarSesion.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(134)))), ((int)(((byte)(233)))));
+            this.btnCerrarSesion.NormalImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.btnCerrarSesion.NormalOutline = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarSesion.OutlineThickness = 1F;
+            this.btnCerrarSesion.Padding = new System.Windows.Forms.Padding(12);
+            this.btnCerrarSesion.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(42)))), ((int)(((byte)(116)))));
+            this.btnCerrarSesion.PressedForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(134)))), ((int)(((byte)(233)))));
+            this.btnCerrarSesion.PressedImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(134)))), ((int)(((byte)(233)))));
+            this.btnCerrarSesion.PressedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarSesion.Rounding = new System.Windows.Forms.Padding(15);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(145, 29);
+            this.btnCerrarSesion.TabIndex = 8;
+            this.btnCerrarSesion.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.btnCerrarSesion.TextPadding = 12;
+            this.btnCerrarSesion.TextSpacing = 2;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // btnComprar
             // 
@@ -104,6 +154,7 @@
             this.btnComprar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnComprar.TextPadding = 12;
             this.btnComprar.TextSpacing = 2;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
             // 
             // btnConsultas
             // 
@@ -143,24 +194,19 @@
             this.btnConsultas.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnConsultas.TextPadding = 12;
             this.btnConsultas.TextSpacing = 2;
+            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click);
             // 
-            // pnlContenedor
-            // 
-            this.pnlContenedor.BackColor = System.Drawing.Color.Transparent;
-            this.pnlContenedor.Location = new System.Drawing.Point(12, 71);
-            this.pnlContenedor.Name = "pnlContenedor";
-            this.pnlContenedor.Size = new System.Drawing.Size(988, 470);
-            this.pnlContenedor.TabIndex = 6;
-            // 
-            // MenuCliente
+            // FrmMenuCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(234)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1012, 553);
             this.Controls.Add(this.pnlContenedor);
             this.Controls.Add(this.cuiPanelGradient1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MenuCliente";
+            this.Name = "FrmMenuCliente";
+            this.Load += new System.EventHandler(this.FrmMenuCliente_Load);
             this.cuiPanelGradient1.ResumeLayout(false);
             this.cuiPanelGradient1.PerformLayout();
             this.ResumeLayout(false);
@@ -174,6 +220,7 @@
         private CuoreUI.Controls.cuiButton btnComprar;
         private CuoreUI.Controls.cuiButton btnConsultas;
         private System.Windows.Forms.Panel pnlContenedor;
+        private CuoreUI.Controls.cuiButton btnCerrarSesion;
     }
 }
 

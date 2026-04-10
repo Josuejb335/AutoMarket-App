@@ -68,11 +68,11 @@
     <Compile Include="Presentacion\FrmContHome.Designer.cs">
       <DependentUpon>FrmContHome.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentacion\FrmDashboardServ.cs">
+    <Compile Include="Presentacion\FrmMenuServidor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\FrmDashboardServ.Designer.cs">
-      <DependentUpon>FrmDashboardServ.cs</DependentUpon>
+    <Compile Include="Presentacion\FrmMenuServidor.Designer.cs">
+      <DependentUpon>FrmMenuServidor.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Presentacion_Registro\ucRegistroCat.cs">
       <SubType>UserControl</SubType>
@@ -121,8 +121,8 @@
     <EmbeddedResource Include="Presentacion\FrmContHome.resx">
       <DependentUpon>FrmContHome.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\FrmDashboardServ.resx">
-      <DependentUpon>FrmDashboardServ.cs</DependentUpon>
+    <EmbeddedResource Include="Presentacion\FrmMenuServidor.resx">
+      <DependentUpon>FrmMenuServidor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\Presentacion_Registro\ucRegistroCat.resx">
       <DependentUpon>ucRegistroCat.cs</DependentUpon>
