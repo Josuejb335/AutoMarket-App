@@ -33,8 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cuiPanel1 = new CuoreUI.Controls.cuiPanel();
             this.tabla = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbEntidad = new CuoreUI.Controls.cuiComboBox();
             this.btnComprar = new CuoreUI.Controls.cuiButton();
             this.label2 = new System.Windows.Forms.Label();
             this.cuiPanel1.SuspendLayout();
@@ -44,8 +42,6 @@
             // cuiPanel1
             // 
             this.cuiPanel1.Controls.Add(this.tabla);
-            this.cuiPanel1.Controls.Add(this.label1);
-            this.cuiPanel1.Controls.Add(this.cmbEntidad);
             this.cuiPanel1.Controls.Add(this.btnComprar);
             this.cuiPanel1.Controls.Add(this.label2);
             this.cuiPanel1.Location = new System.Drawing.Point(205, 25);
@@ -82,7 +78,7 @@
             this.tabla.DefaultCellStyle = dataGridViewCellStyle2;
             this.tabla.EnableHeadersVisualStyles = false;
             this.tabla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(29)))), ((int)(((byte)(36)))));
-            this.tabla.Location = new System.Drawing.Point(15, 102);
+            this.tabla.Location = new System.Drawing.Point(15, 23);
             this.tabla.Name = "tabla";
             this.tabla.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -94,45 +90,8 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tabla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tabla.RowHeadersVisible = false;
-            this.tabla.Size = new System.Drawing.Size(550, 250);
+            this.tabla.Size = new System.Drawing.Size(550, 350);
             this.tabla.TabIndex = 32;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
-            this.label1.Location = new System.Drawing.Point(215, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 20);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Seleccione el Vehiculo";
-            // 
-            // cmbEntidad
-            // 
-            this.cmbEntidad.BackColor = System.Drawing.Color.Transparent;
-            this.cmbEntidad.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
-            this.cmbEntidad.DropDownBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.cmbEntidad.DropDownForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.cmbEntidad.ExpandArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.cmbEntidad.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEntidad.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.cmbEntidad.Items = new string[] {
-        ""};
-            this.cmbEntidad.Location = new System.Drawing.Point(182, 37);
-            this.cmbEntidad.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.cmbEntidad.MaxDropDownHeight = 240;
-            this.cmbEntidad.Name = "cmbEntidad";
-            this.cmbEntidad.NoSelectionText = "None";
-            this.cmbEntidad.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.cmbEntidad.OutlineThickness = 1F;
-            this.cmbEntidad.Rounding = 18;
-            this.cmbEntidad.SelectedIndex = -1;
-            this.cmbEntidad.SelectedItem = "";
-            this.cmbEntidad.Size = new System.Drawing.Size(230, 38);
-            this.cmbEntidad.SortAlphabetically = true;
-            this.cmbEntidad.TabIndex = 30;
             // 
             // btnComprar
             // 
@@ -154,7 +113,7 @@
             this.btnComprar.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnComprar.Image = null;
             this.btnComprar.ImageExpand = new System.Drawing.Point(-3, -3);
-            this.btnComprar.Location = new System.Drawing.Point(15, 384);
+            this.btnComprar.Location = new System.Drawing.Point(207, 379);
             this.btnComprar.Name = "btnComprar";
             this.btnComprar.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
             this.btnComprar.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(134)))), ((int)(((byte)(233)))));
@@ -180,7 +139,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
-            this.label2.Location = new System.Drawing.Point(215, 12);
+            this.label2.Location = new System.Drawing.Point(203, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 20);
             this.label2.TabIndex = 8;
@@ -206,8 +165,6 @@
 
         private CuoreUI.Controls.cuiPanel cuiPanel1;
         private System.Windows.Forms.DataGridView tabla;
-        private System.Windows.Forms.Label label1;
-        private CuoreUI.Controls.cuiComboBox cmbEntidad;
         private CuoreUI.Controls.cuiButton btnComprar;
         private System.Windows.Forms.Label label2;
     }

@@ -35,6 +35,17 @@ namespace AppServidor.Presentacion
         private void MetodoReceptorLog(string msg, Color color)
         {
             AgregarLog(msg, color);
+            
+            // Actualizar dashboard cuando hay un mensaje que sugiere un cambio/insercion (normalmente log en verde o azul)
+            // Esto asegura que los gráficos se refresquen al insertar nuevos registros
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => actualizarDashboard()));
+            }
+            else
+            {
+                actualizarDashboard();
+            }
         }
 
         // Encender y apagar el servidor con los botones

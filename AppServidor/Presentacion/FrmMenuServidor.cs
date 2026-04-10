@@ -19,9 +19,9 @@ namespace AppServidor
         private FrmContConsultas frmConsCache = null;
 
         //al cargar form por primera vez
-        private void DashboardServ_Load(object sender, EventArgs e)
+        private async void DashboardServ_Load(object sender, EventArgs e)
         {
-            // Verificar si el formulario ya está en caché y no ha sido cerrado 
+            // Verificar si el formulario ya est en cach y no ha sido cerrado 
             if (frmHomeCache == null || frmHomeCache.IsDisposed)
             {
                 frmHomeCache = new FrmContHome();
@@ -29,8 +29,8 @@ namespace AppServidor
 
             // Abrir el formulario en el panel contenedor
             UtilForms.AbrirFormularioEnPanel(this.pnlContenedor, frmHomeCache);
-            //Inicializar sensores al iniciar la aplicación
-            MonitorHardware.Inicializar();
+            //Inicializar sensores al iniciar la aplicacin
+            await System.Threading.Tasks.Task.Run(() => MonitorHardware.Inicializar());
         }
 
         private void btnConsulta_Click(object sender, EventArgs e)

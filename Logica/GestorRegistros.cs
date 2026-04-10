@@ -16,6 +16,9 @@ namespace Logica
         private VentaDatos vta = new VentaDatos();
         private VehiculoxSucursalDatos vxsd = new VehiculoxSucursalDatos();
 
+        // Semáforo/Lock estático para asegurar sincronización en las compras concurrentes
+        private static readonly object _lockCompra = new object();
+
         //metodos para insertar
 
         public bool InsertarCategoria(Categoria c)
@@ -191,23 +194,27 @@ namespace Logica
 
         public bool ProcesarCompraTCP(int idSucursal, int idVehiculo, int idCliente, decimal monto)
         {
-            // 1. Insertamos la venta nueva en la tabla "Venta"
-            Venta nuevaVenta = new Venta
+            // Bloqueo de sincronización: solo un hilo (cliente) puede procesar una compra a la vez
+            lock (_lockCompra)
             {
-                Clie = new Cliente { IdCliente = idCliente },
-                Suc = new Sucursal { IdSuc = idSucursal },
-                Veh = new Vehiculo { IdVehi = idVehiculo },
-                FechaVenta = DateTime.Now,
-                Monto = monto
-            };
+                // 1. Insertamos la venta nueva en la tabla "Venta"
+                Venta nuevaVenta = new Venta
+                {
+                    Clie = new Cliente { IdCliente = idCliente },
+                    Suc = new Sucursal { IdSuc = idSucursal },
+                    Veh = new Vehiculo { IdVehi = idVehiculo },
+                    FechaVenta = DateTime.Now,
+                    Monto = monto
+                };
 
-            bool ventaInsertada = vta.InsertarVenta(nuevaVenta);
-            if (!ventaInsertada) return false;
+                bool ventaInsertada = vta.InsertarVenta(nuevaVenta);
+                if (!ventaInsertada) return false;
 
-            // 2. Disminuimos el inventario del vehiculo en esa sucursal (VehiculoxSucursal)
-            bool inventarioActualizado = vxsd.RestarInventarioVehiculo(idSucursal, idVehiculo);
-            
-            return inventarioActualizado;
+                // 2. Disminuimos el inventario del vehiculo en esa sucursal (VehiculoxSucursal)
+                bool inventarioActualizado = vxsd.RestarInventarioVehiculo(idSucursal, idVehiculo);
+                
+                return inventarioActualizado;
+            }
         }
 
         private void ValidarIdentificacion(string identificacion)
