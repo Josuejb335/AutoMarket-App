@@ -15,7 +15,7 @@ namespace AccesoDatos
                            FechaNacimiento, FechaRegistro, Activo
                            FROM Cliente";
 
-            //bloque para asegurar que la conexión se cierre
+            // Bloque para asegurar que la conexión se cierre
             using (var cnx = ObtenerConexion())
             {
                 var cmd = new SqlCommand(sql, cnx);
@@ -58,7 +58,7 @@ namespace AccesoDatos
 
                 cnx.Open();
 
-                return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
+                return cmd.ExecuteNonQuery() > 0; // Retorna true si se insertó al menos un registro
             }
         }
 

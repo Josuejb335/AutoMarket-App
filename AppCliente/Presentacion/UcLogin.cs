@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AppCliente
+namespace AppCliente.Presentacion
 {
-    public partial class MenuCliente : Form
+    public partial class UcLogin : UserControl
     {
-        public MenuCliente()
+        public UcLogin()
         {
             InitializeComponent();
         }

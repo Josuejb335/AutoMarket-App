@@ -9,7 +9,7 @@ namespace AccesoDatos
     {
         public List<Vehiculo> ListarVehiculos()
         {
-            //lista para almacenar los vehiculos obtenidos de la bd
+            // Lista para almacenar los vehículos obtenidos de la base de datos
             List<Vehiculo> lista = new List<Vehiculo>();
 
             string sql = @"SELECT v.IdVehiculo, v.Marca, v.Modelo, v.Precio, v.Ano,
@@ -17,7 +17,7 @@ namespace AccesoDatos
                            FROM Vehiculo v 
                            INNER JOIN CategoriaVehiculo c ON v.IdCategoria = c.IdCategoria";
 
-            //bloque using para asegurar que la conexión se cierre 
+            // Bloque para asegurar que la conexión se cierre 
             using (var cnx = ObtenerConexion())
             {
                 var cmd = new SqlCommand(sql, cnx);
@@ -27,7 +27,7 @@ namespace AccesoDatos
                 {
                     while (dr.Read())
                     {
-                        // se crea el objeto interno
+                        // Instancia del objeto interno
                         var cat = new Categoria
                         {
                             IdCat = (int)dr["IdCategoria"],
@@ -46,16 +46,16 @@ namespace AccesoDatos
                             Cat = cat
                         };
 
-                        //agregar a la lista
+                        // Agrega a la lista
                         lista.Add(veh);
                     }
                 }
             }
-            //se retorna la lista de vehiculos obtenida de la base de datos
+            // Retorna la lista de vehículos obtenida de la base de datos
             return lista;
         }
 
-        //metodo para insertar vehiculo a la db
+        // Método para insertar vehículo a la base de datos
         public bool InsertarVehiculo(Vehiculo v)
         {
             string sql = @"INSERT INTO Vehiculo (IdVehiculo, Marca, Modelo, Ano, Precio, Estado, IdCategoria)
@@ -75,7 +75,7 @@ namespace AccesoDatos
 
                cnx.Open();
                
-               return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
+               return cmd.ExecuteNonQuery() > 0; // Retorna true si se insertó al menos un registro
             }
         }
 

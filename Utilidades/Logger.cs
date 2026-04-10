@@ -14,7 +14,7 @@ namespace Utilidades
 
         public static void Escribir(string mensaje, Color color)
         {
-            // Si alguien está escuchando el evento, le mandamos los datos
+            // Si alguien está escuchando el evento, se le envian los datos
             AlPublicarMensaje?.Invoke(mensaje, color);
         }
     }

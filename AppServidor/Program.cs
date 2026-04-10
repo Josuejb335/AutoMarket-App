@@ -13,7 +13,7 @@ namespace AppServidor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmDashboardServ());
+            Application.Run(new FrmMenuServidor());
         }
     }
 }

@@ -50,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComunicacionTCP.cs" />
     <Compile Include="Presentacion\FrmContConsultas.cs">
       <SubType>Form</SubType>
     </Compile>

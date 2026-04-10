@@ -16,7 +16,7 @@ namespace AppCliente
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MenuCliente());
+            Application.Run(new FrmMenuCliente());
         }
     }
 }

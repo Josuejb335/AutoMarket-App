@@ -9,7 +9,7 @@ namespace AccesoDatos
     {
         public List<Sucursal> ListarSucursales()
         {
-            //lista para almacenar las categorias obtenidas de la bd
+            // Lista para almacenar las sucursales obtenidas de la bd
             List<Sucursal> lista = new List<Sucursal>();
 
             string sql = @"SELECT s.IdSucursal, s.Nombre, s.Direccion, s.Telefono, s.Activo,
@@ -18,7 +18,7 @@ namespace AccesoDatos
                            FROM Sucursal s
                            INNER JOIN Vendedor v ON s.Idvendedor = v.IdVendedor";
 
-            //bloque para asegurar que la conexión se cierre
+            // Bloque para asegurar que la conexión se cierre
             using (var cnx = ObtenerConexion())
             {
                 var cmd = new SqlCommand(sql, cnx);
@@ -48,7 +48,7 @@ namespace AccesoDatos
                             Encargado = enc
                         };
 
-                        //Agregar a la lista
+                        // Agrega a la lista
                         lista.Add(suc);
                     }
                 }
@@ -56,7 +56,7 @@ namespace AccesoDatos
             return lista;
         }
 
-        //metodo para insertar sucursal a la db
+        // Método para insertar sucursal a la base de datos
         public bool InsertarSucursal(Sucursal s)
         {
             string sql = @"INSERT INTO Sucursal (IdSucursal, Nombre, Direccion, Telefono, Activo, IdVendedor)
@@ -74,7 +74,7 @@ namespace AccesoDatos
 
                 cnx.Open();
 
-                return cmd.ExecuteNonQuery() > 0; //retorna true si se al menos un registro
+                return cmd.ExecuteNonQuery() > 0; // Retorna true si se insertó al menos un registro
             }
         }
 

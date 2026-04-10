@@ -87,7 +87,7 @@ namespace AccesoDatos
         }
         public bool InsertarVenta(Venta nuevaVenta)
         {
-            // IdVenta no se pone porque es IDENTITY (autoincremental)
+            // IdVenta es IDENTITY (autoincremental)
             string sql = @"INSERT INTO Venta (IdCliente, IdSucursal, IdVehiculo, FechaVenta, Monto) 
                    VALUES (@idCliente, @idSucursal, @idVehiculo, @fecha, @monto)";
 
@@ -103,7 +103,7 @@ namespace AccesoDatos
 
                     cnx.Open();
 
-                    return cmd.ExecuteNonQuery() > 0; //retorna true si se inserto al menos un registro
+                    return cmd.ExecuteNonQuery() > 0; // Retorna true si se insertó al menos un registro
                 }
             }
         }

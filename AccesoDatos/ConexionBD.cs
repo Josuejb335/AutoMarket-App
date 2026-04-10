@@ -9,7 +9,7 @@ namespace AccesoDatos
         // Cadena de conexión a la base de datos, obtenida del archivo de configuración
          private readonly string cadenaConexion = ConfigurationManager.ConnectionStrings["CnxAutoMarket"].ConnectionString;
 
-        //metodo que las clases hijas tendran para conectarse a la base de datos
+        // Método que expone la conexión hacia la base de datos
         protected SqlConnection ObtenerConexion()
         {
             try

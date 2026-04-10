@@ -7,9 +7,9 @@ using AppServidor.Presentacion.Presentacion_Registro;
 namespace AppServidor
 {
     
-    public partial class FrmDashboardServ : Form
+    public partial class FrmMenuServidor : Form
     {
-        public FrmDashboardServ()
+        public FrmMenuServidor()
         {
             InitializeComponent();
         }
@@ -26,6 +26,7 @@ namespace AppServidor
             {
                 frmHomeCache = new FrmContHome();
             }
+
             // Abrir el formulario en el panel contenedor
             UtilForms.AbrirFormularioEnPanel(this.pnlContenedor, frmHomeCache);
             //Inicializar sensores al iniciar la aplicación

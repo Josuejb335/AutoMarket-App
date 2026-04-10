@@ -62,7 +62,7 @@ namespace AccesoDatos
             {
                 var cmd = new SqlCommand(sql, cnx);
 
-                // Basado en las propiedades mapeadas en tu método Listar
+                // Parámetros basados en las propiedades mapeadas
                 cmd.Parameters.AddWithValue("@idSucursal", vs.SucursalAsociada.IdSuc);
                 cmd.Parameters.AddWithValue("@idVehiculo", vs.VehiculoAsociado.IdVehi);
                 cmd.Parameters.AddWithValue("@cantidad", vs.Cantidad);
