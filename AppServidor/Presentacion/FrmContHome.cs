@@ -1,3 +1,10 @@
+/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Formulario que maneja el Dashboard del servidor y el control de conexión
+*/
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -23,21 +30,14 @@ namespace AppServidor.Presentacion
 
         private void ContHome_Load(object sender, EventArgs e)
         {
-            //se cargan los chart al cargar este form y por individual cada uno cada que se registre un evento
             actualizarDashboard();
-
-            //suscribirse al evento de log para mostrarlo en el rtbLog
             Logger.AlPublicarMensaje += MetodoReceptorLog;
         }
 
-
-        //metodo receptor del evento de log
         private void MetodoReceptorLog(string msg, Color color)
         {
             AgregarLog(msg, color);
             
-            // Actualizar dashboard cuando hay un mensaje que sugiere un cambio/insercion (normalmente log en verde o azul)
-            // Esto asegura que los gráficos se refresquen al insertar nuevos registros
             if (this.InvokeRequired)
             {
                 this.Invoke(new Action(() => actualizarDashboard()));
@@ -48,15 +48,12 @@ namespace AppServidor.Presentacion
             }
         }
 
-        // Encender y apagar el servidor con los botones
         private void btnOn_Click(object sender, EventArgs e)
         {
             try
             {
-                // Iniciar y conectar el servidor
                 IniciarServidor();
                 
-                // Bloquear el boton de ON y habilitar el de OFF
                 btnOn.Enabled = false;
                 btnOff.Enabled = true;
             }
@@ -72,7 +69,6 @@ namespace AppServidor.Presentacion
             {
                 servidorTCP?.Detener();
                 
-                // Habilitar el boton de ON y bloquear el de OFF
                 btnOn.Enabled = true;
                 btnOff.Enabled = false;
             }
@@ -84,47 +80,46 @@ namespace AppServidor.Presentacion
 
         private void IniciarServidor()
         {
-            // si el servidor ya existe y está activo no se vuelve a crear
             if (servidorTCP != null)
             {
-                servidorTCP.Detener(); // Por si quedo colgado, se limpia antes
+                servidorTCP.Detener();
             }
 
             servidorTCP = new ServidorSocket();
-
-            // Iniciar la escucha
             servidorTCP.Iniciar();
         }
 
-        //metodo para agregar texto al rtbLog con color y formato, se llama desde el evento de log
         public void AgregarLog(string mensaje, Color color)
         {
+            // Si el llamado proviene de otro hilo, usar Invoke para ejecutar en el hilo principal de la UI
             if (rtbLog.InvokeRequired)
             {
                 rtbLog.Invoke(new Action(() => AgregarLog(mensaje, color)));
             }
             else
             {
-                // Agregarle la hora al texto
+                // Formatear el mensaje con marca de hora para saber cuándo ocurrió
                 string linea = $"[{DateTime.Now:HH:mm:ss}] {mensaje}{Environment.NewLine}";
 
-                // ir al final del texto para agregar la nueva línea
+                // Mover el cursor al final del texto para agregar la nueva línea
                 rtbLog.SelectionStart = rtbLog.TextLength;
                 rtbLog.SelectionLength = 0;
 
-                // poner el color y escribir
+                // Aplicar el color especificado al texto
                 rtbLog.SelectionColor = color;
                 rtbLog.AppendText(linea);
 
-                // resetear color al default 
+                // Restablecer el color al default para las próximas líneas
                 rtbLog.SelectionColor = rtbLog.ForeColor;
+                // Hacer scroll automático para ver el último mensaje añadido
                 rtbLog.ScrollToCaret();
 
-                // limpieza automática (evita que el programa se ponga lento tras mil líneas)
+                // Limpieza automática: si el log supera 150 líneas, mantener solo las últimas 100
+                // Esto evita que la aplicación se vuelva lenta por demasiado texto en memoria
                 if (rtbLog.Lines.Length > 150)
                 {
-                    // mantiene las últimas 100 líneas
                     rtbLog.ReadOnly = false;
+                    // Seleccionar desde el inicio hasta la línea 50 (para borrar las primeras 100)
                     rtbLog.Select(0, rtbLog.GetFirstCharIndexFromLine(rtbLog.Lines.Length - 100));
                     rtbLog.SelectedText = "";
                     rtbLog.ReadOnly = true;
@@ -132,7 +127,6 @@ namespace AppServidor.Presentacion
             }
         }
 
-        // Actulizar todos los charts del dashboard, se llama al cargar el form y cada que se registre un evento para mantener los datos actualizados
         private void actualizarDashboard()
         {
             try
@@ -142,9 +136,6 @@ namespace AppServidor.Presentacion
                 ActChartVentas();
                 ActChartClientes();
             }
-            //recibe las excepciones de cada método individual
-            //para mostrar un mensaje específico de error en caso de que falle alguno
-            //sin afectar la actualización de los demás charts
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
@@ -152,12 +143,11 @@ namespace AppServidor.Presentacion
             }
         }
 
-        //metodo para actualizar chart de Datos registrado
         private void ActChartGeneral()
         {
             try
             {
-                //obtener datos individualmente y armar el diccionario 
+                // Crear un diccionario con los totales de cada entidad de la base de datos
                 var datos = new Dictionary<string, int>();
                 datos.Add("Vehículos", gestor.ObtenerTotalVehiculos());
                 datos.Add("Sucursales", gestor.ObtenerTotalSucursales());
@@ -165,34 +155,32 @@ namespace AppServidor.Presentacion
                 datos.Add("Clientes", gestor.ObtenerTotalClientes());
                 datos.Add("Vendedores", gestor.ObtenerTotalVendedores());
 
-                //limpiar datos anteriores del chart
+                // Limpiar los datos anteriores del gráfico para evitar duplicados
                 chartGeneral.Series["Datos Registrados"].Points.Clear();
 
-                //cargar datos al chart, item.Key es el nombre (Clientes, Sucursales, etc) y item.Value es el conteo
+                // Iterar sobre los datos y añadirlos al gráfico (nombre en eje X, cantidad en eje Y)
                 foreach (var item in datos)
                 {
                     chartGeneral.Series["Datos Registrados"].Points.AddXY(item.Key, item.Value);
                 }
-
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Error al actualizar el gráfico general" + ex.Message);
             }
         }
 
-        //metodo para actualizar chart Sucursales
         private void ActChartSucursales()
         {
             try
             {
-                //obtener datos (diccionario) desde la logica
+                // Obtener el estado de las sucursales (cuántas activas y cuántas inactivas)
                 var datos = gestor.ObtenerEstadoSucursales();
-                //limpiar datos anteriores del chart
                 var serie = chartSucursales.Series["Series"];
+                // Limpiar los puntos anteriores
                 serie.Points.Clear();
 
-                // cargar datos al chart, item.Key es el nombre (Activas/Inactivas) y item.Value es el conteo
+                // Añadir los datos del estado de sucursales al gráfico
                 foreach (var item in datos)
                 {
                     serie.Points.AddXY(item.Key, item.Value);
@@ -204,18 +192,17 @@ namespace AppServidor.Presentacion
             }
         }
 
-        //metodo para actualizar chart de ventas
         private void ActChartVentas()
         {
             try
             {
-                //obtener datos (diccionario) desde la logica
+                // Obtener el monto total de ventas por cada mes del año
                 var ventasPorMes = gestor.ObtenerVentasMensuales();
                 var serie = chartVentas.Series["Ventas"];
-                //limpiar datos anteriores del chart
+                // Limpiar los puntos anteriores del gráfico
                 serie.Points.Clear();
 
-                // Cargar los datos al gráfico
+                // Iterar sobre los meses y añadir el monto de ventas de cada mes
                 foreach (var entrega in ventasPorMes)
                 {
                     serie.Points.AddXY(entrega.Key, (double)entrega.Value);
@@ -231,18 +218,17 @@ namespace AppServidor.Presentacion
         {
             try
             {
-                //obtener datos (diccionario) desde la logica
+                // Obtener la cantidad de clientes registrados por cada mes del último año
                 var datos = gestor.ObtenerRegistrosClientesPorMes();
                 var serie = chartClientes.Series["Clientes Registrados en el Ultimo Año"];
+                // Limpiar los puntos anteriores
                 serie.Points.Clear();
 
-                // Cargar los datos al gráfico
+                // Añadir un punto por cada mes con la cantidad de clientes registrados en ese mes
                 foreach (var registro in datos)
                 {
-                    // Key = Mes, Value = Cantidad de clientes
                     serie.Points.AddXY(registro.Key, (double)registro.Value);
                 }
-
             }
             catch (Exception ex)
             {
@@ -252,7 +238,6 @@ namespace AppServidor.Presentacion
 
         private void FrmContHome_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //desuscribirse del evento al cerrar el form para evitar errores de referencia a controles que ya no existen
             Logger.AlPublicarMensaje -= MetodoReceptorLog;
         }
     }

@@ -1,4 +1,12 @@
-﻿using Microsoft.VisualBasic.Devices;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase estática para monitorear recursos de hardware del sistema (CPU, RAM, red)
+*/
+
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

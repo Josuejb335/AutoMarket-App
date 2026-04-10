@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Formulario principal de la aplicación cliente que actúa como contenedor de los componentes de interfaz
+*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase que representa la estructura de mensajes intercambiados entre cliente y servidor
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

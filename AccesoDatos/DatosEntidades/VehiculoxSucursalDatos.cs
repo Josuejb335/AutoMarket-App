@@ -1,3 +1,11 @@
+/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase de acceso a datos que realiza operaciones CRUD sobre la tabla VehiculoxSucursal en la base de datos
+*/
+
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -56,6 +64,7 @@ namespace AccesoDatos
         public List<VehiculoxSucursal> ListarVehiculosPorSucursal(int idSucursal)
         {
             List<VehiculoxSucursal> lista = new List<VehiculoxSucursal>();
+            // SQL para obtener todos los vehículos disponibles (con stock) en una sucursal específica
             string sql = @"SELECT vs.IdSucursal, s.Nombre AS NombreSucursal, 
                                    vs.IdVehiculo, v.Marca, v.Modelo, v.Precio, vs.Cantidad
                             FROM VehiculoxSucursal vs
@@ -73,6 +82,7 @@ namespace AccesoDatos
                 {
                     while (dr.Read())
                     {
+                        // Mapear cada fila del resultado a un objeto VehiculoxSucursal con sus datos relacionados
                         lista.Add(new VehiculoxSucursal
                         {
                             SucursalAsociada = new Sucursal { IdSuc = (int)dr["IdSucursal"], NombreSuc = dr["NombreSucursal"].ToString() },
@@ -87,6 +97,7 @@ namespace AccesoDatos
 
         public bool InsertarVehiculoxSucursal(VehiculoxSucursal vs)
         {
+            // SQL que vincula un vehículo a una sucursal con una cantidad inicial
             string sql = @"INSERT INTO VehiculoxSucursal (IdSucursal, IdVehiculo, Cantidad)
                            VALUES (@idSucursal, @idVehiculo, @cantidad)";
 
@@ -94,18 +105,21 @@ namespace AccesoDatos
             {
                 var cmd = new SqlCommand(sql, cnx);
 
-                // Parámetros basados en las propiedades mapeadas
+                // Asignar los valores del objeto VS a los parámetros de la consulta
                 cmd.Parameters.AddWithValue("@idSucursal", vs.SucursalAsociada.IdSuc);
                 cmd.Parameters.AddWithValue("@idVehiculo", vs.VehiculoAsociado.IdVehi);
                 cmd.Parameters.AddWithValue("@cantidad", vs.Cantidad);
 
                 cnx.Open();
+                // Retornar true si se insertó correctamente (si se afectó al menos una fila)
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
 
         public bool RestarInventarioVehiculo(int idSucursal, int idVehiculo)
         {
+            // SQL que reduce en 1 la cantidad de un vehículo en una sucursal (simula una compra)
+            // Solo resta si la cantidad actual es mayor a 0 (evita cantidades negativas)
             string sql = @"UPDATE VehiculoxSucursal 
                            SET Cantidad = Cantidad - 1 
                            WHERE IdSucursal = @idSucursal AND IdVehiculo = @idVehiculo AND Cantidad > 0";
@@ -117,6 +131,7 @@ namespace AccesoDatos
                 cmd.Parameters.AddWithValue("@idVehiculo", idVehiculo);
 
                 cnx.Open();
+                // Retornar true si la actualización fue exitosa (es decir, si el vehículo existía y tenía stock)
                 return cmd.ExecuteNonQuery() > 0;
             }
         }

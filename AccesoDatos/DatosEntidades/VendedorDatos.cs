@@ -1,4 +1,12 @@
-﻿using CapaEntidades;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase de acceso a datos que realiza operaciones CRUD sobre la tabla Vendedor en la base de datos
+*/
+
+using CapaEntidades;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

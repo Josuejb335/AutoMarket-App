@@ -1,4 +1,12 @@
-﻿using System.Configuration;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase base que proporciona la conexión a la base de datos SQL Server
+*/
+
+using System.Configuration;
 using System.Data.SqlClient;
 using System;
 

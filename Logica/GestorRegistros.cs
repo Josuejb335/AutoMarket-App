@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * UNED I Cuatrimestre 2026
+ * Proyecto 2, Gestion De AutoMarket. 
+ * Estudiante: Josue Jimenez Barrantes
+ * Fecha Finalizacion:  11 Abril de 2026
+ * Clase encargada de validar y procesar las inserciones de datos hacia la base de datos
+ */
+using System;
 using System.Collections.Generic;
 using CapaEntidades;
 using AccesoDatos;
@@ -7,7 +14,6 @@ namespace Logica
 {
     public class GestorRegistros
     {
-        // Instancias de las clases de acceso a datos
         private VehiculoDatos vd = new VehiculoDatos();
         private SucursalDatos sd = new SucursalDatos();
         private CategoriaDatos cd = new CategoriaDatos();
@@ -16,10 +22,8 @@ namespace Logica
         private VentaDatos vta = new VentaDatos();
         private VehiculoxSucursalDatos vxsd = new VehiculoxSucursalDatos();
 
-        // Semáforo/Lock estático para asegurar sincronización en las compras concurrentes
+        // Semáforo para evitar condiciones de carrera en compras simultáneas
         private static readonly object _lockCompra = new object();
-
-        //metodos para insertar
 
         public bool InsertarCategoria(Categoria c)
         {
@@ -194,10 +198,11 @@ namespace Logica
 
         public bool ProcesarCompraTCP(int idSucursal, int idVehiculo, int idCliente, decimal monto)
         {
-            // Bloqueo de sincronización: solo un hilo (cliente) puede procesar una compra a la vez
+            // Usar un lock (semáforo) para asegurar que solo un cliente por vez procese una compra
+            // Esto evita condiciones de carrera donde dos clientes intenten comprar el último vehículo simultáneamente
             lock (_lockCompra)
             {
-                // 1. Insertamos la venta nueva en la tabla "Venta"
+                // Paso 1: Crear un nuevo registro de venta en la base de datos
                 Venta nuevaVenta = new Venta
                 {
                     Clie = new Cliente { IdCliente = idCliente },
@@ -207,12 +212,15 @@ namespace Logica
                     Monto = monto
                 };
 
+                // Insertar la venta en la tabla Venta
                 bool ventaInsertada = vta.InsertarVenta(nuevaVenta);
+                // Si falla la inserción de la venta, no continuar
                 if (!ventaInsertada) return false;
 
-                // 2. Disminuimos el inventario del vehiculo en esa sucursal (VehiculoxSucursal)
+                // Paso 2: Reducir el inventario del vehículo en la sucursal (restar 1 de la cantidad disponible)
                 bool inventarioActualizado = vxsd.RestarInventarioVehiculo(idSucursal, idVehiculo);
                 
+                // Retornar el resultado: true si ambos pasos fueron exitosos, false si falló alguno
                 return inventarioActualizado;
             }
         }

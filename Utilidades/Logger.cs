@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase estática que proporciona métodos para registrar mensajes con códigos de color en la interfaz
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -9,7 +17,6 @@ namespace Utilidades
 {
     public static class Logger
     {
-        // Definimos el evento que enviará el mensaje y el color ya interpretado
         public static event Action<string, Color> AlPublicarMensaje;
 
         /// <summary>
@@ -18,7 +25,7 @@ namespace Utilidades
         /// </summary>
         public static void Escribir(string mensaje, int codigoColor = 0)
         {
-            Color colorElegido = Color.White; // Por defecto
+            Color colorElegido = Color.White;
 
             switch (codigoColor)
             {
@@ -39,7 +46,6 @@ namespace Utilidades
                     break;
             }
 
-            // Si alguien está escuchando el evento, se le envian los datos
             AlPublicarMensaje?.Invoke(mensaje, colorElegido);
         }
     }

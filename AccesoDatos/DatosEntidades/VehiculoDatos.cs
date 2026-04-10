@@ -1,4 +1,12 @@
-﻿using System.Collections.Generic;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase de acceso a datos que realiza operaciones CRUD sobre la tabla Vehiculo en la base de datos
+*/
+
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using CapaEntidades;
 using System;

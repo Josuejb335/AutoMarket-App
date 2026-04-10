@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase que representa una venta realizada en el sistema
+*/
+
+using System;
 
 namespace CapaEntidades
 {

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+•	UNED I Cuatrimestre 2026
+•	Proyecto 2, Gestion De AutoMarket.
+•	Estudiante: Josue Jimenez Barrantes
+•	Fecha Finalizacion:  11 Abril de 2026
+•	Clase estática de utilidades para gestionar formularios y controles de usuario en paneles
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
