@@ -1,4 +1,4 @@
-Ôªøusing Logica;
+using Logica;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace AppServidor.Presentacion
         // Instanciar el gestor de logica
         private GestorConsultas gestor = new GestorConsultas();
 
-        // Variables de paginaci√≥n
+        // Variables de paginaciÛn
         private int paginaActual = 1;
-        private int tamanoPagina = 18; // 18 registros por p√°gina
+        private int tamanoPagina = 18; // 18 registros por p·gina
         private int totalRegistros = 0;
 
         public FrmContConsultas()
@@ -72,22 +72,22 @@ namespace AppServidor.Presentacion
                         {
                             ID = c.IdCat,
                             Categoria = c.NombreCat,
-                            Descripci√≥n = c.DescCat
+                            DescripciÛn = c.DescCat
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Categoria Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Categoria Finalizada Con Exito", 1);
                         break;
                     case "Cliente":
                         totalRegistros = gestor.ObtenerTotalClientes();
                         tabla.DataSource = gestor.ListarClientesPaginado(paginaActual, tamanoPagina, ordenSQL).Select(c => new
                         {
                             ID = c.IdCliente,
-                            Identificaci√≥n = c.Ident,
+                            IdentificaciÛn = c.Ident,
                             Nombre = c.Nombre,
                             Nacimiento = c.FechaNacimiento.ToString("dd/MM/yyyy"),
                             Registro = c.FechaRegistro.ToString("dd/MM/yyyy"),
-                            Activo = c.Activo ? "S√≠" : "No"
+                            Activo = c.Activo ? "SÌ" : "No"
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Cliente Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Cliente Finalizada Con Exito", 1);
                         break;
                     case "Sucursal":
                         totalRegistros = gestor.ObtenerTotalSucursales();
@@ -95,12 +95,12 @@ namespace AppServidor.Presentacion
                         {
                             ID = s.IdSuc,
                             Nombre = s.NombreSuc,
-                            Direcci√≥n = s.Direccion,
-                            Tel√©fono = s.Telefono,
-                            Activo = s.Activo ? "S√≠" : "No",
+                            DirecciÛn = s.Direccion,
+                            TelÈfono = s.Telefono,
+                            Activo = s.Activo ? "SÌ" : "No",
                             Encargado = s.Encargado != null && s.Encargado.IdVend > 0 ? s.Encargado.Nombre : "Sin asignar"
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Sucursal Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Sucursal Finalizada Con Exito", 1);
                         break;
                     case "Vehiculo":
                         totalRegistros = gestor.ObtenerTotalVehiculos();
@@ -109,25 +109,25 @@ namespace AppServidor.Presentacion
                             ID = v.IdVehi,
                             Marca = v.Marca,
                             Modelo = v.Modelo,
-                            A√±o = v.Anio,
+                            AÒo = v.Anio,
                             Precio = v.Precio.ToString("C"),
                             Estado = v.Estado.ToString(),
-                            Categor√≠a = v.Cat != null ? v.Cat.NombreCat : "Sin categorizar"
+                            CategorÌa = v.Cat != null ? v.Cat.NombreCat : "Sin categorizar"
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Vehiculo Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Vehiculo Finalizada Con Exito", 1);
                         break;
                     case "Vendedor":
                         totalRegistros = gestor.ObtenerTotalVendedores();
                         tabla.DataSource = gestor.ListarVendedoresPaginado(paginaActual, tamanoPagina, ordenSQL).Select(v => new
                         {
                             ID = v.IdVend,
-                            Identificaci√≥n = v.Ident,
+                            IdentificaciÛn = v.Ident,
                             Nombre = v.Nombre,
                             Nacimiento = v.FechaNacimiento.ToString("dd/MM/yyyy"),
                             Ingreso = v.FechaIngreso.ToString("dd/MM/yyyy"),
-                            Tel√©fono = v.Telefono
+                            TelÈfono = v.Telefono
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Vendedor Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Vendedor Finalizada Con Exito", 1);
                         break;
                     case "Venta":
                         totalRegistros = gestor.ObtenerTotalVentas();
@@ -138,22 +138,22 @@ namespace AppServidor.Presentacion
                             Monto = v.Monto.ToString("C"),
                             Cliente = v.Clie != null ? v.Clie.Nombre : "N/A",
                             Sucursal = v.Suc != null ? v.Suc.NombreSuc : "N/A",
-                            Veh√≠culo = v.Veh != null ? $"{v.Veh.Marca} {v.Veh.Modelo}" : "N/A"
+                            VehÌculo = v.Veh != null ? $"{v.Veh.Marca} {v.Veh.Modelo}" : "N/A"
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Venta Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Venta Finalizada Con Exito", 1);
                         break;
                     case "VehiculoxSucursal":
                         totalRegistros = gestor.ObtenerTotalVehiculosxSucursal();
                         tabla.DataSource = gestor.ListarVehiculosxSucursalPaginado(paginaActual, tamanoPagina, ordenSQL).Select(vs => new
                         {
                             Sucursal = vs.SucursalAsociada != null ? vs.SucursalAsociada.NombreSuc : "N/A",
-                            Veh√≠culo = vs.VehiculoAsociado != null ? $"{vs.VehiculoAsociado.Marca} {vs.VehiculoAsociado.Modelo}" : "N/A",
+                            VehÌculo = vs.VehiculoAsociado != null ? $"{vs.VehiculoAsociado.Marca} {vs.VehiculoAsociado.Modelo}" : "N/A",
                             Cantidad = vs.Cantidad
                         }).ToList();
-                        Logger.Escribir("Consulta a Tabla Vehiculo X Sucursal Finalizada Con Exito", Color.LimeGreen);
+                        Logger.Escribir("Consulta a Tabla Vehiculo X Sucursal Finalizada Con Exito", 1);
                         break;
                     default:
-                        MessageBox.Show("Esta entidad a√∫n no est√° configurada para vista paginada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Esta entidad a˙n no est· configurada para vista paginada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         totalRegistros = 0;
                         break;
                 }
@@ -163,14 +163,14 @@ namespace AppServidor.Presentacion
             catch(Exception ex)
             {
                 MessageBox.Show("Error al consultar la base de datos:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error al consultar la base de datos", Color.Red);
+                Logger.Escribir("Error al consultar la base de datos", 3);
             }
 
             ActualizarEstadoBotones();
         }
 
-        // Metodo para traducir la opci√≥n del ComboBox a una columna real de base de datos
-        // Y evitar vulnerabilidad de inyecci√≥n SQL
+        // Metodo para traducir la opciÛn del ComboBox a una columna real de base de datos
+        // Y evitar vulnerabilidad de inyecciÛn SQL
         private string ObtenerColumnaOrden(string entidad, string criterio)
         {
             if (criterio == "ID")
@@ -208,7 +208,7 @@ namespace AppServidor.Presentacion
                     case "Cliente": return "FechaRegistro";
                     case "Vendedor": return "FechaIngreso";
                     case "Venta": return "FechaVenta";
-                    case "Vehiculo": return "Ano"; // Vehiculo no tiene fecha, se usa A√±o
+                    case "Vehiculo": return "Ano"; // Vehiculo no tiene fecha, se usa AÒo
                     // Entidades sin fechas caen en su ID por defecto para que no se caiga SQL
                     case "Categoria": return "IdCategoria";
                     case "Sucursal": return "IdSucursal";
@@ -217,7 +217,7 @@ namespace AppServidor.Presentacion
                 }
             }
 
-            return "1"; // Si por alguna raz√≥n nada coincide, "ORDER BY 1" es v√°lido en SQL y no explota
+            return "1"; // Si por alguna razÛn nada coincide, "ORDER BY 1" es v·lido en SQL y no explota
         }
 
         private void ActualizarEstadoBotones()

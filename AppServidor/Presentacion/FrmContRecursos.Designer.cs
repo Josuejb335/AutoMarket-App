@@ -1,4 +1,4 @@
-﻿namespace AppServidor
+namespace AppServidor
 {
     partial class FrmContRecursos
     {

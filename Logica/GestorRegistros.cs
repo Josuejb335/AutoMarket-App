@@ -189,6 +189,27 @@ namespace Logica
                 throw new ArgumentException("El teléfono debe tener al menos 8 dígitos.");
         }
 
+        public bool ProcesarCompraTCP(int idSucursal, int idVehiculo, int idCliente, decimal monto)
+        {
+            // 1. Insertamos la venta nueva en la tabla "Venta"
+            Venta nuevaVenta = new Venta
+            {
+                Clie = new Cliente { IdCliente = idCliente },
+                Suc = new Sucursal { IdSuc = idSucursal },
+                Veh = new Vehiculo { IdVehi = idVehiculo },
+                FechaVenta = DateTime.Now,
+                Monto = monto
+            };
+
+            bool ventaInsertada = vta.InsertarVenta(nuevaVenta);
+            if (!ventaInsertada) return false;
+
+            // 2. Disminuimos el inventario del vehiculo en esa sucursal (VehiculoxSucursal)
+            bool inventarioActualizado = vxsd.RestarInventarioVehiculo(idSucursal, idVehiculo);
+            
+            return inventarioActualizado;
+        }
+
         private void ValidarIdentificacion(string identificacion)
         {
             if (string.IsNullOrWhiteSpace(identificacion))

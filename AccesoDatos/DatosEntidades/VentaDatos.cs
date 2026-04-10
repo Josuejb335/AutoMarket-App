@@ -85,6 +85,52 @@ namespace AccesoDatos
             }
             return lista;
         }
+
+        public List<Venta> ListarVentasPorCliente(int idCliente)
+        {
+            List<Venta> lista = new List<Venta>();
+
+            string sql = @"SELECT 
+                        V.IdVenta, V.FechaVenta, V.Monto,
+                        C.IdCliente, C.NombreCompleto AS NombreCliente, C.Identificacion AS CedulaCliente,
+                        S.IdSucursal, S.Nombre AS NombreSucursal,
+                        Ven.IdVendedor, Ven.NombreCompleto AS NombreVendedor,
+                        Veh.IdVehiculo, Veh.Marca, Veh.Modelo,
+                        Cat.IdCategoria, Cat.NombreCategoria
+                        FROM Venta V
+                        INNER JOIN Cliente C ON V.IdCliente = C.IdCliente
+                        INNER JOIN Sucursal S ON V.IdSucursal = S.IdSucursal
+                        INNER JOIN Vendedor Ven ON S.IdVendedor = Ven.IdVendedor
+                        INNER JOIN Vehiculo Veh ON V.IdVehiculo = Veh.IdVehiculo
+                        INNER JOIN CategoriaVehiculo Cat ON Veh.IdCategoria = Cat.IdCategoria
+                        WHERE V.IdCliente = @idCliente";
+
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@idCliente", idCliente);
+                cnx.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        Venta venta = new Venta
+                        {
+                            IdVenta = Convert.ToInt32(dr["IdVenta"]),
+                            FechaVenta = Convert.ToDateTime(dr["FechaVenta"]),
+                            Monto = Convert.ToDecimal(dr["Monto"]),
+
+                            Suc = new Sucursal { IdSuc = Convert.ToInt32(dr["IdSucursal"]), NombreSuc = dr["NombreSucursal"].ToString() },
+                            Veh = new Vehiculo { IdVehi = Convert.ToInt32(dr["IdVehiculo"]), Marca = dr["Marca"].ToString(), Modelo = dr["Modelo"].ToString(), Cat = new Categoria { NombreCat = dr["NombreCategoria"].ToString() } }
+                        };
+
+                        lista.Add(venta);
+                    }
+                }
+            }
+            return lista;
+        }
         public bool InsertarVenta(Venta nuevaVenta)
         {
             // IdVenta es IDENTITY (autoincremental)

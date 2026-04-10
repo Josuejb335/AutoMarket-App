@@ -9,14 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Utilidades;
 using AppCliente.Presentacion;
+using AppCliente.Red;
 
 namespace AppCliente
 {
     public partial class FrmMenuCliente : Form
     {
+        // Instancia global del socket para toda la aplicación cliente
+        public ClienteSocket ClienteTCP { get; private set; }
+
         public FrmMenuCliente()
         {
             InitializeComponent();
+            ClienteTCP = new ClienteSocket();
         }
 
         private void FrmMenuCliente_Load(object sender, EventArgs e)
@@ -45,6 +50,12 @@ namespace AppCliente
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            // Desconectar al cliente del servidor
+            if (ClienteTCP != null)
+            {
+                ClienteTCP.Desconectar();
+            }
+
             UtilForms.AbrirUserControlEnPanel(this.pnlContenedor, new UcLogin());
         }
 

@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.ComponentModel;
@@ -37,11 +37,11 @@ namespace AppServidor.Presentacion.Presentacion_Registro
         //metodo para registrar los datos ingresados
         public void registrarDatos()
         {
-            // validar que no haya campos vacÃ­os o sin seleccionar
+            // validar que no haya campos vacíos o sin seleccionar
             if (string.IsNullOrWhiteSpace(txtIdentificacion.Text) ||
                 string.IsNullOrWhiteSpace(txtNombre.Content)) 
             {
-                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vacÃ­os", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -67,10 +67,10 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 // InsertarCliente lanza una excepcion si las reglas de los datos no se cumplen
                 if (registros.InsertarCliente(c))
                 {
-                    MessageBox.Show("Cliente registrado exitosamente.", "Ã‰xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Logger.Escribir("Registro Exitoso De Cliente", Color.Green);
+                    MessageBox.Show("Cliente registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logger.Escribir("Registro Exitoso De Cliente", 1);
 
-                    // Limpiar campos despuÃ©s del registro y actualizar el ID
+                    // Limpiar campos después del registro y actualizar el ID
                     txtIdentificacion.Text = "";
                     txtNombre.Content = "";
                     fechaNacimiento.Content = DateTime.Now;
@@ -82,20 +82,20 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 else
                 {
                     MessageBox.Show("No se pudo registrar el cliente en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Logger.Escribir("Intento Fallido De Registro De Cliente en BD", Color.Red);
+                    Logger.Escribir("Intento Fallido De Registro De Cliente en BD", 3);
                 }
             }
             catch (ArgumentException ex)
             {
                 // Atrapa las validaciones del gestor de registros
                 MessageBox.Show(ex.Message, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Logger.Escribir("ValidaciÃ³n fallida al registrar datos: " + ex.Message, Color.Yellow);
+                Logger.Escribir("Validación fallida al registrar datos: " + ex.Message, 4);
             }
             catch (Exception ex)
             {
-                // Atrapa errores del sistema (CaÃ­da de base de datos, error SQL, etc)
-                MessageBox.Show("OcurriÃ³ un error inesperado en el sistema." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error crÃ­tico al registrar cliente: " + ex.Message, Color.Red);
+                // Atrapa errores del sistema (Caída de base de datos, error SQL, etc)
+                MessageBox.Show("Ocurrió un error inesperado en el sistema." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error crítico al registrar cliente: " + ex.Message, 3);
             }
         }
 

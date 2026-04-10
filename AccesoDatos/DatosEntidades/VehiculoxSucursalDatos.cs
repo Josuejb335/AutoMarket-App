@@ -53,6 +53,38 @@ namespace AccesoDatos
             }
         }
 
+        public List<VehiculoxSucursal> ListarVehiculosPorSucursal(int idSucursal)
+        {
+            List<VehiculoxSucursal> lista = new List<VehiculoxSucursal>();
+            string sql = @"SELECT vs.IdSucursal, s.Nombre AS NombreSucursal, 
+                                   vs.IdVehiculo, v.Marca, v.Modelo, v.Precio, vs.Cantidad
+                            FROM VehiculoxSucursal vs
+                            INNER JOIN Sucursal s ON vs.IdSucursal = s.IdSucursal
+                            INNER JOIN Vehiculo v ON vs.IdVehiculo = v.IdVehiculo
+                            WHERE vs.IdSucursal = @idSucursal AND vs.Cantidad > 0";
+
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@idSucursal", idSucursal);
+                cnx.Open();
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(new VehiculoxSucursal
+                        {
+                            SucursalAsociada = new Sucursal { IdSuc = (int)dr["IdSucursal"], NombreSuc = dr["NombreSucursal"].ToString() },
+                            VehiculoAsociado = new Vehiculo { IdVehi = (int)dr["IdVehiculo"], Marca = dr["Marca"].ToString(), Modelo = dr["Modelo"].ToString(), Precio = (decimal)dr["Precio"] },
+                            Cantidad = (int)dr["Cantidad"]
+                        });
+                    }
+                }
+            }
+            return lista;
+        }
+
         public bool InsertarVehiculoxSucursal(VehiculoxSucursal vs)
         {
             string sql = @"INSERT INTO VehiculoxSucursal (IdSucursal, IdVehiculo, Cantidad)
@@ -66,6 +98,23 @@ namespace AccesoDatos
                 cmd.Parameters.AddWithValue("@idSucursal", vs.SucursalAsociada.IdSuc);
                 cmd.Parameters.AddWithValue("@idVehiculo", vs.VehiculoAsociado.IdVehi);
                 cmd.Parameters.AddWithValue("@cantidad", vs.Cantidad);
+
+                cnx.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        public bool RestarInventarioVehiculo(int idSucursal, int idVehiculo)
+        {
+            string sql = @"UPDATE VehiculoxSucursal 
+                           SET Cantidad = Cantidad - 1 
+                           WHERE IdSucursal = @idSucursal AND IdVehiculo = @idVehiculo AND Cantidad > 0";
+
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@idSucursal", idSucursal);
+                cmd.Parameters.AddWithValue("@idVehiculo", idVehiculo);
 
                 cnx.Open();
                 return cmd.ExecuteNonQuery() > 0;

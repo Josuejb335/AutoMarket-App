@@ -54,6 +54,8 @@
       <Project>{18f2601e-658c-498e-b9f3-a572aaaf41bf}</Project>
       <Name>Utilidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logica\Logica.csproj" />
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Windows.Forms;
 using Utilidades;
 using AppServidor.Presentacion;
@@ -21,7 +21,7 @@ namespace AppServidor
         //al cargar form por primera vez
         private void DashboardServ_Load(object sender, EventArgs e)
         {
-            // Verificar si el formulario ya est√° en cach√© y no ha sido cerrado 
+            // Verificar si el formulario ya est· en cachÈ y no ha sido cerrado 
             if (frmHomeCache == null || frmHomeCache.IsDisposed)
             {
                 frmHomeCache = new FrmContHome();
@@ -29,13 +29,13 @@ namespace AppServidor
 
             // Abrir el formulario en el panel contenedor
             UtilForms.AbrirFormularioEnPanel(this.pnlContenedor, frmHomeCache);
-            //Inicializar sensores al iniciar la aplicaci√≥n
+            //Inicializar sensores al iniciar la aplicaciÛn
             MonitorHardware.Inicializar();
         }
 
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-            // Verificar si el formulario ya est√° en cach√© y no ha sido cerrado 
+            // Verificar si el formulario ya est· en cachÈ y no ha sido cerrado 
             if (frmConsCache == null || frmConsCache.IsDisposed)
             {
                 frmConsCache = new FrmContConsultas();
@@ -46,7 +46,7 @@ namespace AppServidor
 
         private void btnRecursos_Click(object sender, EventArgs e)
         {
-            // Verificar si el formulario ya est√° en cach√© y no ha sido cerrado 
+            // Verificar si el formulario ya est· en cachÈ y no ha sido cerrado 
             if (frmRecursosCache == null || frmRecursosCache.IsDisposed)
             {
                 frmRecursosCache = new FrmContRecursos();
@@ -57,7 +57,7 @@ namespace AppServidor
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            // Verificar si el formulario ya est√° en cach√© y no ha sido cerrado 
+            // Verificar si el formulario ya est· en cachÈ y no ha sido cerrado 
             if (frmHomeCache == null || frmHomeCache.IsDisposed)
             {
                 frmHomeCache = new FrmContHome();

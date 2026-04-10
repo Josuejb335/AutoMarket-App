@@ -47,7 +47,7 @@ namespace Utilidades
                 // Despertar los contadores (la primera lectura siempre es 0)
                 Cpu.NextValue();
                 //log monitor
-                Logger.Escribir("Monitor de Recursos Iniciado", Color.White);
+                Logger.Escribir("Monitor de Recursos Iniciado", 5);
             }
             catch (Exception ex)
             {

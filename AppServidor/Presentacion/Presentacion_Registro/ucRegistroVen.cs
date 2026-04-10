@@ -1,4 +1,4 @@
-ï»¿using CapaEntidades;
+using CapaEntidades;
 using Logica;
 using System;
 using System.Collections.Generic;
@@ -37,12 +37,12 @@ namespace AppServidor.Presentacion.Presentacion_Registro
         //metodo para registrar los datos ingresados
         public void registrarDatos()
         {
-            // validar que no haya campos vacÃ­os o sin seleccionar
+            // validar que no haya campos vacíos o sin seleccionar
             if (string.IsNullOrWhiteSpace(txtIdentificacion.Text) ||
                 string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text)) 
             {
-                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vacÃ­os", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -61,10 +61,10 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 // InsertarVendedor lanza una excepcion si las reglas de los datos no se cumplen
                 if (registros.InsertarVendedor(v))
                 {
-                    MessageBox.Show("Vendedor registrado exitosamente.", "Ã‰xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Logger.Escribir("Registro Exitoso De Vendedor", Color.Green);
+                    MessageBox.Show("Vendedor registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logger.Escribir("Registro Exitoso De Vendedor", 1);
 
-                    // Limpiar campos despuÃ©s del registro y actualizar el ID
+                    // Limpiar campos después del registro y actualizar el ID
                     txtIdentificacion.Text = "";
                     txtNombre.Text = "";
                     txtTelefono.Text = "";
@@ -75,20 +75,20 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 else
                 {
                     MessageBox.Show("No se pudo registrar el vendedor en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Logger.Escribir("Intento Fallido De Registro De Vendedor en BD", Color.Red);
+                    Logger.Escribir("Intento Fallido De Registro De Vendedor en BD", 3);
                 }
             }
             catch (ArgumentException ex)
             {
                 // Atrapa las validaciones del gestor de registros
                 MessageBox.Show(ex.Message, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Logger.Escribir("ValidaciÃ³n fallida al registrar datos: " + ex.Message, Color.Yellow);
+                Logger.Escribir("Validación fallida al registrar datos: " + ex.Message, 4);
             }
             catch (Exception ex)
             {
-                // Atrapa errores del sistema (CaÃ­da de base de datos, error SQL, etc)
-                MessageBox.Show("OcurriÃ³ un error inesperado en el sistema." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error crÃ­tico al registrar vendedor: " + ex.Message, Color.Red);
+                // Atrapa errores del sistema (Caída de base de datos, error SQL, etc)
+                MessageBox.Show("Ocurrió un error inesperado en el sistema." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error crítico al registrar vendedor: " + ex.Message, 3);
             }
         }
 

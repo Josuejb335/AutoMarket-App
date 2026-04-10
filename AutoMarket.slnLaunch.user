@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "SolucionEntera",
+    "Projects": [
+      {
+        "Path": "AppServidor\\AppServidor.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "AppCliente\\AppCliente.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

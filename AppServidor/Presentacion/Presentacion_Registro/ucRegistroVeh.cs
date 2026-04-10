@@ -1,4 +1,4 @@
-ï»¿using CapaEntidades;
+using CapaEntidades;
 using Logica;
 using System;
 using System.Collections.Generic;
@@ -39,7 +39,7 @@ namespace AppServidor.Presentacion.Presentacion_Registro
         //metodo para registrar los datos ingresados
         public void registrarDatos()
         {
-            // 1. Validar que no haya campos vacÃ­os o sin seleccionar
+            // 1. Validar que no haya campos vacíos o sin seleccionar
             if (string.IsNullOrWhiteSpace(txtMarca.Text) ||
                 string.IsNullOrWhiteSpace(txtModelo.Text) ||
                 string.IsNullOrWhiteSpace(txtAnio.Text) ||
@@ -47,16 +47,16 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 string.IsNullOrWhiteSpace(txtCategoria.Text) ||
                 (!btnNuevo.Checked && !btnUsado.Checked))
             {
-                MessageBox.Show("Por favor, complete todos los campos y seleccione el estado antes de continuar.", "Campos vacÃ­os", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos y seleccione el estado antes de continuar.", "Campos vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Validar que los campos numÃ©ricos tengan el formato correcto (evitar que introduzcan letras)
+            // 2. Validar que los campos numéricos tengan el formato correcto (evitar que introduzcan letras)
             if (!int.TryParse(txtAnio.Text, out int anio) || 
                 !decimal.TryParse(txtPrecio.Text, out decimal precio) || 
                 !int.TryParse(txtCategoria.Text, out int idCat))
             {
-                MessageBox.Show("Por favor, verifique que AÃ±o, Precio y CategorÃ­a contengan nÃºmeros vÃ¡lidos (no letras o sÃ­mbolos).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, verifique que Año, Precio y Categoría contengan números válidos (no letras o símbolos).", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -78,10 +78,10 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 // InsertarVehiculo lanza una excepcion si las reglas de los datos no se cumplen
                 if (registros.InsertarVehiculo(v))
                 {
-                    MessageBox.Show("VehÃ­culo registrado exitosamente.", "Ã‰xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Logger.Escribir("Registro Exitoso De VehÃ­culo", Color.Green);
+                    MessageBox.Show("Vehículo registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logger.Escribir("Registro Exitoso De Vehículo", 1);
 
-                    // Limpiar campos despuÃ©s del registro y actualizar el ID
+                    // Limpiar campos después del registro y actualizar el ID
                     txtMarca.Text = "";
                     txtModelo.Text = "";
                     txtAnio.Text = "";
@@ -93,8 +93,8 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo registrar el vehÃ­culo en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Logger.Escribir("Intento Fallido De Registro De VehÃ­culo en BD", Color.Red);
+                    MessageBox.Show("No se pudo registrar el vehículo en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Logger.Escribir("Intento Fallido De Registro De Vehículo en BD", 3);
 
                 }
             }
@@ -102,13 +102,13 @@ namespace AppServidor.Presentacion.Presentacion_Registro
             {
                 // Atrapa las validaciones del gestor de registros
                 MessageBox.Show(ex.Message, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Logger.Escribir("ValidaciÃ³n fallida al registrar datos: " + ex.Message, Color.Yellow);
+                Logger.Escribir("Validación fallida al registrar datos: " + ex.Message, 4);
             }
             catch (Exception ex)
             {
-                // Atrapa errores del sistema (CaÃ­da de base de datos, error SQL, etc)
-                MessageBox.Show("OcurriÃ³ un error inesperado en el sistema (verifique que los nÃºmeros sean vÃ¡lidos)." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error crÃ­tico al registrar vehÃ­culo: " + ex.Message, Color.Red);
+                // Atrapa errores del sistema (Caída de base de datos, error SQL, etc)
+                MessageBox.Show("Ocurrió un error inesperado en el sistema (verifique que los números sean válidos)." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error crítico al registrar vehículo: " + ex.Message, 3);
             }
         }
 

@@ -36,6 +36,9 @@
     <Reference Include="CuoreUI, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\CuoreUI.Winforms.2026.1.16\lib\net472\CuoreUI.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +57,12 @@
     </Compile>
     <Compile Include="Presentacion\FrmMenuCliente.Designer.cs">
       <DependentUpon>FrmMenuCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\UcConsulta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentacion\UcConsulta.Designer.cs">
+      <DependentUpon>UcConsulta.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\UcHome.cs">
       <SubType>UserControl</SubType>
@@ -75,11 +84,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Red\ClienteSocket.cs" />
     <EmbeddedResource Include="Presentacion\FrmMenuCliente.resx">
       <DependentUpon>FrmMenuCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\UcCompra.resx">
       <DependentUpon>UcCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\UcConsulta.resx">
+      <DependentUpon>UcConsulta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\UcHome.resx">
       <DependentUpon>UcHome.cs</DependentUpon>
@@ -112,10 +125,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ComunicacionServidor\Comunicacion.csproj">
+      <Project>{A4D19736-796B-4B82-BF92-7D25B712A6AF}</Project>
+      <Name>Comunicacion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{18f2601e-658c-498e-b9f3-a572aaaf41bf}</Project>
       <Name>Utilidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

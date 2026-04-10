@@ -1,4 +1,4 @@
-ï»¿namespace AppServidor.Presentacion
+namespace AppServidor.Presentacion
 {
     partial class FrmContHome
     {
@@ -52,9 +52,13 @@
             this.chartGeneral = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblEventos = new System.Windows.Forms.Label();
             this.pnlContLog = new CuoreUI.Controls.cuiPanel();
+            this.pnlScroll = new System.Windows.Forms.Panel();
             this.cuiPictureBox1 = new CuoreUI.Controls.cuiPictureBox();
             this.rtbLog = new System.Windows.Forms.RichTextBox();
             this.pnlCont3 = new CuoreUI.Controls.cuiPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnOff = new CuoreUI.Controls.cuiButton();
+            this.btnOn = new CuoreUI.Controls.cuiButton();
             this.cuiPictureBox4 = new CuoreUI.Controls.cuiPictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,7 +70,6 @@
             this.lblEstado = new System.Windows.Forms.Label();
             this.lblEstadoS = new System.Windows.Forms.Label();
             this.mensajesHover = new System.Windows.Forms.ToolTip(this.components);
-            this.pnlScroll = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.chartClientes)).BeginInit();
             this.pnlCont2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).BeginInit();
@@ -140,13 +143,13 @@
             series9.LabelBorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.NotSet;
             series9.LabelForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
             series9.Legend = "Legend1";
-            series9.Name = "Clientes Registrados en el Ultimo AÃ±o";
+            series9.Name = "Clientes Registrados en el Ultimo Año";
             series9.YValuesPerPoint = 4;
             this.chartClientes.Series.Add(series9);
             this.chartClientes.Size = new System.Drawing.Size(636, 242);
             this.chartClientes.TabIndex = 1;
             this.chartClientes.Text = "chart1";
-            this.mensajesHover.SetToolTip(this.chartClientes, "Numero De Clientes Registrados En El Ultimo AÃ±o");
+            this.mensajesHover.SetToolTip(this.chartClientes, "Numero De Clientes Registrados En El Ultimo Año");
             // 
             // pnlCont2
             // 
@@ -420,10 +423,18 @@
             this.pnlContLog.Size = new System.Drawing.Size(1436, 235);
             this.pnlContLog.TabIndex = 23;
             // 
+            // pnlScroll
+            // 
+            this.pnlScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.pnlScroll.Location = new System.Drawing.Point(1395, 35);
+            this.pnlScroll.Name = "pnlScroll";
+            this.pnlScroll.Size = new System.Drawing.Size(38, 190);
+            this.pnlScroll.TabIndex = 25;
+            // 
             // cuiPictureBox1
             // 
             this.cuiPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox1.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox1.Content = null;
             this.cuiPictureBox1.ImageTint = System.Drawing.Color.White;
             this.cuiPictureBox1.Location = new System.Drawing.Point(227, 16);
             this.cuiPictureBox1.Name = "cuiPictureBox1";
@@ -450,6 +461,9 @@
             // 
             // pnlCont3
             // 
+            this.pnlCont3.Controls.Add(this.label4);
+            this.pnlCont3.Controls.Add(this.btnOff);
+            this.pnlCont3.Controls.Add(this.btnOn);
             this.pnlCont3.Controls.Add(this.cuiPictureBox4);
             this.pnlCont3.Controls.Add(this.label3);
             this.pnlCont3.Controls.Add(this.label2);
@@ -469,10 +483,100 @@
             this.pnlCont3.Size = new System.Drawing.Size(293, 540);
             this.pnlCont3.TabIndex = 21;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.label4.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.label4.Location = new System.Drawing.Point(3, 153);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(269, 21);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Acciones Comunicacion Servidor:";
+            // 
+            // btnOff
+            // 
+            this.btnOff.BackColor = System.Drawing.Color.Transparent;
+            this.btnOff.CheckButton = false;
+            this.btnOff.Checked = false;
+            this.btnOff.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
+            this.btnOff.CheckedForeColor = System.Drawing.Color.White;
+            this.btnOff.CheckedImageTint = System.Drawing.Color.White;
+            this.btnOff.CheckedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
+            this.btnOff.Content = "Inicio";
+            this.btnOff.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOff.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnOff.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOff.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.btnOff.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(112)))), ((int)(((byte)(128)))));
+            this.btnOff.HoverForeColor = System.Drawing.Color.Black;
+            this.btnOff.HoverImageTint = System.Drawing.Color.Black;
+            this.btnOff.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnOff.ImageExpand = new System.Drawing.Point(-3, -3);
+            this.btnOff.Location = new System.Drawing.Point(7, 212);
+            this.btnOff.Name = "btnOff";
+            this.btnOff.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnOff.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.btnOff.NormalImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnOff.NormalOutline = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnOff.OutlineThickness = 1F;
+            this.btnOff.Padding = new System.Windows.Forms.Padding(12);
+            this.btnOff.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(24)))), ((int)(((byte)(27)))));
+            this.btnOff.PressedForeColor = System.Drawing.Color.White;
+            this.btnOff.PressedImageTint = System.Drawing.Color.White;
+            this.btnOff.PressedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnOff.Rounding = new System.Windows.Forms.Padding(10);
+            this.btnOff.Size = new System.Drawing.Size(126, 29);
+            this.btnOff.TabIndex = 34;
+            this.btnOff.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.btnOff.TextPadding = 12;
+            this.btnOff.TextSpacing = 2;
+            this.btnOff.Click += new System.EventHandler(this.btnOff_Click);
+            // 
+            // btnOn
+            // 
+            this.btnOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnOn.CheckButton = false;
+            this.btnOn.Checked = false;
+            this.btnOn.CheckedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
+            this.btnOn.CheckedForeColor = System.Drawing.Color.White;
+            this.btnOn.CheckedImageTint = System.Drawing.Color.White;
+            this.btnOn.CheckedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(106)))), ((int)(((byte)(0)))));
+            this.btnOn.Content = "Inicio";
+            this.btnOn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOn.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnOn.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.btnOn.HoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(112)))), ((int)(((byte)(128)))));
+            this.btnOn.HoverForeColor = System.Drawing.Color.Black;
+            this.btnOn.HoverImageTint = System.Drawing.Color.Black;
+            this.btnOn.HoverOutline = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnOn.ImageExpand = new System.Drawing.Point(-3, -3);
+            this.btnOn.Location = new System.Drawing.Point(7, 177);
+            this.btnOn.Name = "btnOn";
+            this.btnOn.NormalBackground = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnOn.NormalForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.btnOn.NormalImageTint = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnOn.NormalOutline = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnOn.OutlineThickness = 1F;
+            this.btnOn.Padding = new System.Windows.Forms.Padding(12);
+            this.btnOn.PressedBackground = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(24)))), ((int)(((byte)(27)))));
+            this.btnOn.PressedForeColor = System.Drawing.Color.White;
+            this.btnOn.PressedImageTint = System.Drawing.Color.White;
+            this.btnOn.PressedOutline = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnOn.Rounding = new System.Windows.Forms.Padding(10);
+            this.btnOn.Size = new System.Drawing.Size(126, 29);
+            this.btnOn.TabIndex = 33;
+            this.btnOn.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.btnOn.TextPadding = 12;
+            this.btnOn.TextSpacing = 2;
+            this.btnOn.Click += new System.EventHandler(this.btnOn_Click);
+            // 
             // cuiPictureBox4
             // 
             this.cuiPictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox4.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox4.Content = null;
             this.cuiPictureBox4.ImageTint = System.Drawing.Color.White;
             this.cuiPictureBox4.Location = new System.Drawing.Point(140, 112);
             this.cuiPictureBox4.Name = "cuiPictureBox4";
@@ -523,7 +627,7 @@
             // cuiPictureBox3
             // 
             this.cuiPictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox3.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox3.Content = null;
             this.cuiPictureBox3.ImageTint = System.Drawing.Color.White;
             this.cuiPictureBox3.Location = new System.Drawing.Point(162, 89);
             this.cuiPictureBox3.Name = "cuiPictureBox3";
@@ -562,7 +666,7 @@
             // cuiPictureBox2
             // 
             this.cuiPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox2.Content = global::AppServidor.Properties.Resources.circle_question_mark;
+            this.cuiPictureBox2.Content = null;
             this.cuiPictureBox2.ImageTint = System.Drawing.Color.White;
             this.cuiPictureBox2.Location = new System.Drawing.Point(81, 29);
             this.cuiPictureBox2.Name = "cuiPictureBox2";
@@ -604,14 +708,6 @@
             this.mensajesHover.InitialDelay = 200;
             this.mensajesHover.IsBalloon = true;
             this.mensajesHover.ReshowDelay = 100;
-            // 
-            // pnlScroll
-            // 
-            this.pnlScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.pnlScroll.Location = new System.Drawing.Point(1395, 35);
-            this.pnlScroll.Name = "pnlScroll";
-            this.pnlScroll.Size = new System.Drawing.Size(38, 190);
-            this.pnlScroll.TabIndex = 25;
             // 
             // FrmContHome
             // 
@@ -675,5 +771,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlScroll;
+        private CuoreUI.Controls.cuiButton btnOff;
+        private CuoreUI.Controls.cuiButton btnOn;
+        private System.Windows.Forms.Label label4;
     }
 }

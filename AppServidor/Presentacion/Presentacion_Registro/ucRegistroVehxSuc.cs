@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,31 +24,31 @@ namespace AppServidor.Presentacion.Presentacion_Registro
 
         public void registrarDatos()
         {
-            // Validar que no haya campos vac√≠os
+            // Validar que no haya campos vacÌos
             if (string.IsNullOrWhiteSpace(txtIdSuc.Content) ||
                 string.IsNullOrWhiteSpace(txtIdVeh.Content) ||
                 string.IsNullOrWhiteSpace(txtCantidad.Content))
             {
-                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vac√≠os", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vacÌos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // Validar formato de IDs y cantidad
             if (!int.TryParse(txtIdSuc.Content.Trim(), out int idSucursal))
             {
-                MessageBox.Show("El ID de la Sucursal debe ser un n√∫mero v√°lido.", "Formato inv√°lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El ID de la Sucursal debe ser un n˙mero v·lido.", "Formato inv·lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!int.TryParse(txtIdVeh.Content.Trim(), out int idVehiculo))
             {
-                MessageBox.Show("El ID del Veh√≠culo debe ser un n√∫mero v√°lido.", "Formato inv√°lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El ID del VehÌculo debe ser un n˙mero v·lido.", "Formato inv·lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!int.TryParse(txtCantidad.Content.Trim(), out int cantidad))
             {
-                MessageBox.Show("La Cantidad debe ser un n√∫mero v√°lido.", "Formato inv√°lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("La Cantidad debe ser un n˙mero v·lido.", "Formato inv·lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -63,8 +63,8 @@ namespace AppServidor.Presentacion.Presentacion_Registro
 
                 if (registros.InsertarVehiculoxSucursal(vxs))
                 {
-                    MessageBox.Show("Veh√≠culo asignado a sucursal exitosamente.", "√âxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Logger.Escribir("Registro Exitoso De VehiculoxSucursal", Color.Green);
+                    MessageBox.Show("VehÌculo asignado a sucursal exitosamente.", "…xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logger.Escribir("Registro Exitoso De VehiculoxSucursal", 1);
 
                     // Limpiar campos
                     txtIdSuc.Content = "";
@@ -73,19 +73,19 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo asignar el Veh√≠culo a la Sucursal en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Logger.Escribir("Intento Fallido De Registro De VehiculoxSucursal en BD", Color.Red);
+                    MessageBox.Show("No se pudo asignar el VehÌculo a la Sucursal en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Logger.Escribir("Intento Fallido De Registro De VehiculoxSucursal en BD", 3);
                 }
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Logger.Escribir("Validaci√≥n fallida al registrar datos: " + ex.Message, Color.Yellow);
+                Logger.Escribir("ValidaciÛn fallida al registrar datos: " + ex.Message, 4);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurri√≥ un error inesperado en el sistema.\n\nAtenci√≥n: Veh√≠culo podr√≠a ya estar en esta Sucursal." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error cr√≠tico al registrar VehiculoxSucursal: " + ex.Message, Color.Red);
+                MessageBox.Show("OcurriÛ un error inesperado en el sistema.\n\nAtenciÛn: VehÌculo podrÌa ya estar en esta Sucursal." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error crÌtico al registrar VehiculoxSucursal: " + ex.Message, 3);
             }
         }
 

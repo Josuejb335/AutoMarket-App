@@ -1,9 +1,10 @@
-Ôªøusing System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Utilidades;
 using Logica;
 using System.Collections.Generic;
+using Comunicacion; 
 
 namespace AppServidor.Presentacion
 {
@@ -11,6 +12,9 @@ namespace AppServidor.Presentacion
     {
         // instanciar el gestor de logica
         private GestorConsultas gestor = new GestorConsultas();
+        
+        // instanciar el servidor
+        private ServidorSocket servidorTCP;
 
         public FrmContHome()
         {
@@ -26,10 +30,59 @@ namespace AppServidor.Presentacion
             Logger.AlPublicarMensaje += MetodoReceptorLog;
         }
 
+
         //metodo receptor del evento de log
         private void MetodoReceptorLog(string msg, Color color)
         {
             AgregarLog(msg, color);
+        }
+
+        // Encender y apagar el servidor con los botones
+        private void btnOn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Iniciar y conectar el servidor
+                IniciarServidor();
+                
+                // Bloquear el boton de ON y habilitar el de OFF
+                btnOn.Enabled = false;
+                btnOff.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error crÌtico al intentar iniciar el servidor: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnOff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                servidorTCP?.Detener();
+                
+                // Habilitar el boton de ON y bloquear el de OFF
+                btnOn.Enabled = true;
+                btnOff.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                Logger.Escribir("Error al detener: " + ex.Message, 3);
+            }
+        }
+
+        private void IniciarServidor()
+        {
+            // si el servidor ya existe y est· activo no se vuelve a crear
+            if (servidorTCP != null)
+            {
+                servidorTCP.Detener(); // Por si quedo colgado, se limpia antes
+            }
+
+            servidorTCP = new ServidorSocket();
+
+            // Iniciar la escucha
+            servidorTCP.Iniciar();
         }
 
         //metodo para agregar texto al rtbLog con color y formato, se llama desde el evento de log
@@ -44,7 +97,7 @@ namespace AppServidor.Presentacion
                 // Agregarle la hora al texto
                 string linea = $"[{DateTime.Now:HH:mm:ss}] {mensaje}{Environment.NewLine}";
 
-                // ir al final del texto para agregar la nueva l√≠nea
+                // ir al final del texto para agregar la nueva lÌnea
                 rtbLog.SelectionStart = rtbLog.TextLength;
                 rtbLog.SelectionLength = 0;
 
@@ -56,10 +109,10 @@ namespace AppServidor.Presentacion
                 rtbLog.SelectionColor = rtbLog.ForeColor;
                 rtbLog.ScrollToCaret();
 
-                // limpieza autom√°tica (evita que el programa se ponga lento tras mil l√≠neas)
+                // limpieza autom·tica (evita que el programa se ponga lento tras mil lÌneas)
                 if (rtbLog.Lines.Length > 150)
                 {
-                    // mantiene las √∫ltimas 100 l√≠neas
+                    // mantiene las ˙ltimas 100 lÌneas
                     rtbLog.ReadOnly = false;
                     rtbLog.Select(0, rtbLog.GetFirstCharIndexFromLine(rtbLog.Lines.Length - 100));
                     rtbLog.SelectedText = "";
@@ -78,13 +131,13 @@ namespace AppServidor.Presentacion
                 ActChartVentas();
                 ActChartClientes();
             }
-            //recibe las excepciones de cada m√©todo individual
-            //para mostrar un mensaje espec√≠fico de error en caso de que falle alguno
-            //sin afectar la actualizaci√≥n de los dem√°s charts
+            //recibe las excepciones de cada mÈtodo individual
+            //para mostrar un mensaje especÌfico de error en caso de que falle alguno
+            //sin afectar la actualizaciÛn de los dem·s charts
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                Logger.Escribir("Error al actualizar el dashboard: " + ex.Message, Color.Red);
+                Logger.Escribir("Error al actualizar el dashboard: " + ex.Message, 3);
             }
         }
 
@@ -95,9 +148,9 @@ namespace AppServidor.Presentacion
             {
                 //obtener datos individualmente y armar el diccionario 
                 var datos = new Dictionary<string, int>();
-                datos.Add("Veh√≠culos", gestor.ObtenerTotalVehiculos());
+                datos.Add("VehÌculos", gestor.ObtenerTotalVehiculos());
                 datos.Add("Sucursales", gestor.ObtenerTotalSucursales());
-                datos.Add("Categor√≠as", gestor.ObtenerTotalCategorias());
+                datos.Add("CategorÌas", gestor.ObtenerTotalCategorias());
                 datos.Add("Clientes", gestor.ObtenerTotalClientes());
                 datos.Add("Vendedores", gestor.ObtenerTotalVendedores());
 
@@ -113,7 +166,7 @@ namespace AppServidor.Presentacion
             }
             catch ( Exception ex)
             {
-                throw new Exception("Error al actualizar el gr√°fico general" + ex.Message);
+                throw new Exception("Error al actualizar el gr·fico general" + ex.Message);
             }
         }
 
@@ -136,7 +189,7 @@ namespace AppServidor.Presentacion
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar el gr√°fico de sucursales" + ex.Message);
+                throw new Exception("Error al actualizar el gr·fico de sucursales" + ex.Message);
             }
         }
 
@@ -151,7 +204,7 @@ namespace AppServidor.Presentacion
                 //limpiar datos anteriores del chart
                 serie.Points.Clear();
 
-                // Cargar los datos al gr√°fico
+                // Cargar los datos al gr·fico
                 foreach (var entrega in ventasPorMes)
                 {
                     serie.Points.AddXY(entrega.Key, (double)entrega.Value);
@@ -159,7 +212,7 @@ namespace AppServidor.Presentacion
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar la l√≠nea de tiempo de ventas: " + ex.Message);
+                throw new Exception("Error al actualizar la lÌnea de tiempo de ventas: " + ex.Message);
             }
         }
 
@@ -169,10 +222,10 @@ namespace AppServidor.Presentacion
             {
                 //obtener datos (diccionario) desde la logica
                 var datos = gestor.ObtenerRegistrosClientesPorMes();
-                var serie = chartClientes.Series["Clientes Registrados en el Ultimo A√±o"];
+                var serie = chartClientes.Series["Clientes Registrados en el Ultimo AÒo"];
                 serie.Points.Clear();
 
-                // Cargar los datos al gr√°fico
+                // Cargar los datos al gr·fico
                 foreach (var registro in datos)
                 {
                     // Key = Mes, Value = Cantidad de clientes
@@ -182,7 +235,7 @@ namespace AppServidor.Presentacion
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al actualizar la l√≠nea de tiempo de clientes: " + ex.Message);
+                throw new Exception("Error al actualizar la lÌnea de tiempo de clientes: " + ex.Message);
             }
         }
 

@@ -1,4 +1,4 @@
-﻿namespace AppServidor.Presentacion
+namespace AppServidor.Presentacion
 {
     partial class FrmContConsultas
     {

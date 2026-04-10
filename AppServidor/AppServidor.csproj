@@ -144,8 +144,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -170,6 +170,10 @@
     <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
       <Project>{0d1993d9-fe4a-4742-aa31-5c34ebcfc5a6}</Project>
       <Name>CapaEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComunicacionServidor\Comunicacion.csproj">
+      <Project>{a4d19736-796b-4b82-bf92-7d25b712a6af}</Project>
+      <Name>Comunicacion</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logica\Logica.csproj">
       <Project>{b24357c0-c932-4ff8-83d1-669129c1dc3a}</Project>

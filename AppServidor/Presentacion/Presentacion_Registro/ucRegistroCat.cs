@@ -1,4 +1,4 @@
-ï»¿using Logica;
+using Logica;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,31 +51,31 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 // InsertarCategoria lanza una excepcion si las reglas de los datos no se cumplen
                 if (registros.InsertarCategoria(c))
                 {
-                    MessageBox.Show("CategorÃ­a registrada exitosamente.", "Ã‰xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Logger.Escribir("Registro Exitoso De CategorÃ­a", Color.Green);
+                    MessageBox.Show("Categoría registrada exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logger.Escribir("Registro Exitoso De Categoría", 1);
 
-                    // Limpiar campos despuÃ©s del registro y actualizar el ID
+                    // Limpiar campos después del registro y actualizar el ID
                     txtNombre.Content = "";
                     txtDescripcion.Content = "";
                     txtId.Content = "AutoGenerado : " + siguienteId();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo registrar la categorÃ­a en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Logger.Escribir("Intento Fallido De Registro De CategorÃ­a en BD", Color.Red);
+                    MessageBox.Show("No se pudo registrar la categoría en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Logger.Escribir("Intento Fallido De Registro De Categoría en BD", 3);
                 }
             }
             catch (ArgumentException ex)
             {
                 // Atrapa las validaciones del gestor de registros
                 MessageBox.Show(ex.Message, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Logger.Escribir("ValidaciÃ³n fallida al registrar datos: " + ex.Message, Color.Yellow);
+                Logger.Escribir("Validación fallida al registrar datos: " + ex.Message, 4);
             }
             catch (Exception ex)
             {
-                // Atrapa errores del sistema (CaÃ­da de base de datos, error SQL, etc)
-                MessageBox.Show("OcurriÃ³ un error inesperado en el sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error crÃ­tico al registrar categorÃ­a: " + ex.Message, Color.Red);
+                // Atrapa errores del sistema (Caída de base de datos, error SQL, etc)
+                MessageBox.Show("Ocurrió un error inesperado en el sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error crítico al registrar categoría: " + ex.Message, 3);
             }
         }
 

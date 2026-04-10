@@ -14,9 +14,9 @@ namespace AccesoDatos
 
             string sql = @"SELECT s.IdSucursal, s.Nombre, s.Direccion, s.Telefono, s.Activo,
                            v.IdVendedor, v.Identificacion, v.NombreCompleto, v.FechaNacimiento,
-                           FechaIngreso, v.Telefono
+                           v.FechaIngreso, v.Telefono AS TelVendedor
                            FROM Sucursal s
-                           INNER JOIN Vendedor v ON s.Idvendedor = v.IdVendedor";
+                           LEFT JOIN Vendedor v ON s.Idvendedor = v.IdVendedor";
 
             // Bloque para asegurar que la conexión se cierre
             using (var cnx = ObtenerConexion())
@@ -28,16 +28,6 @@ namespace AccesoDatos
                 {
                     while (dr.Read())
                     {
-                        var enc = new Vendedor
-                        {
-                            IdVend = (int)dr["IdVendedor"],
-                            Ident = dr["Identificacion"].ToString(),
-                            Nombre = dr["NombreCompleto"].ToString(),
-                            FechaNacimiento = (DateTime)dr["FechaNacimiento"],
-                            FechaIngreso = (DateTime)dr["FechaIngreso"],
-                            Telefono = dr["Telefono"].ToString()
-                        };
-
                         var suc = new Sucursal
                         {
                             IdSuc = (int)dr["IdSucursal"],
@@ -45,7 +35,15 @@ namespace AccesoDatos
                             Direccion = dr["Direccion"].ToString(),
                             Telefono = dr["Telefono"].ToString(),
                             Activo = (bool)dr["Activo"],
-                            Encargado = enc
+                            Encargado = dr["IdVendedor"] != DBNull.Value ? new Vendedor
+                            {
+                                IdVend = (int)dr["IdVendedor"],
+                                Ident = dr["Identificacion"].ToString(),
+                                Nombre = dr["NombreCompleto"].ToString(),
+                                FechaNacimiento = (DateTime)dr["FechaNacimiento"],
+                                FechaIngreso = (DateTime)dr["FechaIngreso"],
+                                Telefono = dr["TelVendedor"].ToString()
+                            } : new Vendedor()
                         };
 
                         // Agrega a la lista

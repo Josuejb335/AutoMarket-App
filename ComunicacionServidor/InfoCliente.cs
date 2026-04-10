@@ -1,6 +1,6 @@
 using System.Net.Sockets;
 
-namespace ComunicacionServidor
+namespace Comunicacion
 {
     public class InfoCliente
     {

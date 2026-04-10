@@ -148,5 +148,18 @@ namespace AccesoDatos
                 return (int)cmd.ExecuteScalar() > 0;
             }
         }
+
+        public int ObtenerIdClientePorIdentificacion(string identificacion)
+        {
+            string sql = "SELECT IdCliente FROM Cliente WHERE Identificacion = @ident";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@ident", identificacion);
+                cnx.Open();
+                object resp = cmd.ExecuteScalar();
+                return resp != null && resp != DBNull.Value ? Convert.ToInt32(resp) : 0;
+            }
+        }
     }
 }

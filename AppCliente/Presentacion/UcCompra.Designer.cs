@@ -32,12 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cuiPanel1 = new CuoreUI.Controls.cuiPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbSuc = new CuoreUI.Controls.cuiComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabla = new System.Windows.Forms.DataGridView();
             this.cuiPictureBox2 = new CuoreUI.Controls.cuiPictureBox();
+            this.tabla = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbSuc = new CuoreUI.Controls.cuiComboBox();
             this.btnComprar = new CuoreUI.Controls.cuiButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.cuiPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabla)).BeginInit();
             this.SuspendLayout();
@@ -59,54 +59,19 @@
             this.cuiPanel1.Size = new System.Drawing.Size(579, 420);
             this.cuiPanel1.TabIndex = 2;
             // 
-            // label2
+            // cuiPictureBox2
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
-            this.label2.Location = new System.Drawing.Point(215, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(159, 20);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Seleccione la Sucursal";
-            // 
-            // cmbSuc
-            // 
-            this.cmbSuc.BackColor = System.Drawing.Color.Transparent;
-            this.cmbSuc.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
-            this.cmbSuc.DropDownBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
-            this.cmbSuc.DropDownForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.cmbSuc.ExpandArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.cmbSuc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSuc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.cmbSuc.Items = new string[] {
-        ""};
-            this.cmbSuc.Location = new System.Drawing.Point(176, 37);
-            this.cmbSuc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.cmbSuc.MaxDropDownHeight = 240;
-            this.cmbSuc.Name = "cmbSuc";
-            this.cmbSuc.NoSelectionText = "None";
-            this.cmbSuc.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.cmbSuc.OutlineThickness = 1F;
-            this.cmbSuc.Rounding = 18;
-            this.cmbSuc.SelectedIndex = -1;
-            this.cmbSuc.SelectedItem = "";
-            this.cmbSuc.Size = new System.Drawing.Size(230, 38);
-            this.cmbSuc.SortAlphabetically = true;
-            this.cmbSuc.TabIndex = 30;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
-            this.label1.Location = new System.Drawing.Point(215, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 20);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Seleccione el Vehiculo";
+            this.cuiPictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.cuiPictureBox2.Content = global::AppCliente.Properties.Resources.chevron_down;
+            this.cuiPictureBox2.ImageTint = System.Drawing.Color.DimGray;
+            this.cuiPictureBox2.Location = new System.Drawing.Point(281, 96);
+            this.cuiPictureBox2.Name = "cuiPictureBox2";
+            this.cuiPictureBox2.OutlineThickness = 1F;
+            this.cuiPictureBox2.PanelOutlineColor = System.Drawing.Color.Empty;
+            this.cuiPictureBox2.Rotation = 0;
+            this.cuiPictureBox2.Rounding = new System.Windows.Forms.Padding(8);
+            this.cuiPictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.cuiPictureBox2.TabIndex = 26;
             // 
             // tabla
             // 
@@ -148,19 +113,43 @@
             this.tabla.Size = new System.Drawing.Size(550, 245);
             this.tabla.TabIndex = 32;
             // 
-            // cuiPictureBox2
+            // label1
             // 
-            this.cuiPictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.cuiPictureBox2.Content = global::AppCliente.Properties.Resources.chevron_down;
-            this.cuiPictureBox2.ImageTint = System.Drawing.Color.DimGray;
-            this.cuiPictureBox2.Location = new System.Drawing.Point(281, 96);
-            this.cuiPictureBox2.Name = "cuiPictureBox2";
-            this.cuiPictureBox2.OutlineThickness = 1F;
-            this.cuiPictureBox2.PanelOutlineColor = System.Drawing.Color.Empty;
-            this.cuiPictureBox2.Rotation = 0;
-            this.cuiPictureBox2.Rounding = new System.Windows.Forms.Padding(8);
-            this.cuiPictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.cuiPictureBox2.TabIndex = 26;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
+            this.label1.Location = new System.Drawing.Point(215, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 20);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Seleccione el Vehiculo";
+            // 
+            // cmbSuc
+            // 
+            this.cmbSuc.BackColor = System.Drawing.Color.Transparent;
+            this.cmbSuc.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
+            this.cmbSuc.DropDownBackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(41)))), ((int)(((byte)(53)))));
+            this.cmbSuc.DropDownForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.cmbSuc.ExpandArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.cmbSuc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSuc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.cmbSuc.Items = new string[] {
+        ""};
+            this.cmbSuc.Location = new System.Drawing.Point(176, 37);
+            this.cmbSuc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbSuc.MaxDropDownHeight = 600;
+            this.cmbSuc.Name = "cmbSuc";
+            this.cmbSuc.NoSelectionText = "None";
+            this.cmbSuc.OutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.cmbSuc.OutlineThickness = 1F;
+            this.cmbSuc.Rounding = 18;
+            this.cmbSuc.SelectedIndex = -1;
+            this.cmbSuc.SelectedItem = "";
+            this.cmbSuc.Size = new System.Drawing.Size(230, 38);
+            this.cmbSuc.SortAlphabetically = true;
+            this.cmbSuc.TabIndex = 30;
+            this.cmbSuc.SelectedIndexChanged += new System.EventHandler(this.cmbSuc_SelectedIndexChanged);
             // 
             // btnComprar
             // 
@@ -200,6 +189,19 @@
             this.btnComprar.TextAlignment = System.Drawing.StringAlignment.Center;
             this.btnComprar.TextPadding = 12;
             this.btnComprar.TextSpacing = 2;
+            this.btnComprar.Click += new System.EventHandler(this.btnComprar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(59)))), ((int)(((byte)(153)))));
+            this.label2.Location = new System.Drawing.Point(215, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Seleccione la Sucursal";
             // 
             // UcCompra
             // 
@@ -209,6 +211,7 @@
             this.Controls.Add(this.cuiPanel1);
             this.Name = "UcCompra";
             this.Size = new System.Drawing.Size(988, 470);
+            this.Load += new System.EventHandler(this.UcCompra_Load);
             this.cuiPanel1.ResumeLayout(false);
             this.cuiPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabla)).EndInit();

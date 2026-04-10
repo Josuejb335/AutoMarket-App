@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Drawing;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,19 +37,19 @@ namespace AppServidor.Presentacion.Presentacion_Registro
         //metodo para registrar los datos ingresados
         public void registrarDatos()
         {
-            // validar que no haya campos vac√≠os o sin seleccionar
+            // validar que no haya campos vacÌos o sin seleccionar
             if (string.IsNullOrWhiteSpace(txtNombreSuc.Content) ||
                 string.IsNullOrWhiteSpace(txtDireccion.Content) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
                 string.IsNullOrWhiteSpace(txtIdVend.Text)) 
             {
-                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vac√≠os", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, complete todos los campos obligatorios antes de continuar.", "Campos vacÌos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!int.TryParse(txtIdVend.Text.Trim(), out int idVendedor))
             {
-                MessageBox.Show("El ID del vendedor asignado debe ser un n√∫mero v√°lido.", "Formato inv√°lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El ID del vendedor asignado debe ser un n˙mero v·lido.", "Formato inv·lido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -75,10 +75,10 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 // InsertarSucursal lanza una excepcion si las reglas de los datos no se cumplen
                 if (registros.InsertarSucursal(s))
                 {
-                    MessageBox.Show("Sucursal registrada exitosamente.", "√âxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Logger.Escribir("Registro Exitoso De Sucursal", Color.Green);
+                    MessageBox.Show("Sucursal registrada exitosamente.", "…xito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Logger.Escribir("Registro Exitoso De Sucursal", 1);
 
-                    // Limpiar campos despu√©s del registro y actualizar el ID
+                    // Limpiar campos despuÈs del registro y actualizar el ID
                     txtNombreSuc.Content = "";
                     txtDireccion.Content = "";
                     txtTelefono.Text = "";
@@ -90,20 +90,20 @@ namespace AppServidor.Presentacion.Presentacion_Registro
                 else
                 {
                     MessageBox.Show("No se pudo registrar la sucursal en la base de datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Logger.Escribir("Intento Fallido De Registro De Sucursal en BD", Color.Red);
+                    Logger.Escribir("Intento Fallido De Registro De Sucursal en BD", 3);
                 }
             }
             catch (ArgumentException ex)
             {
                 // Atrapa las validaciones del gestor de registros
                 MessageBox.Show(ex.Message, "Datos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                Logger.Escribir("Validaci√≥n fallida al registrar datos: " + ex.Message, Color.Yellow);
+                Logger.Escribir("ValidaciÛn fallida al registrar datos: " + ex.Message, 4);
             }
             catch (Exception ex)
             {
-                // Atrapa errores del sistema (Ca√≠da de base de datos, error SQL, etc)
-                MessageBox.Show("Ocurri√≥ un error inesperado en el sistema." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Escribir("Error cr√≠tico al registrar sucursal: " + ex.Message, Color.Red);
+                // Atrapa errores del sistema (CaÌda de base de datos, error SQL, etc)
+                MessageBox.Show("OcurriÛ un error inesperado en el sistema." + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Escribir("Error crÌtico al registrar sucursal: " + ex.Message, 3);
             }
         }
 

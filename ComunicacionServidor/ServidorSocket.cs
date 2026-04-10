@@ -12,7 +12,7 @@ using System.Drawing;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace ComunicacionServidor
+namespace Comunicacion
 {
     public class ServidorSocket
     {
@@ -29,7 +29,6 @@ namespace ComunicacionServidor
 
         private List<InfoCliente> clientesConectados;
 
-        public event Action<string> NuevaBitacora;
         public event Action<string> ClienteConectado;
         public event Action<string> ClienteDesconectado;
 
@@ -46,7 +45,7 @@ namespace ComunicacionServidor
                 servidor.Start();
                 // actualizar estado
                 servidorActivo = true;
-                NuevaBitacora?.Invoke($"Servidor iniciado en {IP_SERVIDOR}:{PUERTO}, Max Clientes: {MAX_CLIENTES}");
+                Logger.Escribir($"Servidor iniciado en {IP_SERVIDOR}:{PUERTO}, Max Clientes: {MAX_CLIENTES}", 2);
                 // iniciar hilo de escucha
                 hiloEscucha = new Thread(EscucharConexiones);
                 hiloEscucha.IsBackground = true;
@@ -54,7 +53,43 @@ namespace ComunicacionServidor
             }
             catch (Exception ex) 
             {
-                NuevaBitacora?.Invoke($"Error al iniciar el servidor: {ex.Message}");
+                Logger.Escribir($"Error al iniciar el servidor: {ex.Message}", 3);
+            }
+        }
+
+        public void Detener()
+        {
+            try
+            {
+                if (!servidorActivo) return;
+
+                servidorActivo = false;
+
+                // detener el Listener para que no acepte nuevas conexiones
+                if (servidor != null)
+                {
+                    servidor.Stop();
+                }
+
+                // desconectar a todos los clientes que estén actualmente conectados
+                if (clientesConectados != null)
+                {
+                    // ToList() para crear una copia temporal y evitar errores por modificar la colección original
+                    foreach (var cliente in clientesConectados.ToList())
+                    {
+                        if (cliente.Conexion != null && cliente.Conexion.Connected)
+                        {
+                            cliente.Conexion.Close();
+                        }
+                    }
+                    clientesConectados.Clear();
+                }
+
+                Logger.Escribir("El servidor se ha detenido correctamente y todos los clientes fueron desconectados.", 3);
+            }
+            catch (Exception ex)
+            {
+                Logger.Escribir($"Error al detener el servidor: {ex.Message}", 3);
             }
         }
 
@@ -70,7 +105,7 @@ namespace ComunicacionServidor
                     //si se alcanzó el límite de clientes, rechazar la conexión
                     if (clientesConectados.Count >= MAX_CLIENTES)
                     {
-                        NuevaBitacora?.Invoke($"Cliente Rechazado {cliente.Client.RemoteEndPoint}: límite de clientes alcanzado.");
+                        Logger.Escribir($"Cliente Rechazado {cliente.Client.RemoteEndPoint}: límite de clientes alcanzado.", 3);
                         cliente.Close();
                         continue;
                     }
@@ -83,7 +118,7 @@ namespace ComunicacionServidor
             }
             catch(Exception ex)
             {
-                NuevaBitacora?.Invoke($"Error en Escucha de Conexiones: {ex.Message}");
+                Logger.Escribir($"Error en Escucha de Conexiones: {ex.Message}", 3);
             }
         }
 
@@ -118,7 +153,7 @@ namespace ComunicacionServidor
                             clientesConectados.Add(infoCliente);
 
                             //notificar conexión
-                            NuevaBitacora?.Invoke($"Cliente Conectado: {nombreCliente} ({cliente.Client.RemoteEndPoint})");
+                            Logger.Escribir($"Cliente Conectado: {nombreCliente} ({cliente.Client.RemoteEndPoint})", 2);
                             ClienteConectado?.Invoke(nombreCliente);
 
                             //enviar confirmacion a cliente
@@ -137,22 +172,22 @@ namespace ComunicacionServidor
                         {
                             break; // cliente desconectado
                         }
-                        NuevaBitacora?.Invoke($"Mensaje recibido de {nombreCliente}");
+                        Logger.Escribir($"Mensaje recibido de {nombreCliente}", 2);
                         Mensaje mensaje = JsonConvert.DeserializeObject<Mensaje>(mensajeJson);
                         if (mensaje != null)
                         {
-                            Mensaje respuesta = ProcesarMensaje(mensaje);
+                            Mensaje respuesta = ProcesarMensaje(mensaje, nombreCliente);
                             string respuestaJson = JsonConvert.SerializeObject(respuesta);
                             writer.WriteLine(respuestaJson);
                             writer.Flush();
-                            NuevaBitacora?.Invoke($"Respuesta enviada a {respuesta.Accion}");
+                            Logger.Escribir($"Respuesta enviada a {respuesta.Accion}", 2);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                NuevaBitacora?.Invoke($"Error al atender cliente: {ex.Message}");
+                Logger.Escribir($"Error al atender cliente: {ex.Message}", 3);
             }
             finally
             {
@@ -162,14 +197,120 @@ namespace ComunicacionServidor
                     clientesConectados.Remove(infoCliente);
                 }
                 cliente.Close();
-                NuevaBitacora?.Invoke($"Cliente: {nombreCliente} desconectado. Total: {clientesConectados.Count}/{MAX_CLIENTES}");
+                Logger.Escribir($"Cliente: {nombreCliente} desconectado. Total: {clientesConectados.Count}/{MAX_CLIENTES}", 3);
                 ClienteDesconectado?.Invoke(nombreCliente);
             }
         }
 
-        public void ProcesarMensaje(Mensaje mensaje)
+        public Mensaje ProcesarMensaje(Mensaje mensaje, string nombreCliente)
         {
+            Mensaje respuesta = new Mensaje();
+            respuesta.Accion = mensaje.Accion; // Devolvemos la misma accion para que el cliente sepa a qué le estamos respondiendo
 
+            try
+            {
+                // Switch que decide qué hacer según la acción del cliente
+                switch (mensaje.Accion)
+                {
+                    case "VERIFICAR_ID":
+                        // instanciar el gestor de logica
+                        Logica.GestorConsultas gestor = new Logica.GestorConsultas();
+                        string idCliente = mensaje.Datos;
+                        bool existe = gestor.ExisteClientePorIDCadena(idCliente); // Debes implementar esto en GestorConsultas
+                        
+                        if (existe) 
+                        {
+                            respuesta.Datos = "SI"; 
+                            respuesta.Tipo = "OK";
+                        }
+                        else 
+                        {
+                            respuesta.Datos = "NO";
+                            respuesta.Tipo = "ERROR";
+                        }
+                        break;
+
+                    case "COMPRAR_VEHICULO":
+                        Logica.GestorRegistros gestorReg = new Logica.GestorRegistros();
+                        Logica.GestorConsultas gestorCons = new Logica.GestorConsultas();
+                        
+                        // Parsear los datos enviados por el cliente
+                        dynamic datosCompra = JsonConvert.DeserializeObject(mensaje.Datos);
+                        int sucId = datosCompra.IdSucursal;
+                        int vehId = datosCompra.IdVehiculo;
+                        decimal monto = datosCompra.Monto;
+
+                        // Obtener el ID interno del cliente a partir de su identificacion con la que inició sesion
+                        int clienteId = gestorCons.ObtenerIdCliente(nombreCliente);
+
+                        if (clienteId <= 0)
+                        {
+                             respuesta.Datos = "Cliente no registrado o sesión inválida.";
+                             respuesta.Tipo = "ERROR";
+                             break;
+                        }
+
+                        // Procesar la transacción completa (Insertar venta y deducir inventario)
+                        bool compraExitosa = gestorReg.ProcesarCompraTCP(sucId, vehId, clienteId, monto);
+                        
+                        if (compraExitosa)
+                        {
+                            respuesta.Datos = "Compra Exitosa";
+                            respuesta.Tipo = "OK";
+                        }
+                        else
+                        {
+                            respuesta.Datos = "No se pudo procesar la compra (Verifique inventario).";
+                            respuesta.Tipo = "ERROR";
+                        }
+                        break;
+
+                    case "CONSULTAR_SUCURSALES":
+                        Logica.GestorConsultas gestorSuc = new Logica.GestorConsultas();
+                        var listaSucursales = gestorSuc.ObtenerTodasSucursales();
+                        respuesta.Datos = JsonConvert.SerializeObject(listaSucursales);
+                        respuesta.Tipo = "OK";
+                        break;
+                        
+                    case "CONSULTAR_VEHICULOS_SUCURSAL":
+                        Logica.GestorConsultas gestorVeh = new Logica.GestorConsultas();
+                        int idSucursal = int.Parse(mensaje.Datos);
+                        var vehiculosSucursal = gestorVeh.ObtenerVehiculosPorSucursal(idSucursal);
+                        respuesta.Datos = JsonConvert.SerializeObject(vehiculosSucursal);
+                        respuesta.Tipo = "OK";
+                        break;
+
+                    case "CONSULTAR_MIS_COMPRAS":
+                        Logica.GestorConsultas gestorCompras = new Logica.GestorConsultas();
+                        int idClie = gestorCompras.ObtenerIdCliente(nombreCliente); // nombreCliente es la identificacion
+                        if (idClie > 0)
+                        {
+                            var misCompras = gestorCompras.ObtenerVentasPorCliente(idClie);
+                            respuesta.Datos = JsonConvert.SerializeObject(misCompras);
+                            respuesta.Tipo = "OK";
+                        }
+                        else
+                        {
+                            respuesta.Datos = "Cliente no autenticado o no encontrado.";
+                            respuesta.Tipo = "ERROR";
+                        }
+                        break;
+
+                    default:
+                        respuesta.Tipo = "ERROR";
+                        respuesta.Datos = "Acción no reconocida por el servidor.";
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                respuesta.Tipo = "ERROR";
+                respuesta.Datos = ex.Message;
+            }
+
+            return respuesta;
         }
+
+
     }
 }
