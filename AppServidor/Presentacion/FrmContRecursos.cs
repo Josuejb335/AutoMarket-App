@@ -27,7 +27,19 @@ namespace AppServidor
             string tiempo = DateTime.Now.ToString("HH:mm:ss");
 
             //CPU
-            float valorCpu = MonitorHardware.Cpu.NextValue();
+            float valorCpu = MonitorHardware.Cpu != null ? MonitorHardware.Cpu.NextValue() : 0f;
+            
+            // FIX: En muchas PCs de Windows, el PerformanceCounter del procesador en "_Total" suma 
+            // el uso de cada núcleo individualmente (ej: 8 núcleos al 100% = 800%). Lo dividimos entre los núcleos.
+            if (valorCpu > 100f)
+            {
+                valorCpu = valorCpu / Environment.ProcessorCount;
+            }
+            
+            // Seguro extra para que no pase del framework de la gráfica
+            if (valorCpu > 100f) valorCpu = 100f;
+            if (valorCpu < 0f) valorCpu = 0f;
+
             //valor label
             lblCPU.Text = $"Uso: {valorCpu:0.0}%";
             //chart
@@ -36,14 +48,11 @@ namespace AppServidor
             if (sCpu.Points.Count > 20) sCpu.Points.RemoveAt(0);
 
             //RAM 
-            //valores ram
-            float libreRam = MonitorHardware.Ram.NextValue();
-            float totalRam = MonitorHardware.RamTotalMB;
-            //calculo uso de ram
-            float usoRamPct = ((totalRam - libreRam) / totalRam) * 100;
+            float usoRamPct = MonitorHardware.ObtenerRamPorcentaje();
+            var ram = MonitorHardware.ObtenerRamMB();
 
             //valor label
-            lblRAM.Text = $"Uso: {usoRamPct:0.1}% ({(totalRam - libreRam):0} MB / {totalRam:0} MB)";
+            lblRAM.Text = $"Uso: {ram.usada:0} MB / {ram.total:0} MB";
             //chart
             var sRam = chartRAM.Series["RAM"];
             sRam.Points.AddXY(tiempo, usoRamPct);

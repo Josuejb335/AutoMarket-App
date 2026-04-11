@@ -105,8 +105,15 @@ namespace AccesoDatos
         public Dictionary<string, decimal> ObtenerRegistrosClientesPorMes()
         {
             Dictionary<string, decimal> clientesPorMes = new Dictionary<string, decimal>();
-            string sql = @"SELECT FORMAT(FechaRegistro, 'MMMM', 'es-ES') AS Mes, COUNT(*) AS Total, MONTH(FechaRegistro) as MesNumero
-                           FROM Cliente WHERE FechaRegistro >= DATEADD(YEAR, -1, GETDATE()) GROUP BY FORMAT(FechaRegistro, 'MMMM', 'es-ES'), MONTH(FechaRegistro) ORDER BY MesNumero ASC";
+            // Selecciona mes y año (Ej: "abril 2026") limitando a los últimos 12 meses
+            string sql = @"SELECT FORMAT(FechaRegistro, 'MMMM yyyy', 'es-ES') AS MesAnio, 
+                                  COUNT(*) AS Total, 
+                                  YEAR(FechaRegistro) as AnioNumero, 
+                                  MONTH(FechaRegistro) as MesNumero
+                           FROM Cliente 
+                           WHERE FechaRegistro >= DATEADD(MONTH, -11, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1)) 
+                           GROUP BY FORMAT(FechaRegistro, 'MMMM yyyy', 'es-ES'), YEAR(FechaRegistro), MONTH(FechaRegistro) 
+                           ORDER BY AnioNumero ASC, MesNumero ASC";
 
             using (var cnx = ObtenerConexion())
             {
@@ -116,7 +123,13 @@ namespace AccesoDatos
                 {
                     while (dr.Read())
                     {
-                        clientesPorMes.Add(dr["Mes"].ToString(), Convert.ToDecimal(dr["Total"]));
+                        // Capitalizar la primera letra del mes para mejor presentación
+                        string mesAnio = dr["MesAnio"].ToString();
+                        if (!string.IsNullOrEmpty(mesAnio))
+                        {
+                            mesAnio = char.ToUpper(mesAnio[0]) + mesAnio.Substring(1);
+                        }
+                        clientesPorMes.Add(mesAnio, Convert.ToDecimal(dr["Total"]));
                     }
                 }
             }
@@ -148,6 +161,18 @@ namespace AccesoDatos
         public bool ExisteIdentificacion(string identificacion)
         {
             string sql = "SELECT COUNT(1) FROM Cliente WHERE Identificacion = @ident";
+            using (var cnx = ObtenerConexion())
+            {
+                var cmd = new SqlCommand(sql, cnx);
+                cmd.Parameters.AddWithValue("@ident", identificacion);
+                cnx.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
+
+        public bool EsClienteActivo(string identificacion)
+        {
+            string sql = "SELECT COUNT(1) FROM Cliente WHERE Identificacion = @ident AND Activo = 1";
             using (var cnx = ObtenerConexion())
             {
                 var cmd = new SqlCommand(sql, cnx);

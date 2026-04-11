@@ -64,7 +64,10 @@ namespace AppCliente.Presentacion
             }
             else
             {
-                MessageBox.Show("El ID no existe o no pudo ser verificado: " + (respuesta?.Datos ?? "Sin respuesta"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Manejar error explícito de cliente inactivo o no existente
+                string mensajeError = respuesta?.Datos == "NO" ? "El ID no se encuentra registrado en el sistema." : respuesta?.Datos ?? "Sin respuesta del servidor";
+                
+                MessageBox.Show($"Error al iniciar sesión:\n\n{mensajeError}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 formPrincipal.ClienteTCP.Desconectar();
             }
         }

@@ -96,6 +96,7 @@ namespace Logica
 
         // metodos cliente servidor
         public bool ExisteClientePorIDCadena(string identificacion) => cld.ExisteIdentificacion(identificacion);
+        public bool EsClienteActivo(string identificacion) => cld.EsClienteActivo(identificacion);
         public int ObtenerIdCliente(string identificacion) => cld.ObtenerIdClientePorIdentificacion(identificacion);
         public List<Sucursal> ObtenerTodasSucursales() => sd.ListarSucursales();
         public List<VehiculoxSucursal> ObtenerVehiculosPorSucursal(int idSucursal) => vxsd.ListarVehiculosPorSucursal(idSucursal);

@@ -242,16 +242,24 @@ namespace Comunicacion
                 switch (mensaje.Accion)
                 {
                     case "VERIFICAR_ID":
-                        // Verificar si existe un cliente con la identificación proporcionada
                         Logica.GestorConsultas gestor = new Logica.GestorConsultas();
                         string idCliente = mensaje.Datos;
-                        bool existe = gestor.ExisteClientePorIDCadena(idCliente);
                         
-                        // Devolver si el cliente existe o no en la base de datos
-                        if (existe) 
+                        // Paso 1: Verificar si la identificación existe en el sistema
+                        bool existe = gestor.ExisteClientePorIDCadena(idCliente);
+                        // Paso 2: Verificar si el perfil del cliente se encuentra activo para operar
+                        bool activo = gestor.EsClienteActivo(idCliente);
+                        
+                        // Devolver la validación final basada en existencia y estado del cliente
+                        if (existe && activo) 
                         {
                             respuesta.Datos = "SI"; 
                             respuesta.Tipo = "OK";
+                        }
+                        else if (existe && !activo)
+                        {
+                            respuesta.Datos = "El cliente existe pero cuenta con estado Inactivo.";
+                            respuesta.Tipo = "ERROR";
                         }
                         else 
                         {

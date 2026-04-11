@@ -205,8 +205,15 @@ namespace AccesoDatos
         public Dictionary<string, decimal> ObtenerVentasMensuales()
         {
             var datos = new Dictionary<string, decimal>();
-            string sql = @"SELECT FORMAT(FechaVenta, 'MMMM', 'es-ES') AS Mes, SUM(Monto) AS Total 
-                           FROM Venta GROUP BY FORMAT(FechaVenta, 'MMMM', 'es-ES'), MONTH(FechaVenta) ORDER BY MONTH(FechaVenta)";
+            // Agrupar por mes y año garantizando que sea correcto a través del tiempo sin límite a un solo año
+            string sql = @"SELECT FORMAT(FechaVenta, 'MMMM yyyy', 'es-ES') AS MesAnio, 
+                                  SUM(Monto) AS Total, 
+                                  YEAR(FechaVenta) AS AnioNumero, 
+                                  MONTH(FechaVenta) AS MesNumero 
+                           FROM Venta 
+                           WHERE FechaVenta >= DATEADD(MONTH, -11, DATEFROMPARTS(YEAR(GETDATE()), MONTH(GETDATE()), 1))
+                           GROUP BY FORMAT(FechaVenta, 'MMMM yyyy', 'es-ES'), YEAR(FechaVenta), MONTH(FechaVenta) 
+                           ORDER BY AnioNumero ASC, MesNumero ASC";
 
             using (var cnx = ObtenerConexion())
             {
@@ -216,7 +223,13 @@ namespace AccesoDatos
                 {
                     while (dr.Read())
                     {
-                        datos.Add(dr["Mes"].ToString(), Convert.ToDecimal(dr["Total"]));
+                        // Capitalizar el nombre del mes
+                        string mesAnio = dr["MesAnio"].ToString();
+                        if (!string.IsNullOrEmpty(mesAnio))
+                        {
+                            mesAnio = char.ToUpper(mesAnio[0]) + mesAnio.Substring(1);
+                        }
+                        datos.Add(mesAnio, Convert.ToDecimal(dr["Total"]));
                     }
                 }
             }
