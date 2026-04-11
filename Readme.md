@@ -36,44 +36,7 @@
 
 ## 2. Arquitectura
 
-El sistema está organizado en capas separadas siguiendo el patrón de arquitectura por capas:
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    CAPA DE PRESENTACIÓN                      │
-│  ┌─────────────┐              ┌─────────────┐                 │
-│  │ AppServidor │              │ AppCliente  │                 │
-│  │  (WinForms) │              │  (WinForms) │                 │
-│  └─────────────┘              └─────────────┘                 │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                    CAPA DE COMUNICACIÓN                      │
-│  ┌─────────────────────┐    ┌─────────────────────┐           │
-│  │   ServidorSocket    │◄──►│   ClienteSocket     │           │
-│  │  (TCP Listener)     │    │  (TCP Client)       │           │
-│  └─────────────────────┘    └─────────────────────┘           │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                      CAPA DE LÓGICA                        │
-│         GestorConsultas │ GestorRegistros                    │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                    CAPA DE ACCESO A DATOS                    │
-│   ClienteDatos │ VehiculoDatos │ VentaDatos │ SucursalDatos  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                    CAPA DE ENTIDADES                         │
-│   Cliente │ Vehiculo │ Venta │ Sucursal │ Categoria │ etc.  │
-└─────────────────────────────────────────────────────────────┘
-                              │
-┌─────────────────────────────────────────────────────────────┐
-│                      SQL SERVER                              │
-└─────────────────────────────────────────────────────────────┘
-```
+El sistema está organizado en capas separadas siguiendo el patrón de arquitectura por capas.
 
 ### Proyectos/Capas
 
@@ -155,6 +118,7 @@ Maneja las consultas a la base de datos:
 Monitorea el uso de recursos del sistema:
 - Uso de CPU
 - Uso de memoria RAM
+- Uso de Red
 
 ### 3.3 Acciones TCP Soportadas
 
@@ -298,14 +262,47 @@ lock (_lockCompra)
 
 ### 6.1 Configuración de Conexión
 
-La cadena de conexión se configura en `/AppServidor/App.config`:
+La cadena de conexión se configura en `/AppServidor/App.config` y ya tiene varios formatos, solo hay que descomentar y completar:
 
 ```xml
-<connectionStrings>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+	<connectionStrings>
+
+		<!-- CONEXIÓN ACTUAL (Servidor Linux en red) -->
+		<add name="CnxAutoMarket"
+			 connectionString="Server=192.168.#.##;Database=AutoMarket;User Id=sa;Password=test123;"
+			 providerName="System.Data.SqlClient" />
+
+		<!-- OPCIÓN 1: SQL Server local en Windows (localhost) -->
+		<!--2
     <add name="CnxAutoMarket"
-         connectionString="Server=192.168.0.11;Database=AutoMarket;User Id=sa;Password=Sqldevjos35.;"
+         connectionString="Server=localhost;Database=AutoMarket;User Id=sa;Password=tu_password;"
          providerName="System.Data.SqlClient" />
-</connectionStrings>
+    -->
+
+		<!-- OPCIÓN 2: SQL Server Express -->
+		<!--
+    <add name="CnxAutoMarket"
+         connectionString="Server=.\SQLEXPRESS;Database=AutoMarket;Trusted_Connection=True;"
+         providerName="System.Data.SqlClient" />
+    -->
+
+		<!-- OPCIÓN 3: Windows Authentication -->
+		<!--
+    <add name="CnxAutoMarket"
+         connectionString="Server=localhost;Database=AutoMarket;Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+    -->
+
+	</connectionStrings>
+
+	<startup>
+		<supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+	</startup>
+
+</configuration>
 ```
 
 ### 6.2 Entidades del Sistema
@@ -367,12 +364,43 @@ ALTER ROLE db_owner ADD MEMBER sa;
 Editar `/AppServidor/App.config`:
 
 ```xml
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-    <connectionStrings>
-        <add name="CnxAutoMarket"
-             connectionString="Server=TU_IP_SERVIDOR;Database=AutoMarket;User Id=sa;Password=TU_PASSWORD;"
-             providerName="System.Data.SqlClient" />
-    </connectionStrings>
+
+	<connectionStrings>
+
+		<!-- CONEXIÓN ACTUAL (Servidor Linux en red) -->
+		<add name="CnxAutoMarket"
+			 connectionString="Server=192.168.#.##;Database=AutoMarket;User Id=sa;Password=test123;"
+			 providerName="System.Data.SqlClient" />
+
+		<!-- OPCIÓN 1: SQL Server local en Windows (localhost) -->
+		<!--2
+    <add name="CnxAutoMarket"
+         connectionString="Server=localhost;Database=AutoMarket;User Id=sa;Password=tu_password;"
+         providerName="System.Data.SqlClient" />
+    -->
+
+		<!-- OPCIÓN 2: SQL Server Express -->
+		<!--
+    <add name="CnxAutoMarket"
+         connectionString="Server=.\SQLEXPRESS;Database=AutoMarket;Trusted_Connection=True;"
+         providerName="System.Data.SqlClient" />
+    -->
+
+		<!-- OPCIÓN 3: Windows Authentication -->
+		<!--
+    <add name="CnxAutoMarket"
+         connectionString="Server=localhost;Database=AutoMarket;Integrated Security=True;"
+         providerName="System.Data.SqlClient" />
+    -->
+
+	</connectionStrings>
+
+	<startup>
+		<supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.7.2" />
+	</startup>
+
 </configuration>
 ```
 
@@ -387,7 +415,7 @@ private const int PUERTO = 15500;                   // Puerto disponible
 private const int MAX_CLIENTES = 10;                // Máximo de conexiones
 ```
 
-#### Paso 3: Abrir Puerto en Firewall
+#### Paso 3: Abrir Puerto en Firewall si ya no lo esta abierto
 
 Abrir PowerShell como Administrador:
 
@@ -446,7 +474,7 @@ msbuild AutoMarket.sln /p:Configuration=Release
 
 1. **Verificar que SQL Server esté corriendo**
 2. **Iniciar AppServidor**: Se abre el dashboard del servidor
-3. **El servidor TCP se inicia automáticamente** (se muestra en logs)
+3. **El servidor TCP se con el boton** (se muestra en logs)
 4. **Iniciar AppCliente** en las estaciones de trabajo
 
 ### 8.2 Uso del Servidor
@@ -582,7 +610,6 @@ Test-NetConnection -ComputerName 192.168.0.10 -Port 15500
 
 ---
 
-**Documentación generada para el Proyecto AutoMarket**
 **Autor: Josue Jimenez Barrantes**
-**Fecha: 11 de Abril de 2026**
+**Fecha Entrega: 12 de Abril de 2026**
 **UNED - I Cuatrimestre 2026**
